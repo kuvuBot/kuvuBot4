@@ -1,0 +1,25 @@
+{
+    "name": "kuvubot",
+    "version": "4.0.0",
+    "description": "Prosty bot dla Discorda, napisany w NodeJS",
+    "keywords": [
+        "discord-bot",
+        "discord-js"
+    ],
+    "homepage": "https://github.com/kuvuBot/kuvuBot4",
+    "bugs": "https://github.com/kuvuBot/kuvuBot4/issues",
+    "license": "MIT",
+    "author": "kuvus <kuba17ism@tuta.io> (https://github.com/kuvus)",
+    "contributors": [
+        "Jqmey <jqmey@outlook.com> (https://github.com/Jqmey)"
+    ],
+    "main": "server.js",
+    "repository": "kuvuBot/kuvuBot4",
+    "dependencies": {
+        "discord.js": "^11.3.0"
+    },
+    "engines": {
+        "node": ">=8.9.4"
+    },
+    "private": true
+}
