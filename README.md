@@ -1,4 +1,10 @@
 # kuvuBot4
+
+[![GitHub issues](https://img.shields.io/github/issues/kuvuBot/kuvuBot4.svg?style=flat-square)](https://github.com/kuvuBot/kuvuBot4/issues)
+[![GitHub forks](https://img.shields.io/github/forks/kuvuBot/kuvuBot4.svg?style=flat-square)](https://github.com/kuvuBot/kuvuBot4/network)
+[![GitHub stars](https://img.shields.io/github/stars/kuvuBot/kuvuBot4.svg?style=flat-square)](https://github.com/kuvuBot/kuvuBot4/stargazers)
+[![GitHub license](https://img.shields.io/github/license/kuvuBot/kuvuBot4.svg?style=flat-square)](https://github.com/kuvuBot/kuvuBot4/blob/master/LICENSE)
+
 Prosty bot dla Discorda, napisany w NodeJS.
 
 ## Linki
