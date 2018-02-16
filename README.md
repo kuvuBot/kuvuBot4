@@ -2,17 +2,17 @@
 Prosty bot dla Discorda, napisany w NodeJS.
 
 ## Linki
-**Strona internetowa:** https://bot.kuvus.pl
-**Serwer Discorda:** https://discord.gg/WhCjqqj
+**Strona internetowa:** https://bot.kuvus.pl<br>
+**Serwer Discorda:** https://discord.gg/WhCjqqj<br>
 **Dodanie bota na swój serwer:** http://bit.ly/kuvuBotAdd
 
 ## Instrukcja instalacji
-Wymagana jest wersja NodeJS nowsza niż 8.9.4.
-Aby zainstalować wszystkie moduły należy użyć komendy `npm install`.
+Wymagana jest wersja NodeJS nowsza niż 8.9.4.<br>
+Aby zainstalować wszystkie moduły należy użyć komendy `npm install`.<br>
 Należy zmienić nazwę pliku `config.example.json` na `config.json` i uzupełnić go.
 
 ## Instrukcja uruchamiania
-Aby uruchomić bota należy użyć komendy `node server.js`.
+Aby uruchomić bota należy użyć komendy `node server.js`.<br>
 Zalecane jest użycie menadżera procesów [pm2](https://pm2.io).
 
 ## Instrukcja tworzenia konta bota
