@@ -58,7 +58,7 @@ client.on('message', message => {
         command.function(parameters).then(() => {
             message.channel.stopTyping();
         }).catch(error => {
-            message.reply('wystąpił błąd!');
+            message.reply('wystąpił błąd!').catch(() => {});
             message.channel.stopTyping();
             console.error(error);
         });
