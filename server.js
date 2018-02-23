@@ -45,7 +45,8 @@ client.on('message', message => {
             args: args,
             commands: commands,
             config: config,
-            message: message
+            message: message,
+            packageInfo: packageInfo
         };
 
         const parameters = {};
