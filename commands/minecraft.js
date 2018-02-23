@@ -25,7 +25,7 @@ exports.function = async (parameters) => {
     const serverPort = (args[2] ? args[2] : 25565);
 
     if(!serverIP) {
-        message.reply('prawidłowe użycie: `!minecraft <adres ip> [port]`!');
+        message.reply('prawidłowe użycie: `.minecraft <adres ip> [port]`!');
     } else {
         const url = `https://mcapi.us/server/status?ip=${serverIP}&port=${serverPort}`;
         const server = JSON.parse(await httpAsPromised.get(url, { resolve : 'body' }));
