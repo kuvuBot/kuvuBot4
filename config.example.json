@@ -1,5 +1,6 @@
 {
     "token": "TOKEN BOTA",
+    "cleverbotKey": "KLUCZ API CLEVERBOTA",
     "colors": {
         "default": "DOMYŚLNY KOLOR EMBEDÓW"
     }
