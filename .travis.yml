@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - "node"
+  - "8"
+before_install:
+  - mv config.example.json config.json
+script:
+  - node server.js
