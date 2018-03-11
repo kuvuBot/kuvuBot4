@@ -10,13 +10,14 @@ exports.info = {
         description: 'zwraca status serwerów Mojang'
     },
     parameters: [
+        'config',
         'message'
     ]
 };
 
 exports.function = async (parameters) => {
+    const config = parameters.config;
     const message = parameters.message;
-
 
     const url = 'https://status.mojang.com/check';
     const mojang = JSON.parse(await httpAsPromised.get(url, { resolve : 'body' }));
@@ -37,7 +38,7 @@ exports.function = async (parameters) => {
     const embed = new Discord.RichEmbed();
     embed.setAuthor('Status serwerów Mojang', message.client.user.displayAvatarURL);
 
-    embed.setColor('80ba27');
+    embed.setColor(config.colors.default);
     mojang.forEach(check);
 
     message.channel.send(embed);
