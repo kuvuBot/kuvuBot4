@@ -22,6 +22,7 @@ exports.function = async (parameters) => {
     if(!question) {
         message.reply('prawidłowe użycie: `.glosowanie <pytanie>`!');
     } else {
+        message.delete();
         const newMessage = await message.channel.send(question);
         await newMessage.react('👍');
         await newMessage.react('👎');
