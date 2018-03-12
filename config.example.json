@@ -1,6 +1,7 @@
 {
     "token": "TOKEN BOTA",
     "cleverbotKey": "KLUCZ API CLEVERBOTA",
+    "fortniteKey": "KLUCZ API FORTNITE",
     "colors": {
         "default": "DOMYŚLNY KOLOR EMBEDÓW"
     }

@@ -20,7 +20,8 @@
         "discord.js": "^11.3.0",
         "figlet": "^1.2.0",
         "http-as-promised": "^2.0.1",
-        "moment": "^2.20.1"
+        "moment": "^2.20.1",
+        "fortnite": "^3.0.0"
     },
     "engines": {
         "node": ">=8.9.4"
