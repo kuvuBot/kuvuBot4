@@ -19,7 +19,7 @@ exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
 
-    const randomCat = JSON.parse(await httpAsPromised.get('https://random.cat/meow', { resolve: 'body' }));
+    const randomCat = JSON.parse(await httpAsPromised.get('http://aws.random.cat/meow', { resolve: 'body' }));
 
     const embed = new Discord.RichEmbed();
     embed.setAuthor('Losowy kot', message.client.user.displayAvatarURL);
