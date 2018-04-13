@@ -22,7 +22,7 @@ exports.function = async (parameters) => {
     const message = parameters.message;
 
     const city = encodeURIComponent(args[1]);
-    var emojis = {
+    const emojis = {
         Clear: '🌞 Słonecznie',
         Clouds: '🌥 Pochmurnie',
         Rain: '🌧 Deszcz',
