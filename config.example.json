@@ -2,6 +2,7 @@
     "token": "TOKEN BOTA",
     "cleverbotKey": "KLUCZ API CLEVERBOTA",
     "fortniteKey": "KLUCZ API FORTNITE",
+    "weatherKey": "KLUCZ API POGODOWEGO",
     "colors": {
         "default": "DOMYŚLNY KOLOR EMBEDÓW"
     }
