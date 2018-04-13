@@ -30,7 +30,7 @@ exports.function = async (parameters) => {
             message.reply('tekst nie może mieć więcej niż 16 znaków!');
         } else {
             const figletText = await makeFiglet(text);
-            message.reply('\n\n```\n' + figletText + '\n```');
+            await message.reply('\n\n```\n' + figletText + '\n```');
         }
     }
 };

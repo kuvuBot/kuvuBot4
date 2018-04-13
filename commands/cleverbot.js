@@ -36,6 +36,6 @@ exports.function = async (parameters) => {
         });
 
         csCache[message.author.id] = response.cs;
-        message.reply(response.output);
+        await message.reply(response.output);
     }
 };

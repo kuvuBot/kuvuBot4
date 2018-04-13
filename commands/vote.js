@@ -20,9 +20,9 @@ exports.function = async (parameters) => {
     const question = args.slice(1).join(' ');
 
     if(!question) {
-        message.reply('prawidłowe użycie: `.glosowanie <pytanie>`!');
+        await message.reply('prawidłowe użycie: `.glosowanie <pytanie>`!');
     } else {
-        message.delete();
+        await message.delete();
         const newMessage = await message.channel.send(question);
         await newMessage.react('👍');
         await newMessage.react('👎');

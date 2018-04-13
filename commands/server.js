@@ -39,6 +39,6 @@ exports.function = async (parameters) => {
         embed.addField('Region', guild.region.toUpperCase(), true);
         embed.addField('Czas stworzenia', moment(guild.createdAt).format('DD.MM.YYYY, HH:mm'), true);
 
-        message.channel.send(embed);
+        await message.channel.send(embed);
     }
 };

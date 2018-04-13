@@ -25,5 +25,5 @@ exports.function = async (parameters) => {
     embed.setColor(config.colors.default);
     embed.setImage(user.displayAvatarURL);
 
-    message.channel.send(embed);
+    await message.channel.send(embed);
 };

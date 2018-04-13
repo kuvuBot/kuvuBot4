@@ -44,6 +44,6 @@ exports.function = async (parameters) => {
             embed.addField('Status', 'Offline');
         }
 
-        message.channel.send(embed);
+        await message.channel.send(embed);
     }
 };

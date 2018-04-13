@@ -31,6 +31,6 @@ exports.function = async (parameters) => {
             }
         }
 
-        message.reply(chars.join(''));
+        await message.reply(chars.join(''));
     }
 };

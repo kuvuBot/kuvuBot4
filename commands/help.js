@@ -32,12 +32,12 @@ exports.function = async (parameters) => {
     embed.setDescription(commandsDescriptions.join('\n'));
 
     if(message.guild) {
-        message.author.send(embed).then(privateMessage => {
+        await message.author.send(embed).then(privateMessage => {
             message.reply('wysłano pomoc poprzez wiadomość prywatną!');
         }).catch(error => {
             message.reply('nie można było wysłać pomocy poprzez wiadomość prywatną!');
         });
     } else {
-        message.channel.send(embed);
+        await message.channel.send(embed);
     }
 };

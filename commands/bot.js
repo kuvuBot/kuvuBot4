@@ -39,5 +39,5 @@ exports.function = async (parameters) => {
 
     embed.addField('Serwery', guildsNames.slice(0, 9).join(', ') + (guildsNames.length > 10 ? `, ${guildsNames.length - 10} innych` : ''), true);
 
-    message.channel.send(embed);
+    await message.channel.send(embed);
 };

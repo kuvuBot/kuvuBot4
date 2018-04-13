@@ -5,24 +5,31 @@ const Discord = require('discord.js');
 exports.info = {
     command: '.kostka',
     help: {
-        command: '.kostka',
+        command: '.kostka [liczba ścian]',
         description: 'rzut kostką'
     },
     parameters: [
+        'args',
         'config',
         'message'
     ]
 };
 
 exports.function = async (parameters) => {
+    const args = parameters.args;
     const config = parameters.config;
     const message = parameters.message;
-    const random = Math.floor(Math.random() * 6) + 1;
+    let sides = args[1];
+
+    if (!sides || sides == NaN) {
+        sides = 6;
+    }
+    const random = Math.floor(Math.random() * sides) + 1;
 
     const embed = new Discord.RichEmbed();
     embed.setAuthor('Rzut kostką', message.client.user.displayAvatarURL);
     embed.setColor(config.colors.default);
     embed.addField('Wyrzuciłeś:', random);
 
-    message.channel.send(embed);
+    await message.channel.send(embed);
 };
