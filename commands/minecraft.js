@@ -8,7 +8,12 @@ exports.info = {
     help: {
         command: '.minecraft <adres ip> [port]',
         description: 'zwraca status podanego serwera'
-    }
+    },
+    parameters: [
+        'args',
+        'config',
+        'message'
+    ]
 };
 
 exports.function = async (parameters) => {

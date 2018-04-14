@@ -10,7 +10,11 @@ exports.info = {
     help: {
         command: '.figlet <tekst>',
         description: 'generuje figlet'
-    }
+    },
+    parameters: [
+        'args',
+        'message'
+    ]
 };
 
 exports.function = async (parameters) => {

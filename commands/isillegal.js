@@ -9,8 +9,10 @@ exports.info = {
         command: '.zdelegalizuj [wyraz]',
         description: ' delegalizuje podaną rzecz'
     },
-    aliases: [
-        '.delegalize'
+    parameters: [
+        'config',
+        'args',
+        'message'
     ]
 };
 

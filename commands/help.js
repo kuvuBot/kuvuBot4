@@ -4,9 +4,14 @@ const Discord = require('discord.js');
 
 exports.info = {
     command: '.pomoc',
-    help: false,
-    aliases: [
-        '.help'
+    help: {
+        command: '.pomoc',
+        description: 'wyświetla listę komend'
+    },
+    parameters: [
+        'commands',
+        'config',
+        'message'
     ]
 };
 
@@ -15,36 +20,24 @@ exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
 
-    const categories = [];
+    const commandsDescriptions = [];
 
-    for(const command of commands.filter(command => command.info.help)) {
-        if(!categories.find(category => category.name === command.info.help.category)) {
-            categories.push({
-                name: command.info.help.category,
-                commands: []
-            });
-        }
-
-        const category = categories.find(category => category.name === command.info.help.category);
-        category.commands.push(command);
-    }
-
-    const categoriesText = [];
-
-    for(const category of categories.sort((a, b) => a.name.localeCompare(b.name))) {
-        const commandsText = [];
-
-        for(const command of category.commands.sort((a, b) => a.info.command.localeCompare(b.info.command))) {
-            commandsText.push(`\`${command.info.help.command}\` - ${command.info.help.description}`);
-        }
-
-        categoriesText.push(`**${category.name}**\n${commandsText.join('\n')}`);
+    for(const command of commands) {
+        commandsDescriptions.push('`' + command.help.command + '` - ' + command.help.description);
     }
 
     const embed = new Discord.RichEmbed();
-    embed.setAuthor('Lista komend', message.client.user.displayAvatarURL);
+    embed.setAuthor('Spis komend', message.client.user.displayAvatarURL);
     embed.setColor(config.colors.default);
-    embed.setDescription(categoriesText.join('\n\n'));
+    embed.setDescription(commandsDescriptions.join('\n'));
 
-    await message.channel.send(embed);
+    if(message.guild) {
+        await message.author.send(embed).then(privateMessage => {
+            message.reply('wysłano pomoc poprzez wiadomość prywatną!');
+        }).catch(error => {
+            message.reply('nie można było wysłać pomocy poprzez wiadomość prywatną!');
+        });
+    } else {
+        await message.channel.send(embed);
+    }
 };

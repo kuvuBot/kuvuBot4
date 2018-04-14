@@ -9,8 +9,9 @@ exports.info = {
         command: '.serwer',
         description: 'zwraca informacje o serwerze'
     },
-    aliases: [
-        '.server'
+    parameters: [
+        'config',
+        'message'
     ]
 };
 
