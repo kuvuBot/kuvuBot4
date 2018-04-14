@@ -4,14 +4,14 @@ const Discord = require('discord.js');
 const Fortnite = require('fortnite');
 
 exports.info = {
-    command: '.fortnite',
+    command: 'fortnite',
     help: {
-        command: '.fortnite <platforma> <nick>',
+        command: 'fortnite <platforma> <nick>',
         description: 'wyświetla statystyki gracza Fortnite',
         category: 'Zabawa'
     },
     aliases: [
-        '.fn'
+        'fn'
     ]
 };
 

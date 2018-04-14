@@ -3,17 +3,17 @@
 const Discord = require('discord.js');
 
 exports.info = {
-    command: '.ogłoszenie',
+    command: 'ogłoszenie',
     help: {
-        command: '.ogłoszenie <treść ogłoszenia>',
+        command: 'ogłoszenie <treść ogłoszenia>',
         description: 'dodaje ogłoszenie',
         category: 'Moderacyjne'
     },
     aliases: [
-        '.broadcast',
-        '.bc',
-        '.ogloszenie',
-        '.ogl'
+        'broadcast',
+        'bc',
+        'ogloszenie',
+        'ogl'
     ]
 };
 

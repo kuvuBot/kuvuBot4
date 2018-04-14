@@ -5,14 +5,14 @@ const cleverbotAsPromised = require('cleverbot-as-promised');
 const csCache = {};
 
 exports.info = {
-    command: '.zapytaj',
+    command: 'zapytaj',
     help: {
-        command: '.zapytaj <pytanie>',
+        command: 'zapytaj <pytanie>',
         description: 'zadaje pytanie cleverbotowi',
         category: 'Zabawa'
     },
     aliases: [
-        '.ask'
+        'ask'
     ]
 };
 

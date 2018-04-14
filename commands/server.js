@@ -4,14 +4,14 @@ const Discord = require('discord.js');
 const moment = require('moment');
 
 exports.info = {
-    command: '.serwer',
+    command: 'serwer',
     help: {
-        command: '.serwer',
+        command: 'serwer',
         description: 'zwraca informacje o serwerze',
         category: 'Ogólne'
     },
     aliases: [
-        '.server'
+        'server'
     ]
 };
 

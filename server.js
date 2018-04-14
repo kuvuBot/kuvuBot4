@@ -19,15 +19,17 @@ for(const commandFilename of commandsFilenames) {
 const client = new Discord.Client();
 
 client.on('ready', () => {
-    client.user.setActivity(`.pomoc | v${packageInfo.version}`);
+    client.user.setPresence({ game: { name: `kb!pomoc | ${client.guilds.size} gildii`, type: 'LISTENING' }, status: 'idle' });
     console.log('Client is ready!');
 });
 
 client.on('message', message => {
     if(message.author.bot) return;
 
+    const prefix = config.prefix;
+
     const args = message.content.trim().split(/\s+/);
-    const command = commands.find(command => command.info.command === args[0] || (command.info.aliases ? command.info.aliases.find(alias => alias === args[0]) : false));
+    const command = commands.find(command => prefix + command.info.command === args[0] || (command.info.aliases ? command.info.aliases.find(alias => prefix + alias === args[0]) : false));
 
     if(command) {
         message.channel.startTyping();
@@ -37,7 +39,8 @@ client.on('message', message => {
             commands,
             config,
             message,
-            packageInfo
+            packageInfo,
+            prefix
         };
 
         command.function(parameters).then(() => {

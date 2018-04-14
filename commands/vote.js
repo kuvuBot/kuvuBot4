@@ -3,14 +3,15 @@
 const Discord = require('discord.js');
 
 exports.info = {
-    command: '.glosowanie',
+    command: 'glosowanie',
     help: {
-        command: '.glosowanie <pytanie>',
+        command: 'glosowanie <pytanie>',
         description: 'robi głosowanie',
         category: 'Moderacyjne'
     },
     aliases: [
-        '.vote'
+        'głosowanie',
+        'vote'
     ]
 };
 

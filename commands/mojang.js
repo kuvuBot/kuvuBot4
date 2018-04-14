@@ -4,9 +4,9 @@ const Discord = require('discord.js');
 const httpAsPromised = require('http-as-promised');
 
 exports.info = {
-    command: '.mojang',
+    command: 'mojang',
     help: {
-        command: '.mojang',
+        command: 'mojang',
         description: 'zwraca status serwerów Mojang',
         category: 'Informacyjne'
     }

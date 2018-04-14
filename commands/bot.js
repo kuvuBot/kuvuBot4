@@ -3,9 +3,9 @@
 const Discord = require('discord.js');
 
 exports.info = {
-    command: '.bot',
+    command: 'bot',
     help: {
-        command: '.bot',
+        command: 'bot',
         description: 'zwraca informacje o bocie',
         category: 'Ogólne'
     }

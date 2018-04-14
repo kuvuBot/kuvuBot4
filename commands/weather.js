@@ -4,14 +4,14 @@ const Discord = require('discord.js');
 const httpAsPromised = require('http-as-promised');
 
 exports.info = {
-    command: '.pogoda',
+    command: 'pogoda',
     help: {
-        command: '.pogoda <miasto>',
+        command: 'pogoda <miasto>',
         description: 'wyświetla pogodę dla danego miasta',
         category: 'Informacyjne'
     },
     aliases: [
-        '.weather'
+        'weather'
     ]
 };
 

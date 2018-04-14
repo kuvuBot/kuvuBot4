@@ -1,14 +1,14 @@
 'use strict';
 
 exports.info = {
-    command: '.reaguj',
+    command: 'reaguj',
     help: {
-        command: '.reaguj <tekst>',
+        command: 'reaguj <tekst>',
         description: 'dodaje reakcje do wiadomości',
         category: 'Zabawa'
     },
     aliases: [
-        '.react'
+        'react'
     ]
 };
 

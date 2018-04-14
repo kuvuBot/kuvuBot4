@@ -3,12 +3,15 @@
 const Discord = require('discord.js');
 
 exports.info = {
-    command: '.kpn',
+    command: 'kpn',
     help: {
-        command: '.kpn <kamień/papier/nożyce>',
+        command: 'kpn <kamień/papier/nożyce>',
         description: 'kamień, papier, nożyce z BOTem',
         category: 'Zabawa'
-    }
+    },
+    aliases: [
+        'rps'
+    ]
 };
 
 exports.function = async (parameters) => {

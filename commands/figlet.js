@@ -6,9 +6,9 @@ const util = require('util');
 const makeFiglet = util.promisify(figlet.text);
 
 exports.info = {
-    command: '.figlet',
+    command: 'figlet',
     help: {
-        command: '.figlet <tekst>',
+        command: 'figlet <tekst>',
         description: 'generuje figlet',
         category: 'Zabawa'
     }

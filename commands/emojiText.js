@@ -1,14 +1,14 @@
 'use strict';
 
 exports.info = {
-    command: '.emtekst',
+    command: 'emtekst',
     help: {
-        command: '.emtekst <tekst>',
+        command: 'emtekst <tekst>',
         description: 'generuje tekst z emoji',
         category: 'Zabawa'
     },
     aliases: [
-        '.emtext'
+        'emtext'
     ]
 };
 

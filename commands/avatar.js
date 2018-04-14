@@ -3,14 +3,14 @@
 const Discord = require('discord.js');
 
 exports.info = {
-    command: '.awatar',
+    command: 'awatar',
     help: {
-        command: '.awatar [wzmianka]',
+        command: 'awatar [wzmianka]',
         description: 'zwraca awatar użytkownika',
         category: 'Ogólne'
     },
     aliases: [
-        '.avatar'
+        'avatar'
     ]
 };
 

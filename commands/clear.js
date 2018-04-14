@@ -3,14 +3,14 @@
 const Discord = require('discord.js');
 
 exports.info = {
-    command: '.czyść',
+    command: 'czyść',
     help: {
-        command: '.czyść <liczba wiadomości>',
+        command: 'czyść <liczba wiadomości>',
         description: 'usuwa podaną liczbę wiadomości',
         category: 'Moderacyjne'
     },
     aliases: [
-        '.clear'
+        'clear'
     ]
 };
 

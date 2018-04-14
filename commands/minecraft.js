@@ -4,12 +4,15 @@ const Discord = require('discord.js');
 const httpAsPromised = require('http-as-promised');
 
 exports.info = {
-    command: '.minecraft',
+    command: 'minecraft',
     help: {
-        command: '.minecraft <adres ip> [port]',
+        command: 'minecraft <adres ip> [port]',
         description: 'zwraca status podanego serwera',
         category: 'Informacyjne'
-    }
+    },
+    aliases: [
+        'mc'
+    ]
 };
 
 exports.function = async (parameters) => {

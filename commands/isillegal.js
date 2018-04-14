@@ -4,14 +4,16 @@ const Discord = require('discord.js');
 const httpAsPromised = require('http-as-promised');
 
 exports.info = {
-    command: '.zdelegalizuj',
+    command: 'zdelegalizuj',
     help: {
-        command: '.zdelegalizuj [wyraz]',
+        command: 'zdelegalizuj [wyraz]',
         description: ' delegalizuje podaną rzecz',
         category: 'Obrazki'
     },
     aliases: [
-        '.delegalize'
+        'delegalize',
+        'isillegal',
+        'isnowillegal'
     ]
 };
 

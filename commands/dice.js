@@ -3,14 +3,14 @@
 const Discord = require('discord.js');
 
 exports.info = {
-    command: '.kostka',
+    command: 'kostka',
     help: {
-        command: '.kostka [liczba ścian]',
+        command: 'kostka [liczba ścian]',
         description: 'rzut kostką',
         category: 'Zabawa'
     },
     aliases: [
-        '.dice'
+        'dice'
     ]
 };
 

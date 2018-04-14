@@ -4,14 +4,14 @@ const Discord = require('discord.js');
 const httpAsPromised = require('http-as-promised');
 
 exports.info = {
-    command: '.kot',
+    command: 'kot',
     help: {
-        command: '.kot',
+        command: 'kot',
         description: 'wyświetla losowego kota',
         category: 'Obrazki'
     },
     aliases: [
-        '.cat'
+        'cat'
     ]
 };
 

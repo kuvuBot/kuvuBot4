@@ -3,10 +3,10 @@
 const Discord = require('discord.js');
 
 exports.info = {
-    command: '.pomoc',
+    command: 'pomoc',
     help: false,
     aliases: [
-        '.help'
+        'help'
     ]
 };
 
@@ -14,6 +14,7 @@ exports.function = async (parameters) => {
     const commands = parameters.commands;
     const config = parameters.config;
     const message = parameters.message;
+    const prefix = parameters.prefix;
 
     const categories = [];
 
@@ -37,16 +38,14 @@ exports.function = async (parameters) => {
 
         let commandsInCat = 0;
         for(const command of category.commands.sort((a, b) => a.info.command.localeCompare(b.info.command))) {
-            commandsText.push(`\`${command.info.help.command}\` - ${command.info.help.description}`);
+            commandsText.push(`\`${prefix}${command.info.help.command}\` - ${command.info.help.description}`);
             commandsInCat++;
         }
         embed.addField(`${category.name} (${commandsInCat})`, `${commandsText.join('\n')}`);
-        // categoriesText.push(`**${category.name} (${commandsInCat})**\n${commandsText.join('\n')}`);
     }
 
     embed.setAuthor('Lista komend', message.client.user.displayAvatarURL);
     embed.setColor(config.colors.default);
-    // embed.setDescription(categoriesText.join('\n\n'));
 
     await message.channel.send(embed);
 };
