@@ -43,6 +43,8 @@ exports.function = async (parameters) => {
             embed.setAuthor(`${word} jest teraz nielegalny(e/a)!`, message.client.user.displayAvatarURL);
             embed.setColor(config.colors.default);
             embed.setImage(gif.url);
+            embed.setFooter('kuvuBot v4.1.0');
+
             await message.channel.send(embed);
         }
     }

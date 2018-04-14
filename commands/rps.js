@@ -65,6 +65,7 @@ exports.function = async (parameters) => {
         embed.addField('Ty', thing, true);
         embed.addField('Bot', botThing, true);
         embed.addField('Wynik', result, true);
+        embed.setFooter('kuvuBot v4.1.0');
 
         await message.channel.send(embed);
      }

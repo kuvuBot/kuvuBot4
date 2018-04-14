@@ -19,7 +19,7 @@ for(const commandFilename of commandsFilenames) {
 const client = new Discord.Client();
 
 client.on('ready', () => {
-    client.user.setPresence({ game: { name: `kb!pomoc | ${client.guilds.size} gildii`, type: 'LISTENING' }, status: 'idle' });
+    client.user.setPresence({ game: { name: `kb!pomoc | ${client.guilds.size} gildii`, type: 'LISTENING' }, status: 'online' });
     console.log('Client is ready!');
 });
 

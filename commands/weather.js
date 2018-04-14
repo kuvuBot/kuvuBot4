@@ -53,6 +53,7 @@ exports.function = async (parameters) => {
     embed.addField('Temperatura', '🌡 '  + weather.main.temp + '℃', true);
     embed.addField('Ciśnienie', '🎈 '  + weather.main.pressure + ' hPa', true);
     embed.addField('Wilgotność', '♨ '  + weather.main.humidity + '%', true);
+    embed.setFooter('kuvuBot v4.1.0');
 
     await message.channel.send(embed);
 };

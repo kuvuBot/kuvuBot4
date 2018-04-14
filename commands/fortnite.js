@@ -32,7 +32,7 @@ exports.function = async (parameters) => {
     } else {
         await client.getInfo(player, platform).then(data => {
             const embed = new Discord.RichEmbed();
-            embed.setAuthor('Status serwera Minecraft', message.client.user.displayAvatarURL);
+            embed.setAuthor('Statystyki Fortnite', message.client.user.displayAvatarURL);
 
             embed.setColor(config.colors.default);
             embed.addField('Wygrane', data.lifetimeStats[8].value, true);
@@ -48,6 +48,7 @@ exports.function = async (parameters) => {
             embed.addField('Squad', 'Statystyki gier squad.');
             embed.addField('Top 3', data.lifetimeStats[2].value, true);
             embed.addField('Top 6', data.lifetimeStats[3].value + '\n\u200b', true);
+            embed.setFooter('kuvuBot v4.1.0');
 
             message.channel.send(embed);
         });

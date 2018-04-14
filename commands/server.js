@@ -38,6 +38,7 @@ exports.function = async (parameters) => {
         embed.addField('Ilość ról', guild.roles.size, true);
         embed.addField('Region', guild.region.toUpperCase(), true);
         embed.addField('Czas stworzenia', moment(guild.createdAt).format('DD.MM.YYYY, HH:mm'), true);
+        embed.setFooter('kuvuBot v4.1.0');
 
         await message.channel.send(embed);
     }

@@ -32,6 +32,7 @@ exports.function = async (parameters) => {
             embed.setAuthor('Rzut kostką', message.client.user.displayAvatarURL);
             embed.setColor(config.colors.default);
             embed.addField('Wyrzuciłeś:', random);
+            embed.setFooter('kuvuBot v4.1.0');
 
             await message.channel.send(embed);
         }

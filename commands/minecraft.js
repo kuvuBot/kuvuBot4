@@ -42,6 +42,7 @@ exports.function = async (parameters) => {
             embed.setColor('ff0000');
             embed.addField('Status', 'Offline');
         }
+        embed.setFooter('kuvuBot v4.1.0');
 
         await message.channel.send(embed);
     }

@@ -34,6 +34,7 @@ exports.function = async (parameters) => {
     }
 
     embed.addField('Serwery', guildsNames.slice(0, 9).join(', ') + (guildsNames.length > 10 ? `, ${guildsNames.length - 10} innych` : ''), true);
+    embed.setFooter('kuvuBot v4.1.0');
 
     await message.channel.send(embed);
 };

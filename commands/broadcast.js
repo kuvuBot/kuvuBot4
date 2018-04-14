@@ -36,6 +36,7 @@ exports.function = async (parameters) => {
             embed.setAuthor('Ogłoszenie', message.client.user.displayAvatarURL);
             embed.setDescription(broadcast);
             embed.setColor(config.colors.default);
+            embed.setFooter('kuvuBot v4.1.0');
 
             await message.channel.send(embed);
         }
