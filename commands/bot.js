@@ -6,13 +6,9 @@ exports.info = {
     command: '.bot',
     help: {
         command: '.bot',
-        description: 'zwraca informacje o bocie'
-    },
-    parameters: [
-        'config',
-        'message',
-        'packageInfo'
-    ]
+        description: 'zwraca informacje o bocie',
+        category: 'Ogólne'
+    }
 };
 
 exports.function = async (parameters) => {

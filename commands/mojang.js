@@ -7,12 +7,9 @@ exports.info = {
     command: '.mojang',
     help: {
         command: '.mojang',
-        description: 'zwraca status serwerów Mojang'
-    },
-    parameters: [
-        'config',
-        'message'
-    ]
+        description: 'zwraca status serwerów Mojang',
+        category: 'Informacyjne'
+    }
 };
 
 exports.function = async (parameters) => {

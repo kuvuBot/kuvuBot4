@@ -4,11 +4,11 @@ exports.info = {
     command: '.reaguj',
     help: {
         command: '.reaguj <tekst>',
-        description: 'dodaje reakcje do wiadomości'
+        description: 'dodaje reakcje do wiadomości',
+        category: 'Zabawa'
     },
-    parameters: [
-        'args',
-        'message'
+    aliases: [
+        '.react'
     ]
 };
 

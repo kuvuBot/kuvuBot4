@@ -7,11 +7,11 @@ exports.info = {
     command: '.serwer',
     help: {
         command: '.serwer',
-        description: 'zwraca informacje o serwerze'
+        description: 'zwraca informacje o serwerze',
+        category: 'Ogólne'
     },
-    parameters: [
-        'config',
-        'message'
+    aliases: [
+        '.server'
     ]
 };
 

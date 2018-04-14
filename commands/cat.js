@@ -7,11 +7,11 @@ exports.info = {
     command: '.kot',
     help: {
         command: '.kot',
-        description: 'wyświetla losowego kota'
+        description: 'wyświetla losowego kota',
+        category: 'Obrazki'
     },
-    parameters: [
-        'config',
-        'message'
+    aliases: [
+        '.cat'
     ]
 };
 

@@ -7,12 +7,11 @@ exports.info = {
     command: '.fortnite',
     help: {
         command: '.fortnite <platforma> <nick>',
-        description: 'wyświetla statystyki gracza Fortnite'
+        description: 'wyświetla statystyki gracza Fortnite',
+        category: 'Zabawa'
     },
-    parameters: [
-        'args',
-        'config',
-        'message'
+    aliases: [
+        '.fn'
     ]
 };
 

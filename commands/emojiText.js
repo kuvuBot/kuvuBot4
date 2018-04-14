@@ -4,11 +4,11 @@ exports.info = {
     command: '.emtekst',
     help: {
         command: '.emtekst <tekst>',
-        description: 'generuje tekst z emoji'
+        description: 'generuje tekst z emoji',
+        category: 'Zabawa'
     },
-    parameters: [
-        'args',
-        'message'
+    aliases: [
+        '.emtext'
     ]
 };
 

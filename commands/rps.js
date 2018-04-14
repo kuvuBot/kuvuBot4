@@ -6,13 +6,9 @@ exports.info = {
     command: '.kpn',
     help: {
         command: '.kpn <kamień/papier/nożyce>',
-        description: 'kamień, papier, nożyce z BOTem'
-    },
-    parameters: [
-        'args',
-        'config',
-        'message'
-    ]
+        description: 'kamień, papier, nożyce z BOTem',
+        category: 'Zabawa'
+    }
 };
 
 exports.function = async (parameters) => {

@@ -6,11 +6,11 @@ exports.info = {
     command: '.awatar',
     help: {
         command: '.awatar [wzmianka]',
-        description: 'zwraca awatar użytkownika'
+        description: 'zwraca awatar użytkownika',
+        category: 'Ogólne'
     },
-    parameters: [
-        'config',
-        'message'
+    aliases: [
+        '.avatar'
     ]
 };
 

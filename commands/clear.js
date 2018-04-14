@@ -6,11 +6,11 @@ exports.info = {
     command: '.czyść',
     help: {
         command: '.czyść <liczba wiadomości>',
-        description: 'usuwa podaną liczbę wiadomości'
+        description: 'usuwa podaną liczbę wiadomości',
+        category: 'Moderacyjne'
     },
-    parameters: [
-        'args',
-        'message'
+    aliases: [
+        '.clear'
     ]
 };
 

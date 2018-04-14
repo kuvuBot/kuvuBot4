@@ -9,12 +9,9 @@ exports.info = {
     command: '.figlet',
     help: {
         command: '.figlet <tekst>',
-        description: 'generuje figlet'
-    },
-    parameters: [
-        'args',
-        'message'
-    ]
+        description: 'generuje figlet',
+        category: 'Zabawa'
+    }
 };
 
 exports.function = async (parameters) => {

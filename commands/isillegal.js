@@ -7,12 +7,11 @@ exports.info = {
     command: '.zdelegalizuj',
     help: {
         command: '.zdelegalizuj [wyraz]',
-        description: ' delegalizuje podaną rzecz'
+        description: ' delegalizuje podaną rzecz',
+        category: 'Obrazki'
     },
-    parameters: [
-        'config',
-        'args',
-        'message'
+    aliases: [
+        '.delegalize'
     ]
 };
 

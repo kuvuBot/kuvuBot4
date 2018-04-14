@@ -8,12 +8,11 @@ exports.info = {
     command: '.zapytaj',
     help: {
         command: '.zapytaj <pytanie>',
-        description: 'zadaje pytanie cleverbotowi'
+        description: 'zadaje pytanie cleverbotowi',
+        category: 'Zabawa'
     },
-    parameters: [
-        'args',
-        'config',
-        'message'
+    aliases: [
+        '.ask'
     ]
 };
 

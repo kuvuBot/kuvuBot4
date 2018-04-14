@@ -6,11 +6,11 @@ exports.info = {
     command: '.glosowanie',
     help: {
         command: '.glosowanie <pytanie>',
-        description: 'robi głosowanie'
+        description: 'robi głosowanie',
+        category: 'Moderacyjne'
     },
-    parameters: [
-        'args',
-        'message'
+    aliases: [
+        '.vote'
     ]
 };
 

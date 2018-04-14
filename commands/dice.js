@@ -6,12 +6,11 @@ exports.info = {
     command: '.kostka',
     help: {
         command: '.kostka [liczba ścian]',
-        description: 'rzut kostką'
+        description: 'rzut kostką',
+        category: 'Zabawa'
     },
-    parameters: [
-        'args',
-        'config',
-        'message'
+    aliases: [
+        '.dice'
     ]
 };
 
