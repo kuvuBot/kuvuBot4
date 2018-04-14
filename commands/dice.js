@@ -8,10 +8,8 @@ exports.info = {
         command: '.kostka [liczba ścian]',
         description: 'rzut kostką'
     },
-    parameters: [
-        'args',
-        'config',
-        'message'
+    aliases: [
+        '.dice'
     ]
 };
 

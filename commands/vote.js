@@ -8,9 +8,8 @@ exports.info = {
         command: '.glosowanie <pytanie>',
         description: 'robi głosowanie'
     },
-    parameters: [
-        'args',
-        'message'
+    aliases: [
+        '.vote'
     ]
 };
 

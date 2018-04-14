@@ -13,16 +13,7 @@ const commands = [];
 
 for(const commandFilename of commandsFilenames) {
     const command = require(path.join(__dirname, 'commands', commandFilename));
-
-    commands.push({
-        command: command.info.command,
-        help: {
-            command: command.info.help.command,
-            description: command.info.help.description
-        },
-        parameters: command.info.parameters,
-        function: command.function
-    });
+    commands.push(command);
 }
 
 const client = new Discord.Client();
@@ -36,31 +27,27 @@ client.on('message', message => {
     if(message.author.bot) return;
 
     const args = message.content.trim().split(/\s+/);
-    const command = commands.find(command => command.command === args[0]);
+    const command = commands.find(command => command.info.command === args[0] || (command.info.aliases ? command.info.aliases.find(alias => alias === args[0]) : false));
 
     if(command) {
         message.channel.startTyping();
 
-        const parametersUnused = {
-            args: args,
-            commands: commands,
-            config: config,
-            message: message,
-            packageInfo: packageInfo
+        const parameters = {
+            args,
+            commands,
+            config,
+            message,
+            packageInfo
         };
-
-        const parameters = {};
-
-        for(const parameter of command.parameters) {
-            parameters[parameter] = parametersUnused[parameter];
-        }
 
         command.function(parameters).then(() => {
             message.channel.stopTyping();
         }).catch(error => {
+            if(!(error instanceof Discord.DiscordAPIError)) {
+                console.error(error);
+            }
             message.reply('wystąpił błąd!').catch(() => {});
             message.channel.stopTyping();
-            console.error(error);
         });
     }
 });

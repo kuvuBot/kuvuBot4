@@ -8,11 +8,7 @@ exports.info = {
     help: {
         command: '.mojang',
         description: 'zwraca status serwerów Mojang'
-    },
-    parameters: [
-        'config',
-        'message'
-    ]
+    }
 };
 
 exports.function = async (parameters) => {

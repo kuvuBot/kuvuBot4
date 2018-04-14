@@ -8,9 +8,8 @@ exports.info = {
         command: '.czyść <liczba wiadomości>',
         description: 'usuwa podaną liczbę wiadomości'
     },
-    parameters: [
-        'args',
-        'message'
+    aliases: [
+        '.clear'
     ]
 };
 

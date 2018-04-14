@@ -6,9 +6,8 @@ exports.info = {
         command: '.reaguj <tekst>',
         description: 'dodaje reakcje do wiadomości'
     },
-    parameters: [
-        'args',
-        'message'
+    aliases: [
+        '.react'
     ]
 };
 

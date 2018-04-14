@@ -8,9 +8,8 @@ exports.info = {
         command: '.awatar [wzmianka]',
         description: 'zwraca awatar użytkownika'
     },
-    parameters: [
-        'config',
-        'message'
+    aliases: [
+        '.avatar'
     ]
 };
 

@@ -10,10 +10,8 @@ exports.info = {
         command: '.zapytaj <pytanie>',
         description: 'zadaje pytanie cleverbotowi'
     },
-    parameters: [
-        'args',
-        'config',
-        'message'
+    aliases: [
+        '.ask'
     ]
 };
 

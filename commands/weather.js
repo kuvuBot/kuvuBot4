@@ -9,10 +9,8 @@ exports.info = {
         command: '.pogoda <miasto>',
         description: 'wyświetla pogodę dla danego miasta'
     },
-    parameters: [
-        'args',
-        'config',
-        'message'
+    aliases: [
+        '.weather'
     ]
 };
 

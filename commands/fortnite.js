@@ -9,10 +9,8 @@ exports.info = {
         command: '.fortnite <platforma> <nick>',
         description: 'wyświetla statystyki gracza Fortnite'
     },
-    parameters: [
-        'args',
-        'config',
-        'message'
+    aliases: [
+        '.fn'
     ]
 };
 

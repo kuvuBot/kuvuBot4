@@ -6,9 +6,8 @@ exports.info = {
         command: '.emtekst <tekst>',
         description: 'generuje tekst z emoji'
     },
-    parameters: [
-        'args',
-        'message'
+    aliases: [
+        '.emtext'
     ]
 };
 

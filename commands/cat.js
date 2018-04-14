@@ -9,9 +9,8 @@ exports.info = {
         command: '.kot',
         description: 'wyświetla losowego kota'
     },
-    parameters: [
-        'config',
-        'message'
+    aliases: [
+        '.cat'
     ]
 };
 
