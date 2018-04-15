@@ -28,7 +28,7 @@ client.on('message', message => {
 
     const prefix = config.prefix;
 
-    const args = message.content.trim().split(/\s+/);
+    const args = message.content.toLowerCase().trim().split(/\s+/);
     const command = commands.find(command => prefix + command.info.command === args[0] || (command.info.aliases ? command.info.aliases.find(alias => prefix + alias === args[0]) : false));
 
     if(command) {

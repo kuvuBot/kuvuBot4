@@ -25,7 +25,9 @@ exports.function = async (parameters) => {
     embed.addField('Nazwa', bot.user.tag, true);
     embed.addField('Wersja', `v${packageInfo.version}`, true);
     embed.addField('Ilość serwerów', bot.guilds.size, true);
+    embed.addField('Ilość kanałów', bot.channels.size, true);
     embed.addField('Github', '[Przejdź](https://github.com/kuvuBot/kuvuBot4)', true);
+    embed.addField('Strona', '[Przejdź](https://bot.kuvus.pl/)', true);
 
     const guildsNames = [];
 
