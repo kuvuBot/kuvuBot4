@@ -49,7 +49,13 @@ client.on('message', message => {
             if(!(error instanceof Discord.DiscordAPIError)) {
                 console.error(error);
             }
-            message.reply('wystąpił błąd!').catch(() => {});
+            const embed = new Discord.RichEmbed();
+            embed.setAuthor('Wystąpił błąd', message.client.user.displayAvatarURL);
+            embed.setColor(config.colors.error);
+            embed.addField('Wystąpił następujący błąd', error);
+            embed.setFooter('kuvuBot v4.1.0');
+            embed.setTimestamp();
+            message.channel.send(embed).catch(() => {});
             message.channel.stopTyping();
         });
     }

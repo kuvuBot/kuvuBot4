@@ -4,7 +4,8 @@
     "fortniteKey": "KLUCZ API FORTNITE",
     "weatherKey": "KLUCZ API POGODOWEGO",
     "colors": {
-        "default": "DOMYŚLNY KOLOR EMBEDÓW"
+        "default": "DOMYŚLNY KOLOR EMBEDÓW",
+        "error": "#b20e0e"
     },
     "prefix": "kb!"
 }
