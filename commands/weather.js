@@ -26,7 +26,7 @@ exports.function = async (parameters) => {
         Clear: '🌞 Słonecznie',
         Clouds: '🌥 Pochmurnie',
         Rain: '🌧 Deszcz',
-        Drizzle: '🌦 Mrzawka',
+        Drizzle: '🌦 Mżawka',
         Thunderstorm: '⛈ Burza',
         Snow: '🌨 Śnieg',
         Atmosphere: '🌁 Mgła',

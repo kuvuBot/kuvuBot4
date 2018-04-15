@@ -4,10 +4,10 @@ const Discord = require('discord.js');
 const httpAsPromised = require('http-as-promised');
 
 exports.info = {
-    command: 'poklep',
+    command: 'pogłaszcz',
     help: {
-        command: 'przytul <osoba>',
-        description: 'klepie oznaczonego użytkownika',
+        command: 'pogłaszcz <osoba>',
+        description: 'głaszcze oznaczonego użytkownika',
         category: 'Obrazki'
     },
     aliases: [
@@ -30,7 +30,7 @@ exports.function = async (parameters) => {
         image = 'https://rra.ram.moe' + image.path;
 
         const embed = new Discord.RichEmbed();
-        embed.setAuthor(`${message.author.username} poklepał ${user}`, message.client.user.displayAvatarURL);
+        embed.setAuthor(`${message.author.username} pogłaskał ${user}`, message.client.user.displayAvatarURL);
         embed.setColor(config.colors.default);
         embed.setImage(image);
         embed.setFooter('kuvuBot v4.1.0');
