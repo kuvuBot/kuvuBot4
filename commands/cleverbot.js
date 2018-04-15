@@ -20,11 +20,12 @@ exports.function = async (parameters) => {
     const args = parameters.args;
     const config = parameters.config;
     const message = parameters.message;
+    const prefix = parameters.prefix;
 
     const question = args.slice(1).join(' ');
 
     if(!question) {
-        message.reply('prawidłowe użycie: `!zapytaj <pytanie>`!');
+        message.reply('prawidłowe użycie: `kb!zapytaj <pytanie>`!');
     } else {
         const cleverbotClient = new cleverbotAsPromised(config.cleverbotKey);
 

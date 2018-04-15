@@ -33,6 +33,7 @@ exports.function = async (parameters) => {
             embed.setColor(config.colors.default);
             embed.addField('Wyrzuciłeś:', random);
             embed.setFooter('kuvuBot v4.1.0');
+            embed.setTimestamp();
 
             await message.channel.send(embed);
         }

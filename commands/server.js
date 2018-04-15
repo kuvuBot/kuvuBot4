@@ -39,6 +39,7 @@ exports.function = async (parameters) => {
         embed.addField('Region', guild.region.toUpperCase(), true);
         embed.addField('Czas stworzenia', moment(guild.createdAt).format('DD.MM.YYYY, HH:mm'), true);
         embed.setFooter('kuvuBot v4.1.0');
+        embed.setTimestamp();
 
         await message.channel.send(embed);
     }

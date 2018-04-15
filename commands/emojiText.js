@@ -15,11 +15,12 @@ exports.info = {
 exports.function = async (parameters) => {
     const args = parameters.args;
     const message = parameters.message;
+    const prefix = parameters.prefix;
 
     const chars = args.slice(1).join(' ').toLowerCase().split('');
 
     if(!chars[0]) {
-        message.reply('prawidłowe użycie: `.emtekst <tekst>`!');
+        message.reply('prawidłowe użycie: `kb!emtekst <tekst>`!');
     } else {
         for(const char in chars) {
             if(chars[char].charCodeAt() > 96 && chars[char].charCodeAt() < 123) {

@@ -21,11 +21,12 @@ exports.function = async (parameters) => {
     const config = parameters.config;
     const args = parameters.args;
     const message = parameters.message;
+    const prefix = parameters.prefix;
 
     const word = args[1].toUpperCase();
 
     if (!word) {
-        await message.reply('prawidłowe użycie: `.zdelegalizuj <wyraz>`!');
+        await message.reply(`prawidłowe użycie: \`${prefix}zdelegalizuj <wyraz>\`!`);
     } else {
         if (word.length > 10) {
             await message.reply('tekst nie może mieć więcej niż 10 znaków!');
@@ -44,6 +45,7 @@ exports.function = async (parameters) => {
             embed.setColor(config.colors.default);
             embed.setImage(gif.url);
             embed.setFooter('kuvuBot v4.1.0');
+            embed.setTimestamp();
 
             await message.channel.send(embed);
         }

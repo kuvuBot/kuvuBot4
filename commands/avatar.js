@@ -25,6 +25,7 @@ exports.function = async (parameters) => {
     embed.setColor(config.colors.default);
     embed.setImage(user.displayAvatarURL);
     embed.setFooter('kuvuBot v4.1.0');
+    embed.setTimestamp();
 
     await message.channel.send(embed);
 };

@@ -19,12 +19,13 @@ exports.function = async (parameters) => {
     const args = parameters.args;
     const config = parameters.config;
     const message = parameters.message;
+    const prefix = parameters.prefix;
 
     const serverIP = args[1];
     const serverPort = (args[2] ? args[2] : 25565);
 
     if(!serverIP) {
-        message.reply('prawidłowe użycie: `.minecraft <adres ip> [port]`!');
+        message.reply(`prawidłowe użycie: \`${prefix}minecraft <adres ip> [port]\`!`);
     } else {
         const url = `https://mcapi.us/server/status?ip=${serverIP}&port=${serverPort}`;
         const server = JSON.parse(await httpAsPromised.get(url, { resolve : 'body' }));
@@ -43,6 +44,7 @@ exports.function = async (parameters) => {
             embed.addField('Status', 'Offline');
         }
         embed.setFooter('kuvuBot v4.1.0');
+        embed.setTimestamp();
 
         await message.channel.send(embed);
     }

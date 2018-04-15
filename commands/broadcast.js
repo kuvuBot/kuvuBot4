@@ -21,11 +21,12 @@ exports.function = async (parameters) => {
     const args = parameters.args;
     const config = parameters.config;
     const message = parameters.message;
+    const prefix = parameters.prefix;
 
     const broadcast = args.slice(1).join(' ');
 
     if(!broadcast) {
-        await message.reply('prawidłowe użycie: `.ogłoszenie <treść ogłoszenia>`!');
+        await message.reply('prawidłowe użycie: `kb!ogłoszenie <treść ogłoszenia>`!');
     } else {
         if(!message.member.hasPermission('MANAGE_MESSAGES')) {
             await message.reply('nie posiadasz wystarczających uprawnień, aby móc użyć tej komendy!');
@@ -37,6 +38,7 @@ exports.function = async (parameters) => {
             embed.setDescription(broadcast);
             embed.setColor(config.colors.default);
             embed.setFooter('kuvuBot v4.1.0');
+            embed.setTimestamp();
 
             await message.channel.send(embed);
         }

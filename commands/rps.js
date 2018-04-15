@@ -18,6 +18,7 @@ exports.function = async (parameters) => {
     const args = parameters.args;
     const config = parameters.config;
     const message = parameters.message;
+    const prefix = parameters.prefix;
 
     let thing = args[1].toLowerCase();
     const emojis = {
@@ -28,7 +29,7 @@ exports.function = async (parameters) => {
     const words = ['⚪ Kamień', '📰 Papier', '✂ Nożyce'];;
 
     if (!args[1].toLowerCase() == "kamien" || !args[1].toLowerCase() == "kamień" || !args[1].toLowerCase() == "nożyce" || !args[1].toLowerCase() == "nozyce" || !args[1].toLowerCase() == "papier") {
-        await message.reply('prawidłowe użycie: `.kpn <kamień/papier/nożyce>`!');
+        await message.reply(`prawidłowe użycie: \`${prefix}kpn <kamień/papier/nożyce>\`!`);
     } else {
         thing = thing.replace(/kamień|papier|nożyce/gi, function(matched){
             matched = matched.replace(/\s/g, '_');
@@ -66,6 +67,7 @@ exports.function = async (parameters) => {
         embed.addField('Bot', botThing, true);
         embed.addField('Wynik', result, true);
         embed.setFooter('kuvuBot v4.1.0');
+        embed.setTimestamp();
 
         await message.channel.send(embed);
      }

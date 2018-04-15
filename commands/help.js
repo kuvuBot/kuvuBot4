@@ -47,6 +47,7 @@ exports.function = async (parameters) => {
     embed.setAuthor('Lista komend', message.client.user.displayAvatarURL);
     embed.setColor(config.colors.default);
     embed.setFooter('kuvuBot v4.1.0');
+    embed.setTimestamp();
 
     await message.channel.send(embed);
 };

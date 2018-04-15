@@ -38,6 +38,7 @@ exports.function = async (parameters) => {
     embed.setColor(config.colors.default);
     mojang.forEach(check);
     embed.setFooter('kuvuBot v4.1.0');
+    embed.setTimestamp();
 
     await message.channel.send(embed);
 };

@@ -15,12 +15,13 @@ exports.info = {
 exports.function = async (parameters) => {
     const args = parameters.args;
     const message = parameters.message;
+    const prefix = parameters.prefix;
 
     const chars = args.slice(1).join(' ').toLowerCase().split('');
     const regA = 127462;
 
     if(!chars[0]) {
-        message.reply('prawidłowe użycie: `.reaguj <tekst>`!');
+        message.reply(`prawidłowe użycie: \`${prefix}reaguj <tekst>\`!`);
     } else {
         for(const char in chars) {
             if(chars[char].charCodeAt() > 96 && chars[char].charCodeAt() < 123) {

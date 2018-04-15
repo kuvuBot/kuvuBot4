@@ -17,11 +17,12 @@ exports.info = {
 exports.function = async (parameters) => {
     const args = parameters.args;
     const message = parameters.message;
+    const prefix = parameters.prefix;
 
     const text = args.slice(1).join(' ');
 
     if(!text) {
-        message.reply('prawidłowe użycie: `.figlet <tekst>`!');
+        message.reply('prawidłowe użycie: `kb!figlet <tekst>`!');
     } else {
         if(text.length > 16) {
             message.reply('tekst nie może mieć więcej niż 16 znaków!');

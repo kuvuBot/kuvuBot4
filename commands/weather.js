@@ -19,6 +19,7 @@ exports.function = async (parameters) => {
     const args = parameters.args;
     const config = parameters.config;
     const message = parameters.message;
+    const prefix = parameters.prefix;
 
     const city = encodeURIComponent(args[1]);
     const emojis = {
@@ -34,7 +35,7 @@ exports.function = async (parameters) => {
     };
 
     if(!city) {
-        await message.reply('prawidłowe użycie: `.pogoda <miasto>`!');
+        await message.reply(`prawidłowe użycie: \`${prefix}pogoda <miasto>\`!`);
     }
 
     const weather = JSON.parse(await httpAsPromised.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${config.weatherKey}&lang=en&units=metric`, { resolve: 'body' }));
@@ -54,6 +55,7 @@ exports.function = async (parameters) => {
     embed.addField('Ciśnienie', '🎈 '  + weather.main.pressure + ' hPa', true);
     embed.addField('Wilgotność', '♨ '  + weather.main.humidity + '%', true);
     embed.setFooter('kuvuBot v4.1.0');
+    embed.setTimestamp();
 
     await message.channel.send(embed);
 };
