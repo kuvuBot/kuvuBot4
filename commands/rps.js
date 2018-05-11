@@ -31,7 +31,10 @@ exports.function = async (parameters) => {
     if (!args[1].toLowerCase() == "kamien" || !args[1].toLowerCase() == "kamień" || !args[1].toLowerCase() == "nożyce" || !args[1].toLowerCase() == "nozyce" || !args[1].toLowerCase() == "papier") {
         await message.reply(`prawidłowe użycie: \`${prefix}kpn <kamień/papier/nożyce>\`!`);
     } else {
-        thing = thing.replace(/kamień|papier|nożyce/gi, function(matched){
+        thing = thing
+            .replace('kamien', 'kamień')
+            .replace('nozyce', 'nożyce');
+        thing = thing.replace(/kamień|papier|nożyce/gi, function(matched) {
             matched = matched.replace(/\s/g, '_');
             return emojis[matched];
         });
