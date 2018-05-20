@@ -43,11 +43,11 @@ const check = async function check(gid) {
     }
 };
 
-const update = async function update(obj, id, t, v) {
-    if(obj && id && t && v){
+const update = async function update(obj, id, k, v) {
+    if(obj && id && k && v){
         try {
             await r.connect(database).then(conn => connection = conn);
-            await r.table(obj).get(id).update({[t]: v}).run(connection);
+            await r.table(obj).get(id).update({[k]: v}).run(connection);
             return true;
         } catch (e) {
             console.error(e);
@@ -74,7 +74,7 @@ let getTrans = async function getTrans(id, w) {
             return false;
         }
     } else {
-        return false;
+        return ' [Translation not found] ';
     }
 };
 

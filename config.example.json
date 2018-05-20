@@ -1,10 +1,10 @@
 {
-    "token": "TOKEN BOTA",
-    "cleverbotKey": "KLUCZ API CLEVERBOTA",
-    "fortniteKey": "KLUCZ API FORTNITE",
-    "weatherKey": "KLUCZ API POGODOWEGO",
+    "token": "BOT TOKEN",
+    "cleverbotKey": "CLEVERBOT API KEY",
+    "fortniteKey": "FORTNITE API KEY",
+    "weatherKey": "OPENWEATHERMAP API KEY ",
     "colors": {
-        "default": "DOMYŚLNY KOLOR EMBEDÓW",
+        "default": "DEFAULT EMBED COLOR",
         "error": "#b20e0e"
     },
     "prefix": "kb!",
