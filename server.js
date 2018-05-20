@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const Discord = require('discord.js');
+const db = require('./database/db.js');
 
 const config = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json')));
 const packageInfo = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json')));
@@ -19,7 +20,8 @@ for(const commandFilename of commandsFilenames) {
 const client = new Discord.Client();
 
 client.on('ready', () => {
-    client.user.setPresence({ game: { name: `kb!pomoc | ${client.guilds.size} gildii`, type: 'LISTENING' }, status: 'online' });
+    client.user.setPresence({ game: { name: `kb!help | ${client.guilds.size} guilds`, type: 'LISTENING' }, status: 'online' });
+    db.load();
     console.log('Client is ready!');
 });
 
