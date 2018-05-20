@@ -1,0 +1,84 @@
+'use strict';
+
+const r = require('rethinkdb');
+
+const { database } = require('../config.json');
+
+let connection;
+const load = async function load() {
+    try {
+        await r.connect(database).then(conn => connection = conn);
+        await console.log('Creating tables...');
+        await r.tableCreate("users").run(connection);
+        await r.tableCreate("guilds").run(connection);
+        await console.log('Tables created.');
+    } catch (e) {
+        e = e.toString();
+        if (e.includes("already exists in")) {
+            console.log('Already exists. Skipping...')
+        } else {
+            console.error(e);
+        }
+    }
+};
+
+const check = async function check(gid) {
+    await r.connect(database).then(conn => connection = conn);
+    if (await r.table("guilds").get(gid).run(connection)) {
+        return true;
+    } else {
+        try {
+            await r.table("guilds").insert({
+                "id": gid,
+                "lang": "en",
+                "logchannel": "none",
+                "greeting": false,
+                "prefix": "kb!"
+            }).run(connection);
+            return true;
+        } catch (e) {
+            console.error(e);
+            return false;
+        }
+    }
+};
+
+const update = async function update(obj, id, t, v) {
+    if(obj && id && t && v){
+        try {
+            await r.connect(database).then(conn => connection = conn);
+            await r.table(obj).get(id).update({[t]: v}).run(connection);
+            return true;
+        } catch (e) {
+            console.error(e);
+            return false;
+        }
+     } else {
+        return false;
+    }
+};
+
+let getTrans = async function getTrans(id, w) {
+    if(id && w){
+        try {
+            await r.connect(database).then(conn => connection = conn);
+
+            const guild = await r.table('guilds').get(id).toJSON().run(connection);
+            const lang = await JSON.parse(guild).lang;
+
+            let langFile = require(`../langs/${lang}.json`);
+
+            return langFile[w];
+        } catch (e) {
+            console.error(e);
+            return false;
+        }
+    } else {
+        return false;
+    }
+};
+
+exports.check = check;
+exports.load = load;
+exports.update = update;
+exports.getTrans = getTrans;

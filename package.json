@@ -22,7 +22,8 @@
         "http-as-promised": "^2.0.1",
         "moment": "^2.20.1",
         "fortnite": "^3.0.0",
-        "xml-js": "^1.6.2"
+        "xml-js": "^1.6.2",
+        "rethinkdb": "^2.3.3"
     },
     "engines": {
         "node": ">=8.9.4"
