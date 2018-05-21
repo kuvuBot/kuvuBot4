@@ -117,7 +117,7 @@
     "srv_command": "guild",
     "user_command": "user [user]",
     "user_desc": "shows info about the user",
-    "bot_title\n": "Bot info",
-    "check\n": "Check out",
-    "figlet_limit\n": "Text can't be longer than 16 characters!"
+    "bot_title": "Bot info",
+    "check": "Check out",
+    "figlet_limit": "Text can't be longer than 16 characters!"
 }

@@ -117,7 +117,7 @@
     "srv_command": "serwer",
     "user_command": "użytkownik [użytkownik]",
     "user_desc": "wyświetla informacje o użytkowniku",
-    "bot_title\n": "Informacje o bocie",
-    "check\n": "Przejdź",
-    "figlet_limit\n": "Tekst nie może mieć więcej niż 16 znaków!"
+    "bot_title": "Informacje o bocie",
+    "check": "Przejdź",
+    "figlet_limit": "Tekst nie może mieć więcej niż 16 znaków!"
 }
