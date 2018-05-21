@@ -115,7 +115,7 @@
     "clear_command": "czyść <liczba wiadomości>",
     "mo_command": "mojang",
     "srv_command": "serwer",
-    "user_command\n": "użytkownik [użytkownik]",
+    "user_command": "użytkownik [użytkownik]",
     "user_desc": "wyświetla informacje o użytkowniku",
     "bot_title\n": "Informacje o bocie",
     "check\n": "Przejdź",

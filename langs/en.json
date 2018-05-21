@@ -115,7 +115,7 @@
     "clear_command": "clear <number of messages>",
     "mo_command": "mojang",
     "srv_command": "guild",
-    "user_command\n": "user [user]",
+    "user_command": "user [user]",
     "user_desc": "shows info about the user",
     "bot_title\n": "Bot info",
     "check\n": "Check out",
