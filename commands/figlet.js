@@ -2,6 +2,7 @@
 
 const figlet = require('figlet');
 const util = require('util');
+const db = require('../database/db.js');
 
 const makeFiglet = util.promisify(figlet.text);
 
@@ -10,7 +11,7 @@ exports.info = {
     help: {
         command: 'figlet <tekst>',
         description: 'generuje figlet',
-        category: 'Zabawa'
+        category: 'fun'
     }
 };
 
@@ -19,13 +20,21 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const prefix = parameters.prefix;
 
+    let guildID;
+    if(!message.guild) {
+        guildID = '0';
+    } else {
+        guildID = message.guild.id;
+    }
+    await db.check(guildID);
+
     const text = args.slice(1).join(' ');
 
     if(!text) {
-        message.reply('prawidłowe użycie: `kb!figlet <tekst>`!');
+        await message.reply(`${await db.getTrans(guildID, 'usage')}\`${prefix}${await db.getTrans(guildID, 'figlet_command')}\`!`);
     } else {
         if(text.length > 16) {
-            message.reply('tekst nie może mieć więcej niż 16 znaków!');
+            await message.reply(await db.getTrans(guildID, 'figlet_limit'));
         } else {
             const figletText = await makeFiglet(text);
             await message.reply('\n\n```\n' + figletText + '\n```');

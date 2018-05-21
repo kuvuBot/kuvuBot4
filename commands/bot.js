@@ -1,13 +1,14 @@
 'use strict';
 
 const Discord = require('discord.js');
+const db = require('../database/db.js');
 
 exports.info = {
     command: 'bot',
     help: {
         command: 'bot',
         description: 'zwraca informacje o bocie',
-        category: 'Ogólne'
+        category: 'gen'
     }
 };
 
@@ -16,18 +17,26 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const packageInfo = parameters.packageInfo;
 
+    let guildID;
+    if(!message.guild) {
+        guildID = '0';
+    } else {
+        guildID = message.guild.id;
+    }
+    await db.check(guildID);
+
     const bot = message.client;
 
     const embed = new Discord.RichEmbed();
-    embed.setAuthor('Informacje o bocie', bot.user.displayAvatarURL);
+    embed.setAuthor(await db.getTrans(guildID, 'bot_title'), bot.user.displayAvatarURL);
     embed.setColor(config.colors.default);
     embed.setThumbnail(bot.user.displayAvatarURL);
-    embed.addField('Nazwa', bot.user.tag, true);
-    embed.addField('Wersja', `v${packageInfo.version}`, true);
-    embed.addField('Ilość serwerów', bot.guilds.size, true);
-    embed.addField('Ilość kanałów', bot.channels.size, true);
-    embed.addField('Github', '[Przejdź](https://github.com/kuvuBot/kuvuBot4)', true);
-    embed.addField('Strona', '[Przejdź](https://bot.kuvus.pl/)', true);
+    embed.addField(await db.getTrans(guildID, 'bot_name'), bot.user.tag, true);
+    embed.addField(await db.getTrans(guildID, 'bot_version'), `v${packageInfo.version}`, true);
+    embed.addField(await db.getTrans(guildID, 'bot_servers'), bot.guilds.size, true);
+    embed.addField(await db.getTrans(guildID, 'bot_channels'), bot.channels.size, true);
+    embed.addField('Github', `[${await db.getTrans(guildID, 'check')}](https://github.com/kuvuBot/kuvuBot4)`, true);
+    embed.addField(await db.getTrans(guildID, 'bot_site'), `[${await db.getTrans(guildID, 'check')}](https://bot.kuvus.pl/)`, true);
 
     const guildsNames = [];
 
@@ -35,7 +44,7 @@ exports.function = async (parameters) => {
         guildsNames.push(guild.name);
     }
 
-    embed.addField('Serwery', guildsNames.slice(0, 9).join(', ') + (guildsNames.length > 10 ? `, ${guildsNames.length - 10} innych` : ''), true);
+    embed.addField(await db.getTrans(guildID, 'bot_srvs'), guildsNames.slice(0, 9).join(', ') + (guildsNames.length > 10 ? `, ${guildsNames.length - 10} ${await db.getTrans(guildID, 'bot_other')}` : ''), true);
     embed.setFooter('kuvuBot v4.1.0');
     embed.setTimestamp();
 

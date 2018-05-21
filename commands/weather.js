@@ -2,16 +2,17 @@
 
 const Discord = require('discord.js');
 const httpAsPromised = require('http-as-promised');
+const db = require('../database/db.js');
 
 exports.info = {
-    command: 'pogoda',
+    command: 'weather',
     help: {
         command: 'pogoda <miasto>',
         description: 'wyświetla pogodę dla danego miasta',
-        category: 'Informacyjne'
+        category: 'info'
     },
     aliases: [
-        'weather'
+        'pogoda'
     ]
 };
 
@@ -21,39 +22,47 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const prefix = parameters.prefix;
 
+    let guildID;
+    if(!message.guild) {
+        guildID = '0';
+    } else {
+        guildID = message.guild.id;
+    }
+    await db.check(guildID);
+
     const city = encodeURIComponent(args[1]);
-    const emojis = {
-        Clear: '🌞 Słonecznie',
-        Clouds: '🌥 Pochmurnie',
-        Rain: '🌧 Deszcz',
-        Drizzle: '🌦 Mżawka',
-        Thunderstorm: '⛈ Burza',
-        Snow: '🌨 Śnieg',
-        Atmosphere: '🌁 Mgła',
-        Extreme: '🌪',
-        Additional: '❔'
+    const conds = {
+        Clear: `🌞 ${await db.getTrans(guildID, 'weather_cond_sun')}`,
+        Clouds: `🌥 ${await db.getTrans(guildID, 'weather_cond_clouds')}`,
+        Rain: `🌧 ${await db.getTrans(guildID, 'weather_cond_rain')}`,
+        Drizzle: `🌦 ${await db.getTrans(guildID, 'weather_cond_drizzle')}`,
+        Thunderstorm: `⛈ ${await db.getTrans(guildID, 'weather_cond_thund')}`,
+        Snow: `🌨 ${await db.getTrans(guildID, 'weather_cond_snow')}`,
+        Atmosphere: `🌁 ${await db.getTrans(guildID, 'weather_cond_atm')}`,
+        Extreme: `🌪 ${await db.getTrans(guildID, 'weather_cond_ext')}`,
+        Additional: `❔ ${await db.getTrans(guildID, 'weather_cond_add')}`
     };
 
     if(!city) {
-        await message.reply(`prawidłowe użycie: \`${prefix}pogoda <miasto>\`!`);
+        await message.reply(`${await db.getTrans(guildID, 'usage')}\`${prefix}${await db.getTrans(guildID, 'weather_command')}\`!`);
     }
 
     const weather = JSON.parse(await httpAsPromised.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${config.weatherKey}&lang=en&units=metric`, { resolve: 'body' }));
 
     let wCondition = weather.weather[0].main.replace(/Clear|Clouds|Rain|Drizzle|Thunderstorm|Snow|Atmosphere|Extreme|Additional/gi, function(matched){
         matched = matched.replace(/\s/g, '_');
-        return emojis[matched];
+        return conds[matched];
     });
 
     const embed = new Discord.RichEmbed();
     embed.setAuthor('Pogoda', message.client.user.displayAvatarURL);
     embed.setColor(config.colors.default);
 
-    embed.addField('Miasto', '🏙 ' + city);
-    embed.addField('Warunki pogodowe', wCondition);
-    embed.addField('Temperatura', '🌡 '  + weather.main.temp + '℃', true);
-    embed.addField('Ciśnienie', '🎈 '  + weather.main.pressure + ' hPa', true);
-    embed.addField('Wilgotność', '♨ '  + weather.main.humidity + '%', true);
+    embed.addField(await db.getTrans(guildID, 'weather_city'), '🏙 ' + weather.name);
+    embed.addField(await db.getTrans(guildID, 'weather_cond'), wCondition);
+    embed.addField(await db.getTrans(guildID, 'weather_temp'), '🌡 '  + weather.main.temp + '℃', true);
+    embed.addField(await db.getTrans(guildID, 'weather_press'), '🎈 '  + weather.main.pressure + ' hPa', true);
+    embed.addField(await db.getTrans(guildID, 'weather_hum'), '♨ '  + weather.main.humidity + '%', true);
     embed.setFooter('kuvuBot v4.1.0');
     embed.setTimestamp();
 

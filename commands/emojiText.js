@@ -1,13 +1,16 @@
 'use strict';
 
+const db = require('../database/db.js');
+
 exports.info = {
-    command: 'emtekst',
+    command: 'etxt',
     help: {
         command: 'emtekst <tekst>',
         description: 'generuje tekst z emoji',
-        category: 'Zabawa'
+        category: 'fun'
     },
     aliases: [
+        'emtekst',
         'emtext'
     ]
 };
@@ -17,10 +20,18 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const prefix = parameters.prefix;
 
+    let guildID;
+    if(!message.guild) {
+        guildID = '0';
+    } else {
+        guildID = message.guild.id;
+    }
+    await db.check(guildID);
+
     const chars = args.slice(1).join(' ').toLowerCase().split('');
 
     if(!chars[0]) {
-        message.reply('prawidłowe użycie: `kb!emtekst <tekst>`!');
+        await message.reply(`${await db.getTrans(guildID, 'usage')} \`${prefix}${await db.getTrans(guildID, 'etxt_command')}\`!`);
     } else {
         for(const char in chars) {
             if(chars[char].charCodeAt() > 96 && chars[char].charCodeAt() < 123) {

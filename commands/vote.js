@@ -1,17 +1,18 @@
 'use strict';
 
 const Discord = require('discord.js');
+const db = require('../database/db.js');
 
 exports.info = {
-    command: 'glosowanie',
+    command: 'vote',
     help: {
         command: 'glosowanie <pytanie>',
         description: 'robi głosowanie',
-        category: 'Moderacyjne'
+        category: 'mod'
     },
     aliases: [
         'głosowanie',
-        'vote'
+        'glosowanie'
     ]
 };
 
@@ -21,8 +22,16 @@ exports.function = async (parameters) => {
     const question = args.slice(1).join(' ');
     const prefix = parameters.prefix;
 
+    let guildID;
+    if(!message.guild) {
+        guildID = '0';
+    } else {
+        guildID = message.guild.id;
+    }
+    await db.check(guildID);
+
     if(!question) {
-        await message.reply(`prawidłowe użycie: \`${prefix}glosowanie <pytanie>\`!`);
+        await message.reply(`${await db.getTrans(guildID, 'usage')}\`${prefix}${await db.getTrans(guildID, 'vote_command')}\`!`);
     } else {
         await message.delete();
         const newMessage = await message.channel.send(question);

@@ -1,18 +1,20 @@
 'use strict';
 
 const cleverbotAsPromised = require('cleverbot-as-promised');
+const db = require('../database/db.js');
 
 const csCache = {};
 
 exports.info = {
-    command: 'zapytaj',
+    command: 'cb',
     help: {
         command: 'zapytaj <pytanie>',
         description: 'zadaje pytanie cleverbotowi',
-        category: 'Zabawa'
+        category: 'fun'
     },
     aliases: [
-        'ask'
+        'ask',
+        'zapytaj'
     ]
 };
 
@@ -22,10 +24,18 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const prefix = parameters.prefix;
 
+    let guildID;
+    if(!message.guild) {
+        guildID = '0';
+    } else {
+        guildID = message.guild.id;
+    }
+    await db.check(guildID);
+
     const question = args.slice(1).join(' ');
 
     if(!question) {
-        message.reply('prawidłowe użycie: `kb!zapytaj <pytanie>`!');
+        await message.reply(`${await db.getTrans(guildID, 'usage')} \`${prefix}${await db.getTrans(guildID, 'cb_command')}\`!`);
     } else {
         const cleverbotClient = new cleverbotAsPromised(config.cleverbotKey);
 

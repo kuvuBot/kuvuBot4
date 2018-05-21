@@ -2,19 +2,31 @@
 
 const Discord = require('discord.js');
 const httpAsPromised = require('http-as-promised');
+const db = require('../database/db.js');
 
 exports.info = {
-    command: 'mojang',
+    command: 'mo',
     help: {
         command: 'mojang',
         description: 'zwraca status serwerów Mojang',
-        category: 'Informacyjne'
-    }
+        category: 'info'
+    },
+    aliases: [
+        'mojang'
+    ]
 };
 
 exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
+
+    let guildID;
+    if(!message.guild) {
+        guildID = '0';
+    } else {
+        guildID = message.guild.id;
+    }
+    await db.check(guildID);
 
     const url = 'https://status.mojang.com/check';
     const mojang = JSON.parse(await httpAsPromised.get(url, { resolve : 'body' }));
@@ -27,13 +39,13 @@ exports.function = async (parameters) => {
         let values = Object.values(mojang[index]);
         let keys = Object.keys(mojang[index]);
         values = values[0].replace('green', '✅ Online');
-        values = values.replace('yellow', '⚠ Nieosiągalny');
+        values = values.replace('yellow', '⚠');
         values = values.replace('red', '📛 Offline');
         embed.addField(keys[0].capitalize(), values, true);
     }
 
     const embed = new Discord.RichEmbed();
-    embed.setAuthor('Status serwerów Mojang', message.client.user.displayAvatarURL);
+    embed.setAuthor(await db.getTrans(guildID, 'mo_title'), message.client.user.displayAvatarURL);
 
     embed.setColor(config.colors.default);
     mojang.forEach(check);

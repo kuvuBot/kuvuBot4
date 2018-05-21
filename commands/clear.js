@@ -1,16 +1,17 @@
 'use strict';
 
 const Discord = require('discord.js');
+const db = require('../database/db.js');
 
 exports.info = {
-    command: 'czyść',
+    command: 'clear',
     help: {
         command: 'czyść <liczba wiadomości>',
         description: 'usuwa podaną liczbę wiadomości',
-        category: 'Moderacyjne'
+        category: 'mod'
     },
     aliases: [
-        'clear',
+        'czyść',
         'prune',
         'czysc'
     ]
@@ -20,6 +21,14 @@ exports.function = async (parameters) => {
     const args = parameters.args;
     const message = parameters.message;
     const prefix = parameters.prefix;
+
+    let guildID;
+    if(!message.guild) {
+        guildID = '0';
+    } else {
+        guildID = message.guild.id;
+    }
+    await db.check(guildID);
 
     const limit = args[1];
     const filter = args[2];
@@ -38,13 +47,13 @@ exports.function = async (parameters) => {
     }
 
     if(!message.guild) {
-        await message.reply('ta komenda jest dostępna tylko na serwerach!');
+        await message.reply(await db.getTrans(guildID, 'onlyText'));
     } else {
         if (!message.member.hasPermission('MANAGE_MESSAGES')) {
-            await message.reply('nie masz wystarczających uprawnień, aby wykonać tą komendę!');
+            await message.reply(await db.getTrans(guildID, 'perms'));
         } else {
             if (isNaN(limit)) {
-                await message.reply('prawidłowe użycie: `kb!clear <liczba wiadomości>`!');
+                await message.reply(`${await db.getTrans(guildID, 'usage')} \`${prefix}${await db.getTrans(guildID, 'clear_command')}\`!`);
             } else {
                 let messages = await message.channel.fetchMessages({ limit: 100 });
                 if (filter) {
@@ -55,10 +64,10 @@ exports.function = async (parameters) => {
                 messages = messages.array().slice(0, limit);
                 await message.channel.bulkDelete(messages);
                 if (filter != null) {
-                    await message.channel.send(`Pomyślnie usunięto ${messages.length} z ${limit} wiadomości z filtrem ${filter}!`);
+                    await message.channel.send(`${await db.getTrans(guildID, 'clear_success')} ${messages.length} ${await db.getTrans(guildID, 'clear_from')} ${limit} ${await db.getTrans(guildID, 'clear_msgf')} ${filter}!`);
                 }
                 else {
-                    await message.channel.send(`Pomyślnie usunięto ${messages.length} z ${limit} wiadomości!`);
+                    await message.channel.send(`${await db.getTrans(guildID, 'clear_success')} ${messages.length} z ${limit} ${await db.getTrans(guildID, 'clear_msg')}`);
                 }
             }
         }

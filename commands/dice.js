@@ -1,41 +1,44 @@
 'use strict';
 
 const Discord = require('discord.js');
+const db = require('../database/db.js');
 
 exports.info = {
-    command: 'kostka',
+    command: 'dice',
     help: {
         command: 'kostka [liczba ścian]',
         description: 'rzut kostką',
-        category: 'Zabawa'
+        category: 'fun'
     },
     aliases: [
-        'dice'
+        'kostka'
     ]
 };
 
 exports.function = async (parameters) => {
-    const args = parameters.args;
+    let args = parameters.args;
     const config = parameters.config;
     const message = parameters.message;
-    let sides = args[1];
 
-    if (isNaN(sides)) {
-        sides = 6;
+    let guildID;
+    if(!message.guild) {
+        guildID = '0';
     } else {
-        if (sides < 4) {
-            message.reply('minimalna ilość ścian to 4!');
-        } else {
-            const random = Math.floor(Math.random() * sides) + 1;
+        guildID = message.guild.id;
+    }
+    await db.check(guildID);
+    if (args[1] < 4) {
+        await message.reply(await db.getTrans(guildID, 'dice_usage'));
+    } else {
+        const random = Math.floor(Math.random() * 6) + 1;
 
-            const embed = new Discord.RichEmbed();
-            embed.setAuthor('Rzut kostką', message.client.user.displayAvatarURL);
-            embed.setColor(config.colors.default);
-            embed.addField('Wyrzuciłeś:', random);
-            embed.setFooter('kuvuBot v4.1.0');
-            embed.setTimestamp();
+        const embed = new Discord.RichEmbed();
+        embed.setAuthor(await db.getTrans(guildID, 'dice_title'), message.client.user.displayAvatarURL);
+        embed.setColor(config.colors.default);
+        embed.addField(await db.getTrans(guildID, 'dice_result'), random);
+        embed.setFooter('kuvuBot v4.1.0');
+        embed.setTimestamp();
 
-            await message.channel.send(embed);
-        }
+        await message.channel.send(embed);
     }
 };

@@ -2,16 +2,17 @@
 
 const Discord = require('discord.js');
 const httpAsPromised = require('http-as-promised');
+const db = require('../database/db.js');
 
 exports.info = {
-    command: 'przytul',
+    command: 'hug',
     help: {
         command: 'przytul <osoba>',
         description: 'przytula oznaczonego użytkownika',
-        category: 'Obrazki'
+        category: 'img'
     },
     aliases: [
-        'hug'
+        'przytul'
     ]
 };
 
@@ -21,8 +22,16 @@ exports.function = async (parameters) => {
     const args = parameters.args;
     const prefix = parameters.prefix;
 
+    let guildID;
+    if(!message.guild) {
+        guildID = '0';
+    } else {
+        guildID = message.guild.id;
+    }
+    await db.check(guildID);
+
     if (!args[1]) {
-        message.reply(`prawidłowe użycie: \`${prefix}przytul <osoba>\`.`);
+        await message.reply(`${await db.getTrans(guildID, 'usage')}\`${prefix}${await db.getTrans(guildID, 'hug_command')}\`!`);
     }
     else {
         const user = (message.mentions.users.first() ? message.mentions.users.first().username : args[1]);
@@ -30,7 +39,7 @@ exports.function = async (parameters) => {
         image = 'https://rra.ram.moe' + image.path;
 
         const embed = new Discord.RichEmbed();
-        embed.setAuthor(`${message.author.username} przytulił ${user}`, message.client.user.displayAvatarURL);
+        embed.setAuthor(`${message.author.username} ${await db.getTrans(guildID, 'hug_text')} ${user}`, message.client.user.displayAvatarURL);
         embed.setColor(config.colors.default);
         embed.setImage(image);
         embed.setFooter('kuvuBot v4.1.0');

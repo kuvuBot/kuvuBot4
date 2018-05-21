@@ -1,12 +1,13 @@
 'use strict';
 
 const Discord = require('discord.js');
+const db = require('../database/db.js');
 
 exports.info = {
-    command: 'pomoc',
+    command: 'help',
     help: false,
     aliases: [
-        'help'
+        'pomoc'
     ]
 };
 
@@ -16,17 +17,26 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const prefix = parameters.prefix;
 
+    let guildID;
+    if(!message.guild) {
+        guildID = 0;
+    } else {
+        guildID = message.guild.id;
+    }
+    await db.check(guildID);
+
     const categories = [];
 
     for(const command of commands.filter(command => command.info.help)) {
-        if(!categories.find(category => category.name === command.info.help.category)) {
+        let cat = await db.getTrans(message.guild.id, `categ_${command.info.help.category}`);
+        if(!categories.find(category => category.name === cat)) {
             categories.push({
-                name: command.info.help.category,
+                name: cat,
                 commands: []
             });
         }
 
-        const category = categories.find(category => category.name === command.info.help.category);
+        const category = categories.find(category => category.name === cat);
         category.commands.push(command);
     }
 
@@ -38,13 +48,28 @@ exports.function = async (parameters) => {
 
         let commandsInCat = 0;
         for(const command of category.commands.sort((a, b) => a.info.command.localeCompare(b.info.command))) {
-            commandsText.push(`\`${prefix}${command.info.help.command}\` - ${command.info.help.description}`);
-            commandsInCat++;
+            if (command.info.show == false) {} else {
+                let cmd = await db.getTrans(message.guild.id, `${command.info.command}_command`);
+                let desc = await db.getTrans(message.guild.id, `${command.info.command}_desc`);
+
+                if (!cmd) {
+                    cmd = command.info.help.command;
+                }
+                if (!desc) {
+                    desc = command.info.help.description;
+                }
+
+                commandsText.push(`\`${prefix}${cmd}\` - ${desc}`);
+                commandsInCat++;
+            }
         }
         embed.addField(`${category.name} (${commandsInCat})`, `${commandsText.join('\n')}`);
     }
-
-    embed.setAuthor('Lista komend', message.client.user.displayAvatarURL);
+    embed.addBlankField();
+    embed.addField('Lang/Język', ':flag_pl: Jeśli chcesz zmienić język bota na swoim serwerze, wykonaj komendę `kb!lang pl` lub `kb!lang en`.\n\n' +
+        ':flag_gb: If you want to change the bot language on your guild, use `kb!lang pl` or `kb!lang en` command.\n\n' +
+        '**(Only Polish (pl) and English (en) are curently available)**');
+    embed.setAuthor(await db.getTrans(message.guild.id, 'help_title'), message.client.user.displayAvatarURL);
     embed.setColor(config.colors.default);
     embed.setFooter('kuvuBot v4.1.0');
     embed.setTimestamp();

@@ -2,18 +2,20 @@
 
 const Discord = require('discord.js');
 const httpAsPromised = require('http-as-promised');
+const db = require('../database/db.js');
 
 exports.info = {
-    command: 'zdelegalizuj',
+    command: 'ii',
     help: {
         command: 'zdelegalizuj [wyraz]',
         description: 'delegalizuje podaną rzecz',
-        category: 'Obrazki'
+        category: 'img'
     },
     aliases: [
         'delegalize',
         'isillegal',
-        'isnowillegal'
+        'isnowillegal',
+        'zdelegalizuj'
     ]
 };
 
@@ -23,15 +25,24 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const prefix = parameters.prefix;
 
-    const word = args[1].toUpperCase();
+    let guildID;
+    if(!message.guild) {
+        guildID = '0';
+    } else {
+        guildID = message.guild.id;
+    }
+    await db.check(guildID);
+
+    let word = args[1];
 
     if (!word) {
-        await message.reply(`prawidłowe użycie: \`${prefix}zdelegalizuj <wyraz>\`!`);
+        await message.reply(`${await db.getTrans(guildID, 'usage')}\`${prefix}${await db.getTrans(guildID, 'ii_command')}\`!`);
     } else {
+        word = word.toUpperCase();
         if (word.length > 10) {
-            await message.reply('tekst nie może mieć więcej niż 10 znaków!');
+            await message.reply(await db.getTrans(guildID, 'ii_limit'));
         } else if (!/^[a-z0-9]+$/i.test(word)) {
-            await message.reply('tekst zawiera niedozwolone znaki!');
+            await message.reply(await db.getTrans(guildID, 'ii_chars'));
         } else {
             await httpAsPromised.post('https://is-now-illegal.firebaseio.com/queue/tasks.json', {
                 json: true,
@@ -41,7 +52,7 @@ exports.function = async (parameters) => {
             const gif = JSON.parse(await httpAsPromised.get(`https://is-now-illegal.firebaseio.com/gifs/${word}.json`, {resolve: 'body'}));
 
             const embed = new Discord.RichEmbed();
-            embed.setAuthor(`${word} jest teraz nielegalny(e/a)!`, message.client.user.displayAvatarURL);
+            embed.setAuthor(`${word} ${await db.getTrans(guildID, 'ii_now')}`, message.client.user.displayAvatarURL);
             embed.setColor(config.colors.default);
             embed.setImage(gif.url);
             embed.setFooter('kuvuBot v4.1.0');
