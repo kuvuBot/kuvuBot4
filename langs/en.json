@@ -1,6 +1,6 @@
 {
     "perms": "You do not have sufficient permissions to execute this command!",
-    "onlyText": "this command is only available on guilds!",
+    "onlyText": "This command is only available in guilds!",
     "error_title": "An error occured",
     "error_text": "The following error occurred",
     "categ_info": "Information",
@@ -9,7 +9,7 @@
     "categ_gen": "General",
     "categ_fun": "Fun",
     "help_title": "List of commands",
-    "avatar": "Avatar of",
+    "avatar": "User's avatar",
     "avatar_command": "avatar [mention]",
     "avatar_desc": "returns the user avatar",
     "bot_desc": "returns information about the bot",
@@ -17,9 +17,9 @@
     "bot_version": "Version",
     "bot_servers": "Number of servers",
     "bot_channels": "Number of channels",
-    "bot_site": "Page",
+    "bot_site": "SIte",
     "bot_srvs": "Guilds",
-    "bot_other": "other anticancer",
+    "bot_other": "other.",
     "bc_desc": "adds the ad",
     "bc_command": "broadcast <content of the announcement>",
     "bc_title": "Broadcast",
@@ -60,7 +60,7 @@
     "slap_command": "slap <person>",
     "slap_text": " slapped ",
     "ii_desc": "makes the given thing illegal",
-    "ii_command": "delegalize [word]",
+    "ii_command": "delegalize <word>",
     "ii_chars": "the text contains illegal characters!",
     "ii_limit": "the text can not have more than 10 characters!",
     "ii_now": " is now illegal!",
@@ -116,5 +116,8 @@
     "mo_command": "mojang",
     "srv_command": "guild",
     "user_command\n": "user [user]",
-    "user_desc": "shows info about the user"
+    "user_desc": "shows info about the user",
+    "bot_title\n": "Bot info",
+    "check\n": "Check out",
+    "figlet_limit\n": "Text can't be longer than 16 characters!"
 }

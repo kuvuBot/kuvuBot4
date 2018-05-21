@@ -1,6 +1,6 @@
 {
     "perms": "nie masz wystarczających uprawnień, aby wykonać tą komendę!",
-    "onlyText": "ta komenda jest dostępna tylko na serwerach!",
+    "onlyText": "Ta komenda jest dostępna tylko na serwerach!",
     "error_title": "Wystąpił błąd",
     "error_text": "Wystąpił następujący błąd",
     "categ_info": "Informacyjne",
@@ -60,7 +60,7 @@
     "slap_command": "uderz <osoba>",
     "slap_text": " uderzył ",
     "ii_desc": "delegalizuje podaną rzecz",
-    "ii_command": "zdelegalizuj [wyraz]",
+    "ii_command": "zdelegalizuj <wyraz>",
     "ii_chars": "tekst zawiera niedozwolone znaki!",
     "ii_limit": "tekst nie może mieć więcej niż 10 znaków!",
     "ii_now": " jest teraz nielegalny(e/a)!",
@@ -116,5 +116,8 @@
     "mo_command": "mojang",
     "srv_command": "serwer",
     "user_command\n": "użytkownik [użytkownik]",
-    "user_desc": "wyświetla informacje o użytkowniku"
+    "user_desc": "wyświetla informacje o użytkowniku",
+    "bot_title\n": "Informacje o bocie",
+    "check\n": "Przejdź",
+    "figlet_limit\n": "Tekst nie może mieć więcej niż 16 znaków!"
 }
