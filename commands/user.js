@@ -19,13 +19,8 @@ exports.info = {
 exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
+    const guildID = parameters.guildID;
 
-    let guildID;
-    if(!message.guild) {
-        guildID = '0';
-    } else {
-        guildID = message.guild.id;
-    }
     await db.check(guildID);
 
     const user = (message.mentions.users.first() ? message.mentions.users.first() : message.author);

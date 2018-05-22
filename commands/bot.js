@@ -16,14 +16,7 @@ exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
     const packageInfo = parameters.packageInfo;
-
-    let guildID;
-    if(!message.guild) {
-        guildID = '0';
-    } else {
-        guildID = message.guild.id;
-    }
-    await db.check(guildID);
+    const guildID = parameters.guildID;
 
     const bot = message.client;
 

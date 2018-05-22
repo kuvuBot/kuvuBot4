@@ -21,13 +21,8 @@ exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
     const prefix = parameters.prefix;
-
-    let guildID;
-    if(!message.guild) {
-        guildID = '0';
-    } else {
-        guildID = message.guild.id;
-    }
+    const guildID = parameters.guildID;
+    
     await db.check(guildID);
 
     const city = encodeURIComponent(args[1]);

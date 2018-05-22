@@ -20,13 +20,8 @@ exports.info = {
 exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
+    const guildID = parameters.guildID;
 
-    let guildID;
-    if(!message.guild) {
-        guildID = '0';
-    } else {
-        guildID = message.guild.id;
-    }
     await db.check(guildID);
 
     const randomCat = xml.xml2js(await httpAsPromised.get('https://thecatapi.com/api/images/get?format=xml&results_per_page=1', {resolve: 'body'}), {compact: true});

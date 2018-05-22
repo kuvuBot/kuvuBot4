@@ -18,16 +18,10 @@ exports.info = {
 
 exports.function = async (parameters) => {
     const args = parameters.args;
-    const config = parameters.config;
     const message = parameters.message;
     const prefix = parameters.prefix;
+    const guildID = parameters.guildID;
 
-    let guildID;
-    if(!message.guild) {
-        guildID = '0';
-    } else {
-        guildID = message.guild.id;
-    }
     await db.check(guildID);
 
     const serverIP = args[1];

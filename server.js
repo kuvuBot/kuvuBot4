@@ -30,6 +30,13 @@ client.on('message', message => {
 
     const prefix = config.prefix;
 
+    let guildID;
+    if(!message.guild) {
+        guildID = '0';
+    } else {
+        guildID = message.guild.id;
+    }
+
     const args = message.content.toLowerCase().trim().split(/\s+/);
     const command = commands.find(command => prefix + command.info.command === args[0] || (command.info.aliases ? command.info.aliases.find(alias => prefix + alias === args[0]) : false));
 
@@ -42,7 +49,8 @@ client.on('message', message => {
             config,
             message,
             packageInfo,
-            prefix
+            prefix,
+            guildID
         };
 
         command.function(parameters).then(() => {

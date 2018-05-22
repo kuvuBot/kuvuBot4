@@ -4,10 +4,10 @@ const Discord = require('discord.js');
 const db = require('../database/db.js');
 
 exports.info = {
-    command: 'lang',
+    command: 'prefix',
     help: {
-        command: 'lang <pl/en>',
-        description: 'changes the bot language',
+        command: 'prefix <prefix>',
+        description: 'changes the bot prefix',
         category: 'mod'
     },
     show: false
@@ -16,12 +16,11 @@ exports.info = {
 exports.function = async (parameters) => {
     const args = parameters.args;
     const message = parameters.message;
-    const prefix = parameters.prefix;
     const guildID = parameters.guildID;
 
     await db.check(guildID);
 
-    const lang = args[1];
+    const prefix = args[1];
 
     if(!message.guild) {
         await message.reply(await db.getTrans(guildID, 'onlyText'));

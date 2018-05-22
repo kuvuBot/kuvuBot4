@@ -21,13 +21,8 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const args = parameters.args;
     const prefix = parameters.prefix;
+    const guildID = parameters.guildID;
 
-    let guildID;
-    if(!message.guild) {
-        guildID = '0';
-    } else {
-        guildID = message.guild.id;
-    }
     await db.check(guildID);
 
     if (!args[1]) {

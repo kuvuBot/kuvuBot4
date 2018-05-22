@@ -19,14 +19,10 @@ exports.function = async (parameters) => {
     let args = parameters.args;
     const config = parameters.config;
     const message = parameters.message;
+    const guildID = parameters.guildID;
 
-    let guildID;
-    if(!message.guild) {
-        guildID = '0';
-    } else {
-        guildID = message.guild.id;
-    }
     await db.check(guildID);
+
     if (args[1] < 4) {
         await message.reply(await db.getTrans(guildID, 'dice_usage'));
     } else {
