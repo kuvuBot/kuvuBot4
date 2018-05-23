@@ -6,6 +6,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/kuvuBot/kuvuBot4.svg)](https://github.com/kuvuBot/kuvuBot4/stargazers)
 [![GitHub license](https://img.shields.io/github/license/kuvuBot/kuvuBot4.svg)](https://github.com/kuvuBot/kuvuBot4/blob/master/LICENSE)
 [![Discord server](https://discordapp.com/api/guilds/257599205693063168/widget.png?style=shield)](https://discord.gg/WhCjqqj)
+[![Discord Bots](https://discordbots.org/api/widget/status/205965341241638912.svg)](https://discordbots.org/bot/205965341241638912)
 
 Prosty bot dla Discorda, napisany w NodeJS.
 
