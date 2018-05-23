@@ -49,7 +49,7 @@ exports.function = async (parameters) => {
             embed.addField(kills, data.lifetimeStats[10].value, true);
             embed.addField('K/D', data.lifetimeStats[11].value, true);
             embed.addField(played, data.lifetimeStats[7].value, true);
-            embed.setFooter('kuvuBot v4.1.0');
+            embed.setFooter('kuvuBot v4.2.0');
             embed.setTimestamp();
 
             message.channel.send(embed);

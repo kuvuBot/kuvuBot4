@@ -44,7 +44,7 @@ exports.function = async (parameters) => {
         embed.addField(await db.getTrans(guildID, 'srv_roles'), guild.roles.size, true);
         embed.addField(await db.getTrans(guildID, 'srv_region'), guild.region.toUpperCase(), true);
         embed.addField(await db.getTrans(guildID, 'srv_created'), moment(guild.createdAt).format('DD.MM.YYYY, HH:mm'), true);
-        embed.setFooter('kuvuBot v4.1.0');
+        embed.setFooter('kuvuBot v4.2.0');
         embed.setTimestamp();
 
         await message.channel.send(embed);

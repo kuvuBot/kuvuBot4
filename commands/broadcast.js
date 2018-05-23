@@ -44,7 +44,7 @@ exports.function = async (parameters) => {
                 embed.setAuthor(await db.getTrans(guildID, 'bc_title'), message.client.user.displayAvatarURL);
                 embed.setDescription(broadcast);
                 embed.setColor(config.colors.default);
-                embed.setFooter('kuvuBot v4.1.0');
+                embed.setFooter('kuvuBot v4.2.0');
                 embed.setTimestamp();
 
                 await message.channel.send(embed);

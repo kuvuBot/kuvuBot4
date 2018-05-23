@@ -30,7 +30,7 @@ exports.function = async (parameters) => {
     embed.setColor(config.colors.default);
     embed.setThumbnail(user.displayAvatarURL);
     embed.setDescription(`**Discord tag** \`${user.tag}\`\n**ID** \`${user.id}\`\n**${await db.getTrans(guildID, 'user_reg')}** \`${moment(user.createdAt).format('DD.MM.YYYY, HH:mm')}\``);
-    embed.setFooter('kuvuBot v4.1.0');
+    embed.setFooter('kuvuBot v4.2.0');
     embed.setTimestamp();
 
     await message.channel.send(embed);

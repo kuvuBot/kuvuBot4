@@ -38,7 +38,7 @@ exports.function = async (parameters) => {
     }
 
     embed.addField(await db.getTrans(guildID, 'bot_srvs'), guildsNames.slice(0, 9).join(', ') + (guildsNames.length > 10 ? `, ${guildsNames.length - 10} ${await db.getTrans(guildID, 'bot_other')}` : ''), true);
-    embed.setFooter('kuvuBot v4.1.0');
+    embed.setFooter(`kuvuBot v${packageInfo.version}`);
     embed.setTimestamp();
 
     await message.channel.send(embed);

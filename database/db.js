@@ -58,7 +58,7 @@ const update = async function update(obj, id, k, v) {
     }
 };
 
-let getTrans = async function getTrans(id, w) {
+const getTrans = async function getTrans(id, w) {
     if(id && w){
         try {
             await r.connect(database).then(conn => connection = conn);
@@ -78,7 +78,26 @@ let getTrans = async function getTrans(id, w) {
     }
 };
 
+const getPrefix = async function getPrefix(id) {
+    if(id){
+        try {
+            await r.connect(database).then(conn => connection = conn);
+
+            const guild = await r.table('guilds').get(id).toJSON().run(connection);
+            const prefix = await JSON.parse(guild).prefix;
+
+            return prefix;
+        } catch (e) {
+            console.error(e);
+            return false;
+        }
+    } else {
+        return false;
+    }
+};
+
 exports.check = check;
 exports.load = load;
 exports.update = update;
 exports.getTrans = getTrans;
+exports.getPrefix = getPrefix;

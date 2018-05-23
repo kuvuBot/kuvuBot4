@@ -25,10 +25,8 @@ client.on('ready', () => {
     console.log('Client is ready!');
 });
 
-client.on('message', message => {
+client.on('message', async message => {
     if(message.author.bot) return;
-
-    const prefix = config.prefix;
 
     let guildID;
     if(!message.guild) {
@@ -37,11 +35,13 @@ client.on('message', message => {
         guildID = message.guild.id;
     }
 
+    const prefix = await db.getPrefix(guildID);
+
     const args = message.content.toLowerCase().trim().split(/\s+/);
     const command = commands.find(command => prefix + command.info.command === args[0] || (command.info.aliases ? command.info.aliases.find(alias => prefix + alias === args[0]) : false));
 
     if(command) {
-        message.channel.startTyping();
+        await message.channel.startTyping();
 
         const parameters = {
             args,
@@ -53,7 +53,7 @@ client.on('message', message => {
             guildID
         };
 
-        command.function(parameters).then(() => {
+        await command.function(parameters).then(() => {
             message.channel.stopTyping();
         }).catch(error => {
             if(!(error instanceof Discord.DiscordAPIError)) {

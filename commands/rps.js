@@ -78,7 +78,7 @@ exports.function = async (parameters) => {
             embed.addField(await db.getTrans(guildID, 'rps_you'), thing, true);
             embed.addField('Bot', botThing, true);
             embed.addField(await db.getTrans(guildID, 'rps_result'), result, true);
-            embed.setFooter('kuvuBot v4.1.0');
+            embed.setFooter('kuvuBot v4.2.0');
             embed.setTimestamp();
 
             await message.channel.send(embed);

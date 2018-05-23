@@ -9,18 +9,18 @@ exports.info = {
         command: 'prefix <prefix>',
         description: 'changes the bot prefix',
         category: 'mod'
-    },
-    show: false
+    }
 };
 
 exports.function = async (parameters) => {
     const args = parameters.args;
     const message = parameters.message;
+    const prefix = parameters.prefix;
     const guildID = parameters.guildID;
 
     await db.check(guildID);
 
-    const prefix = args[1];
+    const prefixText = args[1];
 
     if(!message.guild) {
         await message.reply(await db.getTrans(guildID, 'onlyText'));
@@ -28,11 +28,11 @@ exports.function = async (parameters) => {
         if (!message.member.hasPermission('MANAGE_GUILD')) {
             await message.reply(await db.getTrans(guildID, 'perms'));
         } else {
-            if (lang == 'pl' || lang == 'en') {
-                await db.update('guilds', guildID, 'lang', lang);
+            if (prefixText) {
+                await db.update('guilds', guildID, 'prefix', prefixText);
                 await message.reply('👌');
             } else {
-                await message.reply(`${await db.getTrans(guildID, 'usage')} \`${prefix}lang <pl/en>\`!`);
+                await message.reply(`${await db.getTrans(guildID, 'usage')} \`${prefix}prefix <prefix>\`!`);
             }
         }
     }

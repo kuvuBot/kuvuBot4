@@ -22,7 +22,7 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const prefix = parameters.prefix;
     const guildID = parameters.guildID;
-    
+
     await db.check(guildID);
 
     const city = encodeURIComponent(args[1]);
@@ -58,7 +58,7 @@ exports.function = async (parameters) => {
     embed.addField(await db.getTrans(guildID, 'weather_temp'), '🌡 '  + weather.main.temp + '℃', true);
     embed.addField(await db.getTrans(guildID, 'weather_press'), '🎈 '  + weather.main.pressure + ' hPa', true);
     embed.addField(await db.getTrans(guildID, 'weather_hum'), '♨ '  + weather.main.humidity + '%', true);
-    embed.setFooter('kuvuBot v4.1.0');
+    embed.setFooter('kuvuBot v4.2.0');
     embed.setTimestamp();
 
     await message.channel.send(embed);
