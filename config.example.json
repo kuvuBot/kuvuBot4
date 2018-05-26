@@ -14,5 +14,6 @@
         "db": "kuvuBot",
         "user": "USER",
         "password": "PASSWORD"
-    }
+    },
+    "owner": ""
 }

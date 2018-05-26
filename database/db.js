@@ -11,6 +11,7 @@ const load = async function load() {
         await console.log('Creating tables...');
         await r.tableCreate("users").run(connection);
         await r.tableCreate("guilds").run(connection);
+        await r.tableCreate("bot").run(connection);
         await console.log('Tables created.');
     } catch (e) {
         e = e.toString();
@@ -96,6 +97,22 @@ const getPrefix = async function getPrefix(id) {
     }
 };
 
+const updateStats = async function update(g, c, u) {
+    if(g && c && u){
+        try {
+            await r.connect(database).then(conn => connection = conn);
+            await r.table('bot').get(1).update({guilds: g, channels: c, users: u}).run(connection);
+            return true;
+        } catch (e) {
+            console.error(e);
+            return false;
+        }
+    } else {
+        return false;
+    }
+};
+
+exports.updateStats = updateStats;
 exports.check = check;
 exports.load = load;
 exports.update = update;

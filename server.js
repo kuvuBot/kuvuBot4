@@ -25,6 +25,10 @@ client.on('ready', () => {
     console.log('Client is ready!');
 });
 
+client.on('guildCreate', async () => {
+    await db.updateStats(client.guilds.size, client.channels.size, client.users.size);
+});
+
 client.on('message', async message => {
     if(message.author.bot) return;
 
