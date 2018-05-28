@@ -2,7 +2,6 @@
 
 const Discord = require('discord.js');
 const httpAsPromised = require('http-as-promised');
-const db = require('../database/db.js');
 
 exports.info = {
     command: 'mc',
@@ -21,8 +20,7 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const prefix = parameters.prefix;
     const guildID = parameters.guildID;
-
-    await db.check(guildID);
+    const db = parameters.db;
 
     const serverIP = args[1];
     const serverPort = (args[2] ? args[2] : 25565);

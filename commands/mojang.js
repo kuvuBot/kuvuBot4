@@ -2,7 +2,6 @@
 
 const Discord = require('discord.js');
 const httpAsPromised = require('http-as-promised');
-const db = require('../database/db.js');
 
 exports.info = {
     command: 'mo',
@@ -20,8 +19,7 @@ exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
     const guildID = parameters.guildID;
-
-    await db.check(guildID);
+    const db = parameters.db;
 
     const url = 'https://status.mojang.com/check';
     const mojang = JSON.parse(await httpAsPromised.get(url, { resolve : 'body' }));

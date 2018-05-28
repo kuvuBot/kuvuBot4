@@ -1,7 +1,6 @@
 'use strict';
 
 const Discord = require('discord.js');
-const db = require('../database/db.js');
 
 exports.info = {
     command: 'dice',
@@ -20,8 +19,7 @@ exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
     const guildID = parameters.guildID;
-
-    await db.check(guildID);
+    const db = parameters.db;
 
     if (args[1] < 4) {
         await message.reply(await db.getTrans(guildID, 'dice_usage'));

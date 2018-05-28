@@ -1,7 +1,6 @@
 'use strict';
 
 const Discord = require('discord.js');
-const db = require('../database/db.js');
 
 exports.info = {
     command: 'avatar',
@@ -19,8 +18,7 @@ exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
     const guildID = parameters.guildID;
-
-    await db.check(guildID);
+    const db = parameters.db;
 
     const user = (message.mentions.users.first() ? message.mentions.users.first() : message.author);
 

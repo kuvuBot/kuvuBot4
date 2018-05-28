@@ -2,7 +2,6 @@
 
 const figlet = require('figlet');
 const util = require('util');
-const db = require('../database/db.js');
 
 const makeFiglet = util.promisify(figlet.text);
 
@@ -20,8 +19,7 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const prefix = parameters.prefix;
     const guildID = parameters.guildID;
-
-    await db.check(guildID);
+    const db = parameters.db;
 
     const text = args.slice(1).join(' ');
 

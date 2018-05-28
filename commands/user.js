@@ -2,7 +2,6 @@
 
 const Discord = require('discord.js');
 const moment = require('moment');
-const db = require('../database/db.js');
 
 exports.info = {
     command: 'user',
@@ -20,8 +19,7 @@ exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
     const guildID = parameters.guildID;
-
-    await db.check(guildID);
+    const db = parameters.db;
 
     const user = (message.mentions.users.first() ? message.mentions.users.first() : message.author);
 

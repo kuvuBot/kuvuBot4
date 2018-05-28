@@ -3,7 +3,6 @@
 const Discord = require('discord.js');
 const httpAsPromised = require('http-as-promised');
 const xml = require('xml-js');
-const db = require('../database/db.js');
 
 exports.info = {
     command: 'cat',
@@ -21,8 +20,7 @@ exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
     const guildID = parameters.guildID;
-
-    await db.check(guildID);
+    const db = parameters.db;
 
     const randomCat = xml.xml2js(await httpAsPromised.get('https://thecatapi.com/api/images/get?format=xml&results_per_page=1', {resolve: 'body'}), {compact: true});
 

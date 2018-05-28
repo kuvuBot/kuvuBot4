@@ -1,7 +1,6 @@
 'use strict';
 
 const Discord = require('discord.js');
-const db = require('../database/db.js');
 
 exports.info = {
     command: 'help',
@@ -17,8 +16,7 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const prefix = parameters.prefix;
     const guildID = parameters.guildID;
-
-    await db.check(guildID);
+    const db = parameters.db;
 
     const categories = [];
 
@@ -58,7 +56,7 @@ exports.function = async (parameters) => {
                 commandsInCat++;
             }
         }
-        embed.addField(`${category.name} (${commandsInCat})`, `${commandsText.join('\n')}`);
+        embed.addField(`${category.name} (${commandsInCat})`, `${commandsText.join('\n')}`, true);
     }
     embed.addBlankField();
     embed.addField('Lang/Język', ':flag_pl: Jeśli chcesz zmienić język bota na swoim serwerze, wykonaj komendę `kb!lang pl` lub `kb!lang en`.\n\n' +

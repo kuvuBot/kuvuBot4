@@ -2,7 +2,6 @@
 
 const Discord = require('discord.js');
 const httpAsPromised = require('http-as-promised');
-const db = require('../database/db.js');
 
 exports.info = {
     command: 'pat',
@@ -22,8 +21,7 @@ exports.function = async (parameters) => {
     const args = parameters.args;
     const prefix = parameters.prefix;
     const guildID = parameters.guildID;
-
-    await db.check(guildID);
+    const db = parameters.db;
 
     if (!args[1]) {
         message.reply(`${await db.getTrans(guildID, 'usage')}\`${prefix}${await db.getTrans(guildID, 'pat_command')}\`!`);

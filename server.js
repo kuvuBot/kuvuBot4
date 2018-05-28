@@ -38,6 +38,7 @@ client.on('message', async message => {
     } else {
         guildID = message.guild.id;
     }
+    await db.check(guildID);
 
     const prefix = await db.getPrefix(guildID);
 
@@ -54,7 +55,8 @@ client.on('message', async message => {
             message,
             packageInfo,
             prefix,
-            guildID
+            guildID,
+            db
         };
 
         await command.function(parameters).then(() => {

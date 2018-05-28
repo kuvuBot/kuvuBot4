@@ -2,7 +2,6 @@
 
 const Discord = require('discord.js');
 const moment = require('moment');
-const db = require('../database/db.js');
 
 exports.info = {
     command: 'srv',
@@ -22,10 +21,7 @@ exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
     const guildID = parameters.guildID;
-
-    await db.check(guildID);
-
-    const guild = message.guild;
+    const db = parameters.db;
 
     if(!guild) {
         await message.reply(await db.getTrans(guildID, 'onlyText'));

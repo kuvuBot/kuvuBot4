@@ -1,7 +1,5 @@
 'use strict';
 
-const db = require('../database/db.js');
-
 exports.info = {
     command: 'etxt',
     help: {
@@ -20,8 +18,7 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const prefix = parameters.prefix;
     const guildID = parameters.guildID;
-
-    await db.check(guildID);
+    const db = parameters.db;
 
     const chars = args.slice(1).join(' ').toLowerCase().split('');
 

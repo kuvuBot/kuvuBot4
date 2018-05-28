@@ -1,7 +1,6 @@
 'use strict';
 
 const Discord = require('discord.js');
-const db = require('../database/db.js');
 
 exports.info = {
     command: 'bot',
@@ -17,6 +16,7 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const packageInfo = parameters.packageInfo;
     const guildID = parameters.guildID;
+    const db = parameters.db;
 
     const bot = message.client;
 

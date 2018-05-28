@@ -1,7 +1,6 @@
 'use strict';
 
 const Discord = require('discord.js');
-const db = require('../database/db.js');
 
 exports.info = {
     command: 'lang',
@@ -18,8 +17,7 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const prefix = parameters.prefix;
     const guildID = parameters.guildID;
-
-    await db.check(guildID);
+    const db = parameters.db;
 
     const lang = args[1];
 

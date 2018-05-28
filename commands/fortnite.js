@@ -2,7 +2,6 @@
 
 const Discord = require('discord.js');
 const Fortnite = require('fortnite');
-const db = require('../database/db.js');
 
 exports.info = {
     command: 'fn',
@@ -22,13 +21,13 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const prefix = parameters.prefix;
     const guildID = parameters.guildID;
-
-    await db.check(guildID);
+    const db = parameters.db;
 
     const client = new Fortnite(config.fortniteKey);
 
     const platform = args[1];
-    const player = encodeURIComponent(args[2]);
+    let player = args.slice(2).join(' ');
+    player = encodeURIComponent(player);
 
     if(!platform) {
         await message.reply(`${await db.getTrans(guildID, 'usage')}\`${prefix}${await db.getTrans(guildID, 'fn_command')}\`!`);

@@ -7,24 +7,24 @@ const { database } = require('../config.json');
 let connection;
 const load = async function load() {
     try {
-        await r.connect(database).then(conn => connection = conn);
-        await console.log('Creating tables...');
-        await r.tableCreate("users").run(connection);
-        await r.tableCreate("guilds").run(connection);
-        await r.tableCreate("bot").run(connection);
-        await console.log('Tables created.');
-    } catch (e) {
-        e = e.toString();
-        if (e.includes("already exists in")) {
-            console.log('Already exists. Skipping...')
+        connection = await r.connect(database);
+        console.log('Creating tables...');
+        await Promise.all([
+            r.tableCreate("users").run(connection),
+            r.tableCreate("guilds").run(connection),
+            r.tableCreate("bot").run(connection)
+        ]);
+        console.log('Tables created.');
+    } catch(error) {
+        if (error.message.includes('already exists in')) {
+            console.log('Already exists. Skipping...');
         } else {
-            console.error(e);
+            console.error(error);
         }
     }
 };
 
 const check = async function check(gid) {
-    await r.connect(database).then(conn => connection = conn);
     if (await r.table("guilds").get(gid).run(connection)) {
         return true;
     } else {
@@ -47,7 +47,6 @@ const check = async function check(gid) {
 const update = async function update(obj, id, k, v) {
     if(obj && id && k && v){
         try {
-            await r.connect(database).then(conn => connection = conn);
             await r.table(obj).get(id).update({[k]: v}).run(connection);
             return true;
         } catch (e) {
@@ -62,8 +61,6 @@ const update = async function update(obj, id, k, v) {
 const getTrans = async function getTrans(id, w) {
     if(id && w){
         try {
-            await r.connect(database).then(conn => connection = conn);
-
             const guild = await r.table('guilds').get(id).toJSON().run(connection);
             const lang = await JSON.parse(guild).lang;
 
@@ -82,8 +79,6 @@ const getTrans = async function getTrans(id, w) {
 const getPrefix = async function getPrefix(id) {
     if(id){
         try {
-            await r.connect(database).then(conn => connection = conn);
-
             const guild = await r.table('guilds').get(id).toJSON().run(connection);
             const prefix = await JSON.parse(guild).prefix;
 
@@ -100,7 +95,6 @@ const getPrefix = async function getPrefix(id) {
 const updateStats = async function update(g, c, u) {
     if(g && c && u){
         try {
-            await r.connect(database).then(conn => connection = conn);
             await r.table('bot').get(1).update({guilds: g, channels: c, users: u}).run(connection);
             return true;
         } catch (e) {
