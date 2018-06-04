@@ -19,29 +19,36 @@ exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
     const prefix = parameters.prefix;
-    const guildID = parameters.guildID;
+    const lang = parameters.lang;
     const db = parameters.db;
 
     let thing = args[1];
     const emojis = {
-        kamień: `⚪ ${await db.getTrans(guildID, 'rps_rock')}`,
-        papier: `📰 ${await db.getTrans(guildID, 'rps_paper')}`,
-        nożyce: `✂ ${await db.getTrans(guildID, 'rps_scissors')}`,
+        rock: `⚪ ${await db.getTrans(lang, 'rps_rock')}`,
+        paper: `📰 ${await db.getTrans(lang, 'rps_paper')}`,
+        scissors: `✂ ${await db.getTrans(lang, 'rps_scissors')}`,
     };
-    const words = ['⚪ Kamień', '📰 Papier', '✂ Nożyce'];;
+    const words = [
+        `⚪ ${await db.getTrans(lang, 'rps_rock')}`,
+        `📰 ${await db.getTrans(lang, 'rps_paper')}`,
+        `✂ ${await db.getTrans(lang, 'rps_scissors')}`
+    ];
 
     if (!thing) {
-        await message.reply(`${await db.getTrans(guildID, 'usage')}\`${prefix}${await db.getTrans(guildID, 'rps_command')}\`!`);
+        await message.reply(`${await db.getTrans(lang, 'usage')}\`${prefix}${await db.getTrans(lang, 'rps_command')}\`!`);
     } else {
         thing = thing.toLowerCase();
-        if (!thing == "kamien" || !thing == "kamień" || !thing == "nożyce" || !thing == "nozyce" || !thing == "papier" || !thing == await db.getTrans(guildID, 'rps_rock') || !thing == await db.getTrans(guildID, 'rps_paper') || !thing == await db.getTrans(guildID, 'rps_scissors')) {
-            await message.reply(`${await db.getTrans(guildID, 'usage')}\`${prefix}${await db.getTrans(guildID, 'rps_command')}\`!`);
+        if (!thing == "kamien" || !thing == "kamień" || !thing == "nożyce" || !thing == "nozyce" || !thing == "papier" || !thing == await db.getTrans(lang, 'rps_rock') || !thing == await db.getTrans(lang, 'rps_paper') || !thing == await db.getTrans(lang, 'rps_scissors')) {
+            await message.reply(`${await db.getTrans(lang, 'usage')}\`${prefix}${await db.getTrans(lang, 'rps_command')}\`!`);
         } else {
 
             thing = thing
-                .replace('kamien', 'kamień')
-                .replace('nozyce', 'nożyce');
-            thing = thing.replace(/kamień|papier|nożyce/gi, function (matched) {
+                .replace('kamien', 'rock')
+                .replace('nozyce', 'scissors')
+                .replace('kamień', 'rock')
+                .replace('nożyce', 'scissors')
+                .replace('papier', 'paper');
+            thing = thing.replace(/rock|paper|scissors/gi, function (matched) {
                 matched = matched.replace(/\s/g, '_');
                 return emojis[matched];
             });
@@ -51,31 +58,31 @@ exports.function = async (parameters) => {
             const compare = async function (thing, botThing) {
                 if (thing === botThing) {
                     return '🏳 Remis!';
-                } else if (thing === emojis['kamień']) {
-                    if (botThing === emojis['nożyce']) {
-                        return `🎉 ${await db.getTrans(guildID, 'rps_won')}`;
+                } else if (thing === emojis['rock']) {
+                    if (botThing === emojis['scissors']) {
+                        return `🎉 ${await db.getTrans(lang, 'rps_won')}`;
                     }
-                } else if (thing === emojis['papier']) {
-                    if (botThing === emojis['kamień']) {
-                        return `🎉 ${await db.getTrans(guildID, 'rps_won')}`;
+                } else if (thing === emojis['paper']) {
+                    if (botThing === emojis['rock']) {
+                        return `🎉 ${await db.getTrans(lang, 'rps_won')}`;
                     }
-                } else if (thing === emojis['nożyce']) {
-                    if (botThing === emojis['kamień']) {
-                        return `🥊 ${await db.getTrans(guildID, 'rps_lost')}`;
+                } else if (thing === emojis['scissors']) {
+                    if (botThing === emojis['rock']) {
+                        return `🥊 ${await db.getTrans(lang, 'rps_lost')}`;
 
                     }
                 }
             };
             let result = await compare(thing, botThing);
             if (result == undefined) {
-                result = `🥊 ${await db.getTrans(guildID, 'rps_lost')}`;
+                result = `🥊 ${await db.getTrans(lang, 'rps_lost')}`;
             }
             const embed = new Discord.RichEmbed();
-            embed.setAuthor(await db.getTrans(guildID, 'rps_title'), message.client.user.displayAvatarURL);
+            embed.setAuthor(await db.getTrans(lang, 'rps_title'), message.client.user.displayAvatarURL);
             embed.setColor(config.colors.default);
-            embed.addField(await db.getTrans(guildID, 'rps_you'), thing, true);
+            embed.addField(await db.getTrans(lang, 'rps_you'), thing, true);
             embed.addField('Bot', botThing, true);
-            embed.addField(await db.getTrans(guildID, 'rps_result'), result, true);
+            embed.addField(await db.getTrans(lang, 'rps_result'), result, true);
             embed.setFooter('kuvuBot v4.2.0');
             embed.setTimestamp();
 
