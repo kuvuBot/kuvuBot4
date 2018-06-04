@@ -34,7 +34,8 @@ const check = async function check(gid) {
                 "lang": "en",
                 "logchannel": "none",
                 "greeting": false,
-                "prefix": "kb!"
+                "prefix": "kb!",
+                "users": []
             }).run(connection);
             return true;
         } catch (e) {
@@ -57,15 +58,24 @@ const update = async function update(obj, id, k, v) {
         return false;
     }
 };
-
-const getTrans = async function getTrans(id, w) {
-    if(id && w){
+const getLang = async function getLang(id) {
+    if(id) {
         try {
             const guild = await r.table('guilds').get(id).toJSON().run(connection);
             const lang = await JSON.parse(guild).lang;
 
+            return lang;
+        } catch(e) {
+            console.error(e);
+            return false;
+        }
+    }
+    
+};
+const getTrans = async function getTrans(lang, w) {
+    if(lang && w){
+        try {
             let langFile = require(`../langs/${lang}.json`);
-
             return langFile[w];
         } catch (e) {
             console.error(e);
@@ -111,4 +121,5 @@ exports.check = check;
 exports.load = load;
 exports.update = update;
 exports.getTrans = getTrans;
+exports.getLang = getLang;
 exports.getPrefix = getPrefix;
