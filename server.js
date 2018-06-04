@@ -58,6 +58,7 @@ client.on('message', async message => {
             prefix,
             guildID,
             lang,
+            client,
             db
         };
 
