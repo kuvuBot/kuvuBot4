@@ -18,18 +18,18 @@ exports.function = async (parameters) => {
     let args = parameters.args;
     const config = parameters.config;
     const message = parameters.message;
-    const guildID = parameters.guildID;
+    const lang = parameters.lang;
     const db = parameters.db;
 
     if (args[1] < 4) {
-        await message.reply(await db.getTrans(guildID, 'dice_usage'));
+        await message.reply(await db.getTrans(lang, 'dice_usage'));
     } else {
         const random = Math.floor(Math.random() * 6) + 1;
 
         const embed = new Discord.RichEmbed();
-        embed.setAuthor(await db.getTrans(guildID, 'dice_title'), message.client.user.displayAvatarURL);
+        embed.setAuthor(await db.getTrans(lang, 'dice_title'), message.client.user.displayAvatarURL);
         embed.setColor(config.colors.default);
-        embed.addField(await db.getTrans(guildID, 'dice_result'), random);
+        embed.addField(await db.getTrans(lang, 'dice_result'), random);
         embed.setFooter('kuvuBot v4.2.0');
         embed.setTimestamp();
 

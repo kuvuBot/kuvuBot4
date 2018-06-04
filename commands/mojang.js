@@ -18,7 +18,7 @@ exports.info = {
 exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
-    const guildID = parameters.guildID;
+    const lang = parameters.lang;
     const db = parameters.db;
 
     const url = 'https://status.mojang.com/check';
@@ -38,7 +38,7 @@ exports.function = async (parameters) => {
     }
 
     const embed = new Discord.RichEmbed();
-    embed.setAuthor(await db.getTrans(guildID, 'mo_title'), message.client.user.displayAvatarURL);
+    embed.setAuthor(await db.getTrans(lang, 'mo_title'), message.client.user.displayAvatarURL);
 
     embed.setColor(config.colors.default);
     mojang.forEach(check);

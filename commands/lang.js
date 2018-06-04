@@ -17,21 +17,22 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const prefix = parameters.prefix;
     const guildID = parameters.guildID;
+    const lang = parameters.lang;
     const db = parameters.db;
 
-    const lang = args[1];
+    const langC = args[1];
 
     if(!message.guild) {
-        await message.reply(await db.getTrans(guildID, 'onlyText'));
+        await message.reply(await db.getTrans(lang, 'onlyText'));
     } else {
         if (!message.member.hasPermission('MANAGE_GUILD')) {
-            await message.reply(await db.getTrans(guildID, 'perms'));
+            await message.reply(await db.getTrans(lang, 'perms'));
         } else {
-            if (lang == 'pl' || lang == 'en') {
-                await db.update('guilds', guildID, 'lang', lang);
+            if (langC == 'pl' || langC == 'en') {
+                await db.update('guilds', guildID, 'lang', langC);
                 await message.reply('👌');
             } else {
-                await message.reply(`${await db.getTrans(guildID, 'usage')} \`${prefix}lang <pl/en>\`!`);
+                await message.reply(`${await db.getTrans(lang, 'usage')} \`${prefix}lang <pl/en>\`!`);
             }
         }
     }

@@ -20,7 +20,7 @@ exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
     const prefix = parameters.prefix;
-    const guildID = parameters.guildID;
+    const lang = parameters.lang;
     const db = parameters.db;
 
     const client = new Fortnite(config.fortniteKey);
@@ -30,14 +30,14 @@ exports.function = async (parameters) => {
     player = encodeURIComponent(player);
 
     if(!platform) {
-        await message.reply(`${await db.getTrans(guildID, 'usage')}\`${prefix}${await db.getTrans(guildID, 'fn_command')}\`!`);
+        await message.reply(`${await db.getTrans(lang, 'usage')}\`${prefix}${await db.getTrans(lang, 'fn_command')}\`!`);
     } else if (!player) {
-        await message.reply(`${await db.getTrans(guildID, 'usage')}\`${prefix}${await db.getTrans(guildID, 'fn_command')}\`!`);
+        await message.reply(`${await db.getTrans(lang, 'usage')}\`${prefix}${await db.getTrans(lang, 'fn_command')}\`!`);
     } else {
-        const title = await db.getTrans(guildID, 'fn_title');
-        const wins = await db.getTrans(guildID, 'fn_wins');
-        const kills = await db.getTrans(guildID, 'fn_kills');
-        const played = await db.getTrans(guildID, 'fn_played');
+        const title = await db.getTrans(lang, 'fn_title');
+        const wins = await db.getTrans(lang, 'fn_wins');
+        const kills = await db.getTrans(lang, 'fn_kills');
+        const played = await db.getTrans(lang, 'fn_played');
 
         await client.getInfo(player, platform).then(data => {
             const embed = new Discord.RichEmbed();

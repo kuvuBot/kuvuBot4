@@ -17,13 +17,13 @@ exports.info = {
 exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
-    const guildID = parameters.guildID;
+    const lang = parameters.lang;
     const db = parameters.db;
 
     const user = (message.mentions.users.first() ? message.mentions.users.first() : message.author);
 
     const embed = new Discord.RichEmbed();
-    embed.setAuthor(await db.getTrans(guildID, 'avatar'), message.client.user.displayAvatarURL);
+    embed.setAuthor(await db.getTrans(lang, 'avatar'), message.client.user.displayAvatarURL);
     embed.setColor(config.colors.default);
     embed.setImage(user.displayAvatarURL);
     embed.setFooter('kuvuBot v4.2.0');

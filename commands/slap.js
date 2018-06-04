@@ -20,11 +20,11 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const args = parameters.args;
     const prefix = parameters.prefix;
-    const guildID = parameters.guildID;
+    const lang = parameters.lang;
     const db = parameters.db;
 
     if (!args[1]) {
-        await message.reply(`${await db.getTrans(guildID, 'usage')}\`${prefix}${await db.getTrans(guildID, 'slap_command')}\`!`);
+        await message.reply(`${await db.getTrans(lang, 'usage')}\`${prefix}${await db.getTrans(lang, 'slap_command')}\`!`);
     }
     else {
         const user = (message.mentions.users.first() ? message.mentions.users.first().username : args[1]);
@@ -32,7 +32,7 @@ exports.function = async (parameters) => {
         image = 'https://rra.ram.moe' + image.path;
 
         const embed = new Discord.RichEmbed();
-        embed.setAuthor(`${message.author.username} ${await db.getTrans(guildID, 'slap_text')} ${user}`, message.client.user.displayAvatarURL);
+        embed.setAuthor(`${message.author.username} ${await db.getTrans(lang, 'slap_text')} ${user}`, message.client.user.displayAvatarURL);
         embed.setColor(config.colors.default);
         embed.setImage(image);
         embed.setFooter('kuvuBot v4.2.0');

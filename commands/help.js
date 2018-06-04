@@ -15,13 +15,13 @@ exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
     const prefix = parameters.prefix;
-    const guildID = parameters.guildID;
+    const lang = parameters.lang;
     const db = parameters.db;
 
     const categories = [];
 
     for(const command of commands.filter(command => command.info.help)) {
-        let cat = await db.getTrans(guildID, `categ_${command.info.help.category}`);
+        let cat = await db.getTrans(lang, `categ_${command.info.help.category}`);
         if(!categories.find(category => category.name === cat)) {
             categories.push({
                 name: cat,
@@ -42,8 +42,8 @@ exports.function = async (parameters) => {
         let commandsInCat = 0;
         for(const command of category.commands.sort((a, b) => a.info.command.localeCompare(b.info.command))) {
             if (command.info.show == false) {} else {
-                let cmd = await db.getTrans(guildID, `${command.info.command}_command`);
-                let desc = await db.getTrans(guildID, `${command.info.command}_desc`);
+                let cmd = await db.getTrans(lang, `${command.info.command}_command`);
+                let desc = await db.getTrans(lang, `${command.info.command}_desc`);
 
                 if (!cmd) {
                     cmd = command.info.help.command;
@@ -62,7 +62,7 @@ exports.function = async (parameters) => {
     embed.addField('Lang/Język', ':flag_pl: Jeśli chcesz zmienić język bota na swoim serwerze, wykonaj komendę `kb!lang pl` lub `kb!lang en`.\n\n' +
         ':flag_gb: If you want to change the bot language on your guild, use `kb!lang pl` or `kb!lang en` command.\n\n' +
         '**(Only Polish (pl) and English (en) are curently available)**');
-    embed.setAuthor(await db.getTrans(guildID, 'help_title'), message.client.user.displayAvatarURL);
+    embed.setAuthor(await db.getTrans(lang, 'help_title'), message.client.user.displayAvatarURL);
     embed.setColor(config.colors.default);
     embed.setFooter('kuvuBot v4.2.0');
     embed.setTimestamp();

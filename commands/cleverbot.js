@@ -22,13 +22,13 @@ exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
     const prefix = parameters.prefix;
-    const guildID = parameters.guildID;
+    const lang = parameters.lang;
     const db = parameters.db;
 
     const question = args.slice(1).join(' ');
 
     if(!question) {
-        await message.reply(`${await db.getTrans(guildID, 'usage')} \`${prefix}${await db.getTrans(guildID, 'cb_command')}\`!`);
+        await message.reply(`${await db.getTrans(lang, 'usage')} \`${prefix}${await db.getTrans(lang, 'cb_command')}\`!`);
     } else {
         const cleverbotClient = new cleverbotAsPromised(config.cleverbotKey);
 

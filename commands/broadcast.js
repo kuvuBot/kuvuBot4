@@ -22,7 +22,7 @@ exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
     const prefix = parameters.prefix;
-    const guildID = parameters.guildID;
+    const lang = parameters.lang;
     const db = parameters.db;
 
     const broadcast = args.slice(1).join(' ');

@@ -18,7 +18,7 @@ exports.function = async (parameters) => {
     const args = parameters.args;
     const message = parameters.message;
     const prefix = parameters.prefix;
-    const guildID = parameters.guildID;
+    const lang = parameters.lang;
     const db = parameters.db;
 
     const limit = args[1];
@@ -38,13 +38,13 @@ exports.function = async (parameters) => {
     }
 
     if(!message.guild) {
-        await message.reply(await db.getTrans(guildID, 'onlyText'));
+        await message.reply(await db.getTrans(lang, 'onlyText'));
     } else {
         if (!message.member.hasPermission('MANAGE_MESSAGES')) {
-            await message.reply(await db.getTrans(guildID, 'perms'));
+            await message.reply(await db.getTrans(lang, 'perms'));
         } else {
             if (isNaN(limit)) {
-                await message.reply(`${await db.getTrans(guildID, 'usage')} \`${prefix}${await db.getTrans(guildID, 'clear_command')}\`!`);
+                await message.reply(`${await db.getTrans(lang, 'usage')} \`${prefix}${await db.getTrans(lang, 'clear_command')}\`!`);
             } else {
                 let messages = await message.channel.fetchMessages({ limit: 100 });
                 if (filter) {
@@ -55,10 +55,10 @@ exports.function = async (parameters) => {
                 messages = messages.array().slice(0, limit);
                 await message.channel.bulkDelete(messages);
                 if (filter != null) {
-                    await message.channel.send(`${await db.getTrans(guildID, 'clear_success')} ${messages.length} ${await db.getTrans(guildID, 'clear_from')} ${limit} ${await db.getTrans(guildID, 'clear_msgf')} ${filter}!`);
+                    await message.channel.send(`${await db.getTrans(lang, 'clear_success')} ${messages.length} ${await db.getTrans(lang, 'clear_from')} ${limit} ${await db.getTrans(lang, 'clear_msgf')} ${filter}!`);
                 }
                 else {
-                    await message.channel.send(`${await db.getTrans(guildID, 'clear_success')} ${messages.length} z ${limit} ${await db.getTrans(guildID, 'clear_msg')}`);
+                    await message.channel.send(`${await db.getTrans(lang, 'clear_success')} ${messages.length} z ${limit} ${await db.getTrans(lang, 'clear_msg')}`);
                 }
             }
         }

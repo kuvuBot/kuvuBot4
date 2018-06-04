@@ -20,11 +20,11 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const question = args.slice(1).join(' ');
     const prefix = parameters.prefix;
-    const guildID = parameters.guildID;
+    const lang = parameters.lang;
     const db = parameters.db;
 
     if(!question) {
-        await message.reply(`${await db.getTrans(guildID, 'usage')}\`${prefix}${await db.getTrans(guildID, 'vote_command')}\`!`);
+        await message.reply(`${await db.getTrans(lang, 'usage')}\`${prefix}${await db.getTrans(lang, 'vote_command')}\`!`);
     } else {
         await message.delete();
         const newMessage = await message.channel.send(question);

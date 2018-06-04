@@ -47,6 +47,7 @@ client.on('message', async message => {
 
     if(command) {
         await message.channel.startTyping();
+        const lang = await db.getLang(guildID);
 
         const parameters = {
             args,
@@ -56,6 +57,7 @@ client.on('message', async message => {
             packageInfo,
             prefix,
             guildID,
+            lang,
             db
         };
 

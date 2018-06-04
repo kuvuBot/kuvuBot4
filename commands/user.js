@@ -18,7 +18,7 @@ exports.info = {
 exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
-    const guildID = parameters.guildID;
+    const lang = parameters.lang;
     const db = parameters.db;
 
     const user = (message.mentions.users.first() ? message.mentions.users.first() : message.author);
@@ -27,7 +27,7 @@ exports.function = async (parameters) => {
     embed.setAuthor('Informacje o użytkowniku', message.client.user.displayAvatarURL);
     embed.setColor(config.colors.default);
     embed.setThumbnail(user.displayAvatarURL);
-    embed.setDescription(`**Discord tag** \`${user.tag}\`\n**ID** \`${user.id}\`\n**${await db.getTrans(guildID, 'user_reg')}** \`${moment(user.createdAt).format('DD.MM.YYYY, HH:mm')}\``);
+    embed.setDescription(`**Discord tag** \`${user.tag}\`\n**ID** \`${user.id}\`\n**${await db.getTrans(lang, 'user_reg')}** \`${moment(user.createdAt).format('DD.MM.YYYY, HH:mm')}\``);
     embed.setFooter('kuvuBot v4.2.0');
     embed.setTimestamp();
 
