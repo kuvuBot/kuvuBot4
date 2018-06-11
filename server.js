@@ -4,7 +4,8 @@ const fs = require('fs');
 const path = require('path');
 
 const Discord = require('discord.js');
-const db = require('./database/db.js');
+const db = require('./inc/db.js');
+const errorH = require('./inc/error.js');
 
 const config = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json')));
 const packageInfo = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json')));
@@ -37,6 +38,7 @@ client.on('message', async message => {
         guildID = '0';
     } else {
         guildID = message.guild.id;
+        await db.addXP(message.author.id, guildID, message);
     }
     await db.check(guildID);
 
@@ -68,10 +70,11 @@ client.on('message', async message => {
             if(!(error instanceof Discord.DiscordAPIError)) {
                 console.error(error);
             }
+            let err = errorH.res(error);
             const embed = new Discord.RichEmbed();
             embed.setAuthor('Error', message.client.user.displayAvatarURL);
             embed.setColor(config.colors.error);
-            embed.addField('The following error occurred', error);
+            embed.addField('The following error occurred', err);
             embed.setFooter('kuvuBot v4.1.0');
             embed.setTimestamp();
             message.channel.send(embed).catch(() => {});

@@ -72,9 +72,9 @@
     "mo_desc": "returns the status of Mojang servers",
     "mo_title": "Mojang server status",
     "rps_desc": "rock, paper, scissors with BOT",
-    "rps_command": "kpn <rock/paper/scissors>",
+    "rps_command": "rps <rock/paper/scissors>",
     "rps_title": "Rock Paper Scissors",
-    "rps_rock": "Stone",
+    "rps_rock": "Rock",
     "rps_paper": "Paper",
     "rps_scissors": "Scissors",
     "rps_won": "You won!",
@@ -119,5 +119,7 @@
     "user_desc": "shows info about the user",
     "bot_title": "Bot info",
     "check": "Check out",
-    "figlet_limit": "Text can't be longer than 16 characters!"
+    "figlet_limit": "Text can't be longer than 16 characters!",
+    "user_title": "Info about the user",
+    "lvl_up": "User <@{author}> has been promoted to lvl {lvl}!"
 }

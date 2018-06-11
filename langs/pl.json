@@ -119,5 +119,7 @@
     "user_desc": "wyświetla informacje o użytkowniku",
     "bot_title": "Informacje o bocie",
     "check": "Przejdź",
-    "figlet_limit": "Tekst nie może mieć więcej niż 16 znaków!"
+    "figlet_limit": "Tekst nie może mieć więcej niż 16 znaków!",
+    "user_title": "Informacje o użytkowniku",
+    "lvl_up": "Użytkownik <@{author}> awansował na poziom {lvl}!"
 }
