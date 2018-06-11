@@ -18,17 +18,25 @@ exports.info = {
 exports.function = async (parameters) => {
     const args = parameters.args;
     const message = parameters.message;
-    const question = args.slice(1).join(' ');
     const prefix = parameters.prefix;
     const lang = parameters.lang;
     const db = parameters.db;
 
-    if(!question) {
-        await message.reply(`${await db.getTrans(lang, 'usage')}\`${prefix}${await db.getTrans(lang, 'vote_command')}\`!`);
+    let question = args.slice(1).join(' ');
+
+    if (!message.guild) {
+        await message.reply(await db.getTrans(lang, 'onlyText'));
     } else {
-        await message.delete();
-        const newMessage = await message.channel.send(question);
-        await newMessage.react('👍');
-        await newMessage.react('👎');
+        if(!question) {
+            await message.reply(`${await db.getTrans(lang, 'usage')}\`${prefix}${await db.getTrans(lang, 'vote_command')}\`!`);
+        } else {
+            await message.delete();
+
+            question = question.charAt(0).toUpperCase() + question.slice(1);
+
+            const newMessage = await message.channel.send(question);
+            await newMessage.react('👍');
+            await newMessage.react('👎');
+        }
     }
 };
