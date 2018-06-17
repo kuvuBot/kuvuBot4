@@ -23,7 +23,7 @@ exports.function = async (parameters) => {
     const lang = parameters.lang;
     const db = parameters.db;
 
-    if(!guild) {
+    if(!message.guild) {
         await message.reply(await db.getTrans(lang, 'onlyText'));
     } else {
         const embed = new Discord.RichEmbed();
