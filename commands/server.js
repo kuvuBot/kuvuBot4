@@ -30,16 +30,16 @@ exports.function = async (parameters) => {
         embed.setAuthor(await db.getTrans(lang, 'srv_title'), message.client.user.displayAvatarURL);
         embed.setColor(config.colors.default);
 
-        if(guild.iconURL) {
-            embed.setThumbnail(guild.iconURL);
+        if(message.guild.iconURL) {
+            embed.setThumbnail(message.guild.iconURL);
         }
 
-        embed.addField(await db.getTrans(lang, 'srv_name'), guild.name, true);
-        embed.addField(await db.getTrans(lang, 'srv_owner'), guild.owner.displayName, true);
-        embed.addField(await db.getTrans(lang, 'srv_members'), guild.members.size, true);
-        embed.addField(await db.getTrans(lang, 'srv_roles'), guild.roles.size, true);
-        embed.addField(await db.getTrans(lang, 'srv_region'), guild.region.toUpperCase(), true);
-        embed.addField(await db.getTrans(lang, 'srv_created'), moment(guild.createdAt).format('DD.MM.YYYY, HH:mm'), true);
+        embed.addField(await db.getTrans(lang, 'srv_name'), message.guild.name, true);
+        embed.addField(await db.getTrans(lang, 'srv_owner'), message.guild.owner.displayName, true);
+        embed.addField(await db.getTrans(lang, 'srv_members'), message.guild.members.size, true);
+        embed.addField(await db.getTrans(lang, 'srv_roles'), message.guild.roles.size, true);
+        embed.addField(await db.getTrans(lang, 'srv_region'), message.guild.region.toUpperCase(), true);
+        embed.addField(await db.getTrans(lang, 'srv_created'), moment(message.guild.createdAt).format('DD.MM.YYYY, HH:mm'), true);
         embed.setFooter('kuvuBot v4.2.0');
         embed.setTimestamp();
 
