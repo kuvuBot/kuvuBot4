@@ -34,11 +34,9 @@ exports.function = async (parameters) => {
 
         const response = await cleverbotClient.getReply({
             key: config.key,
-            input: question,
-            cs: csCache[message.author.id]
+            input: question
         });
 
-        csCache[message.author.id] = response.cs;
         await message.reply(response.output);
     }
 };

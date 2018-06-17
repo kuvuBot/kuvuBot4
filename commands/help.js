@@ -59,9 +59,10 @@ exports.function = async (parameters) => {
         embed.addField(`${category.name} (${commandsInCat})`, `${commandsText.join('\n')}`, true);
     }
     embed.addBlankField();
-    embed.addField('Lang/Język', ':flag_pl: Jeśli chcesz zmienić język bota na swoim serwerze, wykonaj komendę `kb!lang pl` lub `kb!lang en`.\n\n' +
-        ':flag_gb: If you want to change the bot language on your guild, use `kb!lang pl` or `kb!lang en` command.\n\n' +
-        '**(Only Polish (pl) and English (en) are curently available)**');
+    embed.addField('Lvl promotion message/Wiadomość o awansie do poziomu', `:flag_pl: Jeśli chcesz przełączyć wyświetlanie wiadomości o awansie, wpisz \`${prefix}showlvl\`.\n` +
+        `:flag_gb: If you want to toggle the promotion message, use \`${prefix}showlvl\`.\n\n`);
+    embed.addField('Lang/Język', `:flag_pl: Jeśli chcesz zmienić język bota na swoim serwerze, wykonaj komendę \`${prefix}lang pl\` lub \`${prefix}lang en\`.\n` +
+        `:flag_gb: If you want to change the bot language on your guild, use \`${prefix}lang pl\` or \`${prefix}lang en\` command.\n\n`);
     embed.setAuthor(await db.getTrans(lang, 'help_title'), message.client.user.displayAvatarURL);
     embed.setColor(config.colors.default);
     embed.setFooter('kuvuBot v4.2.0');

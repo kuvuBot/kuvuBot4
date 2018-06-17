@@ -102,6 +102,27 @@ const getPrefix = async function getPrefix(id) {
     }
 };
 
+const getlvlToggle = async function getlvlToggle(id) {
+    if(id){
+        try {
+            const guild = await r.table('guilds').get(id).toJSON().run(connection);
+            const status = await JSON.parse(guild).showlvl;
+            if(status) {
+                return status;
+            } else {
+                await r.table('guilds').get(id).update({showlvl: true}).run(connection);
+                return true;
+            }
+
+        } catch (e) {
+            console.error(e);
+            return false;
+        }
+    } else {
+        return false;
+    }
+};
+
 const updateStats = async function update(g, c, u) {
     if(g && c && u){
         try {
@@ -140,10 +161,12 @@ const addXP = async function addXP(user, guild, message) {
                             totalXP = 0;
                             lvl++;
                             lvlProm = Math.floor((Math.sqrt(((lvlProm+13))*100))+0.5);
-                            let anc = await getTrans(await getLang(message.guild.id), 'lvl_up');
-                            anc = anc.replace('{author}', message.author.id)
-                                     .replace('{lvl}', lvl);
-                            await message.channel.send(anc);
+                            if (await getlvlToggle(guild) == true) { 
+                                let anc = await getTrans(await getLang(message.guild.id), 'lvl_up');
+                                anc = anc.replace('{author}', message.author.id)
+                                        .replace('{lvl}', lvl);
+                                await message.channel.send(anc);
+                            }
                         }
                         await r.table('guilds').get(guild).update({
                             users: r.object(user, r.object('lvl', lvl, 'xp', totalXP, 'lvlProm', lvlProm))
@@ -203,5 +226,6 @@ exports.update = update;
 exports.getTrans = getTrans;
 exports.getLang = getLang;
 exports.getPrefix = getPrefix;
+exports.getlvlToggle = getlvlToggle;
 exports.addXP = addXP;
 exports.getUser = getUser;
