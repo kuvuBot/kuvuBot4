@@ -38,7 +38,6 @@ client.on('message', async message => {
         guildID = '0';
     } else {
         guildID = message.guild.id;
-        await db.addXP(message.author.id, guildID, message);
     }
     await db.check(guildID);
 
@@ -75,11 +74,15 @@ client.on('message', async message => {
             embed.setAuthor('Error', message.client.user.displayAvatarURL);
             embed.setColor(config.colors.error);
             embed.addField('The following error occurred', err);
-            embed.setFooter('kuvuBot v4.1.0');
+            embed.setFooter('kuvuBot v4.2.0');
             embed.setTimestamp();
             message.channel.send(embed).catch(() => {});
             message.channel.stopTyping();
         });
+    } else {
+        if(message.guild) {
+            await db.addXP(message.author.id, guildID, message);
+        }
     }
 });
 
