@@ -20,9 +20,9 @@
         "discord.js": "^11.3.2",
         "figlet": "^1.2.0",
         "http-as-promised": "^2.0.1",
-        "moment": "^2.20.1",
-        "fortnite": "^3.0.0",
-        "xml-js": "^1.6.2",
+        "moment": "^2.22.2",
+        "fortnite": "^4.1.1",
+        "xml-js": "^1.6.4",
         "rethinkdb": "^2.3.3"
     },
     "engines": {
