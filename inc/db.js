@@ -160,7 +160,7 @@ const addXP = async function addXP(user, guild, message) {
                         if(totalXP >= lvlProm) {
                             totalXP = 0;
                             lvl++;
-                            lvlProm = Math.floor((Math.sqrt(((lvlProm+13))*100))+0.5);
+                            lvlProm = Math.floor(((lvlProm+newXP)*2)-(lvlProm-newXP)*0.70);
                             if (await getlvlToggle(guild) == true) { 
                                 let anc = await getTrans(await getLang(message.guild.id), 'lvl_up');
                                 anc = anc.replace('{author}', message.author.id)
