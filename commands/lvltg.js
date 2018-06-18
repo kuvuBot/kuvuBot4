@@ -31,10 +31,10 @@ exports.function = async (parameters) => {
         } else {
             if (await db.getlvlToggle(guildID) == 'true') {
                 await db.update('guilds', guildID, 'showlvl', 'false');
-                await message.reply('👌');
+                await message.reply('👌 OFF');
             } else {
                 await db.update('guilds', guildID, 'showlvl', 'true');
-                await message.reply('👌');
+                await message.reply('👌 ON');
             }
         }
     }
