@@ -66,9 +66,6 @@ client.on('message', async message => {
         await command.function(parameters).then(() => {
             message.channel.stopTyping();
         }).catch(error => {
-            if(!(error instanceof Discord.DiscordAPIError)) {
-                console.error(error);
-            }
             let err = errorH.res(error);
             const embed = new Discord.RichEmbed();
             embed.setAuthor('Error', message.client.user.displayAvatarURL);

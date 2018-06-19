@@ -121,5 +121,6 @@
     "check": "Przejdź",
     "figlet_limit": "Tekst nie może mieć więcej niż 16 znaków!",
     "user_title": "Informacje o użytkowniku",
-    "lvl_up": "Użytkownik <@{author}> awansował na poziom {lvl}!"
+    "lvl_up": "Użytkownik <@{author}> awansował na poziom {lvl}!",
+    "react_limit": "tekst nie może mieć więcej niż 20 znaków!"
 }

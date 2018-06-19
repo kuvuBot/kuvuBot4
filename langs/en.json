@@ -121,5 +121,6 @@
     "check": "Check out",
     "figlet_limit": "Text can't be longer than 16 characters!",
     "user_title": "Info about the user",
-    "lvl_up": "User <@{author}> has been promoted to lvl {lvl}!"
+    "lvl_up": "User <@{author}> has been promoted to lvl {lvl}!",
+    "react_limit": "the text can not have more than 20 characters!"
 }

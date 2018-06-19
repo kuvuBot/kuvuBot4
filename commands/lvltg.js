@@ -9,32 +9,28 @@ exports.info = {
     },
     aliases: [
         'showlevel'
-    ],
-    show: 'false'
+    ]
 };
 
 exports.function = async (parameters) => {
-    const args = parameters.args;
+    const config = parameters.config;
     const message = parameters.message;
-    const prefix = parameters.prefix;
     const guildID = parameters.guildID;
     const lang = parameters.lang;
     const db = parameters.db;
 
-    const prefixText = args[1];
-
     if(!message.guild) {
         await message.reply(await db.getTrans(lang, 'onlyText'));
     } else {
-        if (!message.member.hasPermission('MANAGE_GUILD')) {
+        if (!message.member.hasPermission('MANAGE_GUILD') || !message.author.id == config.owner) {
             await message.reply(await db.getTrans(lang, 'perms'));
         } else {
             if (await db.getlvlToggle(guildID) == 'true') {
                 await db.update('guilds', guildID, 'showlvl', 'false');
-                await message.reply('👌 OFF');
+                await message.reply('👌 - off');
             } else {
                 await db.update('guilds', guildID, 'showlvl', 'true');
-                await message.reply('👌 ON');
+                await message.reply('👌 - on');
             }
         }
     }

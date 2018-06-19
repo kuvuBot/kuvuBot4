@@ -110,8 +110,8 @@ const getlvlToggle = async function getlvlToggle(id) {
             if(status) {
                 return status;
             } else {
-                await r.table('guilds').get(id).update({showlvl: true}).run(connection);
-                return true;
+                await r.table('guilds').get(id).update({showlvl: 'true'}).run(connection);
+                return 'true';
             }
 
         } catch (e) {
@@ -173,13 +173,13 @@ const addXP = async function addXP(user, guild, message) {
                         }).run(connection);
                     } else {
                         await r.table('guilds').get(guild).update({
-                            users: r.object(user, r.object('lvl', 1, 'xp', 0, 'lvlProm', 55))
+                            users: r.object(user, r.object('lvl', 1, 'xp', 0, 'lvlProm', 65))
                         }).run(connection);
                     }
             } else {
                 await r.table('guilds').get(guild).update({users: { }}).run(connection);
                 await r.table('guilds').get(guild).update({
-                    users: r.object(user, r.object('lvl', 1, 'xp', 0, 'lvlProm', 55))
+                    users: r.object(user, r.object('lvl', 1, 'xp', 0, 'lvlProm', 65))
                 }).run(connection);
             }
         } catch (e) {

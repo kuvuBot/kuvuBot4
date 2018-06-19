@@ -10,8 +10,12 @@ exports.info = {
 };
 
 exports.function = async (parameters) => {
-    const message = parameters.message;
+    let message = parameters.message;
     const client = parameters.client;
 
-    await message.reply(`🏓 Pong (${client.ping}ms)`);
+    let firstTs = Date.now();
+    message = await message.channel.send('...');
+    let secondTs = Date.now();
+    let ping = secondTs - firstTs;
+    await message.edit(`🏓 Ping: ${ping}ms | Gateway: ${Math.round(client.ping)}ms)`);
 };
