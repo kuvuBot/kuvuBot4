@@ -71,6 +71,16 @@ exports.function = async (parameters) => {
                         return `🥊 ${await db.getTrans(lang, 'rps_lost')}`;
 
                     }
+                } else if (thing === emojis['scissors']) {
+                    if (botThing === emojis['paper']) {
+                        return `🎉 ${await db.getTrans(lang, 'rps_won')}`;
+
+                    }
+                } else if (thing === emojis['paper']) {
+                    if (botThing === emojis['scissors']) {
+                        return `🥊 ${await db.getTrans(lang, 'rps_lost')}`;
+
+                    }
                 }
             };
             let result = await compare(thing, botThing);
