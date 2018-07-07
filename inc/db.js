@@ -110,7 +110,7 @@ const getlvlToggle = async function getlvlToggle(id) {
             if(status) {
                 return status;
             } else {
-                await r.table('guilds').get(id).update({showlvl: 'true'}).run(connection);
+                await r.table('guilds').get(id).update({showlvl: 'false'}).run(connection);
                 return 'true';
             }
 
