@@ -22,7 +22,7 @@ exports.function = async (parameters) => {
     if(!message.guild) {
         await message.reply(await db.getTrans(lang, 'onlyText'));
     } else {
-        if (!message.member.hasPermission('MANAGE_GUILD') || !message.author.id == config.owner) {
+        if (!message.member.hasPermission('MANAGE_GUILD')) {
             await message.reply(await db.getTrans(lang, 'perms'));
         } else {
             if (await db.getlvlToggle(guildID) == 'true') {
