@@ -23,7 +23,8 @@
         "moment": "^2.22.2",
         "fortnite": "^4.1.1",
         "xml-js": "^1.6.4",
-        "rethinkdb": "^2.3.3"
+        "rethinkdb": "^2.3.3",
+        "canvas": "^1.6.11"
     },
     "engines": {
         "node": ">=8.9.4"
