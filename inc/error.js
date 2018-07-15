@@ -8,6 +8,8 @@ const res = function res(error) {
             return 'API error.';
         } else if (error.message.includes(`Cannot read property 'lvl'`)) {
             return 'User data not found.';
+        } else if (error.message.includes('Missing Permissions')) {
+            return 'Missing BOT Permissions.';
         }
         else {
             console.error(error);
