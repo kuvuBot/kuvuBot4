@@ -61,6 +61,7 @@ exports.function = async (parameters) => {
     embed.addBlankField();
     embed.addField('Lang/Język', `:flag_pl: Jeśli chcesz zmienić język bota na swoim serwerze, wykonaj komendę \`${prefix}lang pl\` lub \`${prefix}lang en\`.\n` +
         `:flag_gb: If you want to change the bot language on your guild, use \`${prefix}lang pl\` or \`${prefix}lang en\` command.\n\n`);
+    embed.addField('Translation/tłumaczenie', '[Help translating kuvuBot\nPomóż tłumaczyć kuvuBota](https://poeditor.com/join/project/No3FgBo5Tx)');
     embed.setAuthor(await db.getTrans(lang, 'help_title'), message.client.user.displayAvatarURL);
     embed.setColor(config.colors.default);
     embed.setFooter('kuvuBot v4.2.0');
