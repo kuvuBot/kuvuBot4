@@ -37,8 +37,6 @@ exports.function = async (parameters) => {
             if (!message.member.hasPermission('MANAGE_MESSAGES')) {
                 await message.reply(await db.getTrans(lang, 'perms'));
             } else {
-                await message.delete();
-
                 broadcast = broadcast.charAt(0).toUpperCase() + broadcast.slice(1);
 
                 const embed = new Discord.RichEmbed();
