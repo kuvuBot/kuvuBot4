@@ -25,7 +25,7 @@ exports.function = async (parameters) => {
     embed.setColor(config.colors.default);
     embed.setThumbnail(bot.user.displayAvatarURL);
     embed.addField(await db.getTrans(lang, 'bot_name'), bot.user.tag, true);
-    embed.addField(await db.getTrans(lang, 'bot_version'), `v${packageInfo.version}`, true);
+    embed.addField(await db.getTrans(lang, 'bot_version'), `v${version}`, true);
     embed.addField(await db.getTrans(lang, 'bot_servers'), bot.guilds.size, true);
     embed.addField(await db.getTrans(lang, 'bot_channels'), bot.channels.size, true);
     embed.addField('Github', `[${await db.getTrans(lang, 'check')}](https://github.com/kuvuBot/kuvuBot4)`, true);
