@@ -204,18 +204,65 @@ const getUser = async function getUser(user, guild) {
                 return {xp,lvl,lvlProm};
             } else {
                 await r.table('guilds').get(guild).update({
-                    users: r.object(user, r.object('lvl', 1, 'xp', 0, 'lvlProm', 55))
+                    users: r.object(user, r.object('lvl', 0, 'xp', 0, 'lvlProm', 80))
                 }).run(connection);
             }
     } else {
         await r.table('guilds').get(guild).update({users: { }}).run(connection);
         await r.table('guilds').get(guild).update({
-            users: r.object(user, r.object('lvl', 1, 'xp', 0, 'lvlProm', 55))
+            users: r.object(user, r.object('lvl', 0, 'xp', 0, 'lvlProm', 89))
         }).run(connection);
         let xp = 0;
-        let lvl = 1;
-        let lvlProm = 55;
+        let lvl = 0;
+        let lvlProm = 80;
         return {xp,lvl,lvlProm};
+    }
+}
+
+const warn = async function warn(user, guildID, pkt, reason) {
+    if(user && guildID && pkt && reason) {
+        try {
+            if (!pkt) {
+                pkt = 10;
+            }
+            if (!reason) {
+                reason = 'No reason';
+            }
+            const gi = await r.table('guilds').get(guildID).toJSON().run(connection);
+            
+            const json = await JSON.parse(gi);
+            if (json.users) {
+                const users = json.users;   
+                    if(users[user]) {                
+                        let us = users[user];
+
+                        let warns = us.warns;
+                        let warnReasons = us.warnreasons + ' | ' + reason;
+
+                        let warnPoints = parseInt(warns) + parseInt(pkt);
+                        let warnBlock = false, warnTime = null;
+                        if(warnPoints >= 100) {
+                            warnBlock = true;
+                            warnTime = Date.now();
+                        }
+                        await r.table('guilds').get(guildID).update({
+                            users: r.object(user, r.object('warns', warnPoints, 'warnreasons', warnReasons, 'warnblock', warnBlock, 'warntime', warnTime))
+                        }).run(connection);
+                    } else {
+                        await r.table('guilds').get(guildID).update({
+                            users: r.object(user, r.object('warns', warnPoints, 'warnreasons', warnReasons, 'warnblock', warnBlock, 'warntime', warnTime))
+                        }).run(connection);
+                    }
+            } else {
+                await r.table('guilds').get(guildID).update({users: { }}).run(connection);
+                await r.table('guilds').get(guildID).update({
+                    users: r.object(user, r.object('warns', warnPoints, 'warnreasons', warnReasons, 'warnblock', warnBlock, 'warntime', warnTime))
+                }).run(connection);
+            }
+        } catch (e) {
+            console.error(e);
+            return false;
+        }
     }
 }
 
@@ -229,3 +276,4 @@ exports.getPrefix = getPrefix;
 exports.getlvlToggle = getlvlToggle;
 exports.addXP = addXP;
 exports.getUser = getUser;
+exports.warn = warn;

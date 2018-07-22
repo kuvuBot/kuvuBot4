@@ -44,7 +44,7 @@
     "react_desc": "adds reactions to the message",
     "react_command": "react <text>",
     "fn_desc": "displays Fortnite player statistics",
-    "fn_command": "fortnite <platform> <nick>",
+    "fn_command": "fortnite <pc/xbl/psn> <nick>",
     "fn_title": "Fortnite statistics",
     "fn_wins": "Wins",
     "fn_kills": "Kills",
@@ -122,5 +122,14 @@
     "figlet_limit": "Text can't be longer than 16 characters!",
     "user_title": "Info about the user",
     "lvl_up": "User <@{author}> has been promoted to lvl {lvl}!",
-    "react_limit": "the text can not have more than 20 characters!"
+    "react_limit": "the text can not have more than 20 characters!",
+    "showlvl_desc": "toggles sending the lvl promotion message",
+    "prefix_desc": "changes the bot prefix",
+    "warn_desc": "warns user",
+    "warn_command": "warn <@user_mention> <warn points> | <warn reason>",
+    "warn_success": "{user} user has been warned for {reason} with {pkt} points",
+    "warn_title": "Warn",
+    "dog_desc": "displays a random dog image",
+    "dog_command": "dog",
+    "dog_title": "Random dog"
 }

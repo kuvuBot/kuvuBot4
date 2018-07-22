@@ -44,7 +44,7 @@
     "react_desc": "dodaje reakcje do wiadomości",
     "react_command": "reaguj <tekst>",
     "fn_desc": "wyświetla statystyki gracza Fortnite",
-    "fn_command": "fortnite <platforma> <nick>",
+    "fn_command": "fortnite <pc/xbl/psn> <nick>",
     "fn_title": "Statystyki Fortnite",
     "fn_wins": "Wygrane",
     "fn_kills": "Zabójstwa",
@@ -122,5 +122,14 @@
     "figlet_limit": "Tekst nie może mieć więcej niż 16 znaków!",
     "user_title": "Informacje o użytkowniku",
     "lvl_up": "Użytkownik <@{author}> awansował na poziom {lvl}!",
-    "react_limit": "tekst nie może mieć więcej niż 20 znaków!"
+    "react_limit": "tekst nie może mieć więcej niż 20 znaków!",
+    "showlvl_desc": "przełącza wysyłanie wiadomości o zwiększeniu poziomu",
+    "prefix_desc": "zmienia prefix bota",
+    "warn_desc": "nadaje użytkownikowi ostrzeżenie.",
+    "warn_command": "ostrzeż <@oznaczenie_użytkownika> <punkty ostrzeżenia> | <powód ostrzeżenia>",
+    "warn_success": "{user} user has been warned for {reason} with {pkt} points",
+    "warn_title": "Ostrzeżenie",
+    "dog_desc": "wyświetla losowego psa",
+    "dog_command": "pies",
+    "dog_title": "Losowy pies"
 }
