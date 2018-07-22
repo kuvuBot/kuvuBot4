@@ -1,6 +1,9 @@
 {
     "token": "BOT TOKEN",
-    "cleverbotKey": "CLEVERBOT API KEY",
+    "cleverbot": {
+        "user": "",
+        "key": ""
+      },
     "fortniteKey": "FORTNITE API KEY",
     "weatherKey": "OPENWEATHERMAP API KEY ",
     "colors": {

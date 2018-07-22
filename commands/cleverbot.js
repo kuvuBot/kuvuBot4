@@ -1,8 +1,6 @@
 'use strict';
 
-const cleverbotAsPromised = require('cleverbot-as-promised');
-
-const csCache = {};
+const cleverbot = require("cleverbot.io");
 
 exports.info = {
     command: 'cb',
@@ -24,19 +22,20 @@ exports.function = async (parameters) => {
     const prefix = parameters.prefix;
     const lang = parameters.lang;
     const db = parameters.db;
+    const version = parameters.packageInfo.version;
 
     const question = args.slice(1).join(' ');
 
     if(!question) {
         await message.reply(`${await db.getTrans(lang, 'usage')} \`${prefix}${await db.getTrans(lang, 'cb_command')}\`!`);
     } else {
-        const cleverbotClient = new cleverbotAsPromised(config.cleverbotKey);
-
-        const response = await cleverbotClient.getReply({
-            key: config.key,
-            input: question
+        const bot = new cleverbot(config.cleverbot.user, config.cleverbot.key);
+        bot.setNick(message.author.id);
+        let session = message.author.id;
+        await bot.create(async function (err, session) {
+            await bot.ask(question, async function (err, response) {
+                await message.reply(response);
+            });
         });
-
-        await message.reply(response.output);
     }
 };
