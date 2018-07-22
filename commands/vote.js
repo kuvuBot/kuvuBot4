@@ -21,6 +21,7 @@ exports.function = async (parameters) => {
     const prefix = parameters.prefix;
     const lang = parameters.lang;
     const db = parameters.db;
+    const version = parameters.packageInfo.version;
 
     let question = args.slice(1).join(' ');
 

@@ -19,6 +19,7 @@ exports.function = async (parameters) => {
     const guildID = parameters.guildID;
     const lang = parameters.lang;
     const db = parameters.db;
+    const version = parameters.packageInfo.version;
 
     const langC = args[1];
 

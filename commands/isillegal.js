@@ -25,6 +25,7 @@ exports.function = async (parameters) => {
     const prefix = parameters.prefix;
     const lang = parameters.lang;
     const db = parameters.db;
+    const version = parameters.packageInfo.version;
 
     let word = args[1];
 
@@ -48,7 +49,7 @@ exports.function = async (parameters) => {
             embed.setAuthor(`${word} ${await db.getTrans(lang, 'ii_now')}`, message.client.user.displayAvatarURL);
             embed.setColor(config.colors.default);
             embed.setImage(gif.url);
-            embed.setFooter('kuvuBot v4.2.0');
+            embed.setFooter(`kuvuBot ${version}`);
             embed.setTimestamp();
 
             await message.channel.send(embed);

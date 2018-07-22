@@ -21,6 +21,7 @@ exports.function = async (parameters) => {
     const prefix = parameters.prefix;
     const lang = parameters.lang;
     const db = parameters.db;
+    const version = parameters.packageInfo.version;
 
     const serverIP = args[1];
     const serverPort = (args[2] ? args[2] : 25565);
@@ -44,7 +45,7 @@ exports.function = async (parameters) => {
             embed.setColor('ff0000');
             embed.addField('Status', 'Offline');
         }
-        embed.setFooter('kuvuBot v4.2.0');
+        embed.setFooter(`kuvuBot ${version}`);
         embed.setTimestamp();
 
         await message.channel.send(embed);

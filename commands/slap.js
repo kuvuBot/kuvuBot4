@@ -22,6 +22,7 @@ exports.function = async (parameters) => {
     const prefix = parameters.prefix;
     const lang = parameters.lang;
     const db = parameters.db;
+    const version = parameters.packageInfo.version;
 
     if (!args[1]) {
         await message.reply(`${await db.getTrans(lang, 'usage')}\`${prefix}${await db.getTrans(lang, 'slap_command')}\`!`);
@@ -35,7 +36,7 @@ exports.function = async (parameters) => {
         embed.setAuthor(`${message.author.username} ${await db.getTrans(lang, 'slap_text')} ${user}`, message.client.user.displayAvatarURL);
         embed.setColor(config.colors.default);
         embed.setImage(image);
-        embed.setFooter('kuvuBot v4.2.0');
+        embed.setFooter(`kuvuBot ${version}`);
         embed.setTimestamp();
 
         await message.channel.send(embed);

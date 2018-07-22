@@ -20,6 +20,7 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const lang = parameters.lang;
     const db = parameters.db;
+    const version = parameters.packageInfo.version;
 
     if (isNaN(args[1])) {
         const random = Math.floor(Math.random() * 6) + 1;
@@ -28,7 +29,7 @@ exports.function = async (parameters) => {
         embed.setAuthor(await db.getTrans(lang, 'dice_title'), message.client.user.displayAvatarURL);
         embed.setColor(config.colors.default);
         embed.addField(await db.getTrans(lang, 'dice_result'), random);
-        embed.setFooter('kuvuBot v4.2.0');
+        embed.setFooter(`kuvuBot ${version}`);
         embed.setTimestamp();
     
         await message.channel.send(embed);
@@ -43,7 +44,7 @@ exports.function = async (parameters) => {
             embed.setAuthor(await db.getTrans(lang, 'dice_title'), message.client.user.displayAvatarURL);
             embed.setColor(config.colors.default);
             embed.addField(await db.getTrans(lang, 'dice_result'), random);
-            embed.setFooter('kuvuBot v4.2.0');
+            embed.setFooter(`kuvuBot ${version}`);
             embed.setTimestamp();
     
             await message.channel.send(embed);

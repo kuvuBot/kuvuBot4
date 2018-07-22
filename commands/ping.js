@@ -12,6 +12,7 @@ exports.info = {
 exports.function = async (parameters) => {
     let message = parameters.message;
     const client = parameters.client;
+    const version = parameters.packageInfo.version;
 
     let firstTs = Date.now();
     message = await message.channel.send('...');

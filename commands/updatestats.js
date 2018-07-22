@@ -16,6 +16,7 @@ exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
     const db = parameters.db;
+    const version = parameters.packageInfo.version;
 
     if (!message.author.id === config.owner) {
          await message.reply('Only BOT owner can do this, sorry.');

@@ -22,6 +22,7 @@ exports.function = async (parameters) => {
     const prefix = parameters.prefix;
     const lang = parameters.lang;
     const db = parameters.db;
+    const version = parameters.packageInfo.version;
 
     const client = new Fortnite(config.fortniteKey);
 
@@ -48,7 +49,7 @@ exports.function = async (parameters) => {
             embed.addField(kills, data.lifetimeStats[10].value, true);
             embed.addField('K/D', data.lifetimeStats[11].value, true);
             embed.addField(played, data.lifetimeStats[7].value, true);
-            embed.setFooter('kuvuBot v4.2.0');
+            embed.setFooter(`kuvuBot ${version}`);
             embed.setTimestamp();
 
             message.channel.send(embed);

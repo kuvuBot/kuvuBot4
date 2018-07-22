@@ -14,9 +14,9 @@ exports.info = {
 exports.function = async (parameters) => {
     const config = parameters.config;
     const message = parameters.message;
-    const packageInfo = parameters.packageInfo;
     const lang = parameters.lang;    
     const db = parameters.db;
+    const version = parameters.packageInfo.version;
 
     const bot = message.client;
 
@@ -38,7 +38,7 @@ exports.function = async (parameters) => {
     }
 
     embed.addField(await db.getTrans(lang, 'bot_srvs'), guildsNames.slice(0, 9).join(', ') + (guildsNames.length > 10 ? `, ${guildsNames.length - 10} ${await db.getTrans(lang, 'bot_other')}` : ''), true);
-    embed.setFooter(`kuvuBot v${packageInfo.version}`);
+    embed.setFooter(`kuvuBot ${version}`);
     embed.setTimestamp();
 
     await message.channel.send(embed);

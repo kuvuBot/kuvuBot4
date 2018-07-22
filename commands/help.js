@@ -17,6 +17,7 @@ exports.function = async (parameters) => {
     const prefix = parameters.prefix;
     const lang = parameters.lang;
     const db = parameters.db;
+    const version = parameters.packageInfo.version;
 
     const categories = [];
 
@@ -64,7 +65,7 @@ exports.function = async (parameters) => {
     embed.addField('Translation/tłumaczenie', '[Help translating kuvuBot\nPomóż tłumaczyć kuvuBota](https://poeditor.com/join/project/No3FgBo5Tx)');
     embed.setAuthor(await db.getTrans(lang, 'help_title'), message.client.user.displayAvatarURL);
     embed.setColor(config.colors.default);
-    embed.setFooter('kuvuBot v4.2.0');
+    embed.setFooter(`kuvuBot ${version}`);
     embed.setTimestamp();
 
     await message.channel.send(embed);

@@ -18,6 +18,7 @@ exports.function = async (parameters) => {
     const guildID = parameters.guildID;
     const lang = parameters.lang;
     const db = parameters.db;
+    const version = parameters.packageInfo.version;
 
     if(!message.guild) {
         await message.reply(await db.getTrans(lang, 'onlyText'));

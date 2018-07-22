@@ -22,6 +22,7 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const lang = parameters.lang;
     const db = parameters.db;
+    const version = parameters.packageInfo.version;
 
     if(!message.guild) {
         await message.reply(await db.getTrans(lang, 'onlyText'));
@@ -40,7 +41,7 @@ exports.function = async (parameters) => {
         embed.addField(await db.getTrans(lang, 'srv_roles'), message.guild.roles.size, true);
         embed.addField(await db.getTrans(lang, 'srv_region'), message.guild.region.toUpperCase(), true);
         embed.addField(await db.getTrans(lang, 'srv_created'), moment(message.guild.createdAt).format('DD.MM.YYYY, HH:mm'), true);
-        embed.setFooter('kuvuBot v4.2.0');
+        embed.setFooter(`kuvuBot ${version}`);
         embed.setTimestamp();
 
         await message.channel.send(embed);

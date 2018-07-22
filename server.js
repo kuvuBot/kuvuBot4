@@ -71,7 +71,7 @@ client.on('message', async message => {
             embed.setAuthor('Error', message.client.user.displayAvatarURL);
             embed.setColor(config.colors.error);
             embed.addField('The following error occurred', err);
-            embed.setFooter('kuvuBot v4.2.0');
+            embed.setFooter(packageInfo.version);
             embed.setTimestamp();
             message.channel.send(embed).catch(() => {});
             message.channel.stopTyping();

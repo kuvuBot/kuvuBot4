@@ -21,6 +21,7 @@ exports.function = async (parameters) => {
     const prefix = parameters.prefix;
     const lang = parameters.lang;
     const db = parameters.db;
+    const version = parameters.packageInfo.version;
 
     let thing = args[1];
     const emojis = {
@@ -93,7 +94,7 @@ exports.function = async (parameters) => {
             embed.addField(await db.getTrans(lang, 'rps_you'), thing, true);
             embed.addField('Bot', botThing, true);
             embed.addField(await db.getTrans(lang, 'rps_result'), result, true);
-            embed.setFooter('kuvuBot v4.2.0');
+            embed.setFooter(`kuvuBot ${version}`);
             embed.setTimestamp();
 
             await message.channel.send(embed);

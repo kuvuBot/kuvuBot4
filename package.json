@@ -16,7 +16,7 @@
     "main": "server.js",
     "repository": "kuvuBot/kuvuBot4",
     "dependencies": {
-        "cleverbot-as-promised": "^1.0.2",
+        "cleverbot.io": "^1.0.4",
         "discord.js": "^11.3.2",
         "figlet": "^1.2.0",
         "http-as-promised": "^2.0.1",

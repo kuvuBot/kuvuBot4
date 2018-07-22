@@ -20,6 +20,7 @@ exports.function = async (parameters) => {
     const message = parameters.message;
     const lang = parameters.lang;
     const db = parameters.db;
+    const version = parameters.packageInfo.version;
 
     const url = 'https://status.mojang.com/check';
     const mojang = JSON.parse(await httpAsPromised.get(url, { resolve : 'body' }));
@@ -42,7 +43,7 @@ exports.function = async (parameters) => {
 
     embed.setColor(config.colors.default);
     mojang.forEach(check);
-    embed.setFooter('kuvuBot v4.2.0');
+    embed.setFooter(`kuvuBot ${version}`);
     embed.setTimestamp();
 
     await message.channel.send(embed);

@@ -22,6 +22,7 @@ exports.function = async (parameters) => {
     const prefix = parameters.prefix;
     const lang = parameters.lang;
     const db = parameters.db;
+    const version = parameters.packageInfo.version;
 
     const city = encodeURIComponent(args[1]);
     const conds = {
@@ -56,7 +57,7 @@ exports.function = async (parameters) => {
     embed.addField(await db.getTrans(lang, 'weather_temp'), '🌡 '  + weather.main.temp + '℃', true);
     embed.addField(await db.getTrans(lang, 'weather_press'), '🎈 '  + weather.main.pressure + ' hPa', true);
     embed.addField(await db.getTrans(lang, 'weather_hum'), '♨ '  + weather.main.humidity + '%', true);
-    embed.setFooter('kuvuBot v4.2.0');
+    embed.setFooter(`kuvuBot ${version}`);
     embed.setTimestamp();
 
     await message.channel.send(embed);
