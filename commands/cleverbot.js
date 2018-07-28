@@ -30,7 +30,7 @@ exports.function = async (parameters) => {
         await message.reply(`${await db.getTrans(lang, 'usage')} \`${prefix}${await db.getTrans(lang, 'cb_command')}\`!`);
     } else {
         const bot = new cleverbot(config.cleverbot.user, config.cleverbot.key);
-        bot.setNick(message.author.id);
+        await bot.setNick(message.author.id);
         let session = message.author.id;
         await bot.create(async function (err, session) {
             await bot.ask(question, async function (err, response) {

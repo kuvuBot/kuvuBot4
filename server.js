@@ -27,6 +27,7 @@ client.on('ready', () => {
 });
 
 client.on('guildCreate', async () => {
+    client.user.setPresence({ game: { name: `kb!help | ${client.guilds.size} guilds`, type: 'LISTENING' }, status: 'online' });
     await db.updateStats(client.guilds.size, client.channels.size, client.users.size);
 });
 
