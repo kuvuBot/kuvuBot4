@@ -59,7 +59,7 @@ exports.function = async (parameters) => {
                     await message.channel.send(`${await db.getTrans(lang, 'clear_success')} ${messages.length} ${await db.getTrans(lang, 'clear_from')} ${limit} ${await db.getTrans(lang, 'clear_msgf')} ${filter}!`);
                 }
                 else {
-                    await message.channel.send(`${await db.getTrans(lang, 'clear_success')} ${messages.length} z ${limit} ${await db.getTrans(lang, 'clear_msg')}`);
+                    await message.channel.send(`${await db.getTrans(lang, 'clear_success')} ${messages.length}/${limit} ${await db.getTrans(lang, 'clear_msg')}`);
                 }
             }
         }
