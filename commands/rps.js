@@ -82,9 +82,19 @@ exports.function = async (parameters) => {
                         return `🥊 ${await db.getTrans(lang, 'rps_lost')}`;
 
                     }
+                } else if (thing === emojis['rock']) {
+                    if (botThing === emojis['paper']) {
+                        return `🥊 ${await db.getTrans(lang, 'rps_lost')}`;
+
+                    }
                 }
             };
             let result = await compare(thing, botThing);
+            if (thing == emojis['scissors']) {
+                if (botThing == emojis['paper']) {
+                    result = `🎉 ${await db.getTrans(lang, 'rps_won')}`;
+                }
+            }
             if (result == undefined) {
                 result = `🥊 ${await db.getTrans(lang, 'rps_lost')}`;
             }
