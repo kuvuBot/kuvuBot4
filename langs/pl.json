@@ -19,7 +19,7 @@
     "bot_channels": "Ilość kanałów",
     "bot_site": "Strona",
     "bot_srvs": "Serwery",
-    "bot_other": "inncyh",
+    "bot_other": "innych",
     "bc_desc": "dodaje ogłoszenie",
     "bc_command": "ogłoszenie <treść ogłoszenia>",
     "bc_title": "Ogłoszenie",
@@ -73,7 +73,7 @@
     "mo_title": "Status serwerów Mojang",
     "rps_desc": "kamień, papier, nożyce z BOTem",
     "rps_command": "kpn <kamień/papier/nożyce>",
-    "rps_title": "Papier, kamień nożyce",
+    "rps_title": "Kamień, papier, nożyce",
     "rps_rock": "Kamień",
     "rps_paper": "Papier",
     "rps_scissors": "Nożyce",
@@ -131,5 +131,7 @@
     "warn_title": "Ostrzeżenie",
     "dog_desc": "wyświetla losowego psa",
     "dog_command": "pies",
-    "dog_title": "Losowy pies"
+    "dog_title": "Losowy pies",
+    "inv_command": "zaproszenie",
+    "inv_desc": "generuje zaproszenie na kanał"
 }

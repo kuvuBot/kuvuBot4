@@ -131,5 +131,7 @@
     "warn_title": "Warn",
     "dog_desc": "displays a random dog image",
     "dog_command": "dog",
-    "dog_title": "Random dog"
+    "dog_title": "Random dog",
+    "inv_command": "invite",
+    "inv_desc": "generates channel invite"
 }
