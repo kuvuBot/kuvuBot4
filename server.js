@@ -46,10 +46,13 @@ client.on('message', async message => {
 
     const args = message.content.toLowerCase().trim().split(/\s+/);
     const command = commands.find(command => prefix + command.info.command === args[0] || (command.info.aliases ? command.info.aliases.find(alias => prefix + alias === args[0]) : false));
+    const commandSpace = commands.find(command => prefix + ' ' + command.info.command === args[0] + ' ' + args[1] || (command.info.aliases ? command.info.aliases.find(alias => prefix + ' ' + alias === args[0] + ' ' + args[1]) : false));
 
-    if(command) {
+    if(command || commandSpace) {
         await message.channel.startTyping();
         const lang = await db.getLang(guildID);
+
+        let commandFinal = (command ? command : commandSpace);
 
         const parameters = {
             args,
@@ -64,7 +67,7 @@ client.on('message', async message => {
             db
         };
 
-        await command.function(parameters).then(() => {
+        await commandFinal.function(parameters).then(() => {
             message.channel.stopTyping();
         }).catch(error => {
             let err = errorH.res(error);
