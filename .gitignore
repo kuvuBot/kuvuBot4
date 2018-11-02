@@ -63,5 +63,9 @@ typings/
 # node package-lock
 package-lock.json
 
-# local config
+# local files
 config.json
+tests.js
+
+# vs code files
+.vscode/
