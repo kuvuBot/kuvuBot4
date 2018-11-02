@@ -87,4 +87,16 @@ client.on('message', async message => {
     }
 });
 
+client.on('guildMemberAdd', async member => {
+    const channel = await member.guild.channels.find(async ch => {ch.name === await db.get('greetingChannel', member.guild.id)});
+    
+    if (!channel) return;
+    
+    if (await db.get('greeting', member.guild.id)) {
+        let msg = await db.get('greeting', member.guild.id);
+        msg = msg.replace('{user}', member);
+        channel.send(msg);
+    }
+  });
+
 client.login(config.token);
