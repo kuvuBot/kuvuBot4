@@ -12,7 +12,8 @@ exports.info = {
     aliases: [
         'ostrzeż',
         'ostrzez'
-    ]
+    ],
+    show: false
 };
 
 exports.function = async (parameters) => {
@@ -26,7 +27,7 @@ exports.function = async (parameters) => {
     const guildID = parameters.guildID;
 
     if(!message.guild) {
-        await message.reply(await db.getTrans(lang, 'onlyText'));
+        await message.reply(await db.get('trans', lang, 'onlyText'));
     } else {
         if (args[1]) {
             let msg = message.content.trim().split('|');
@@ -36,19 +37,19 @@ exports.function = async (parameters) => {
             if (isNaN(msg[0])) msg[0] = 10;
             await db.warn(message.mentions.users.first().id, guildID, args[2], msg[1]);
 
-            let successMsg = await db.getTrans(lang, 'warn_success');
+            let successMsg = await db.get('trans', lang, 'warn_success');
 
             successMsg = successMsg.replace('{user}', message.mentions.users.first()).replace('{pkt}', args[2]).replace('{reason}', msg[1]);
             
             const embed = new Discord.RichEmbed();
-            embed.setAuthor(await db.getTrans(lang, 'warn_title'), message.client.user.displayAvatarURL);
+            embed.setAuthor(await db.get('trans', lang, 'warn_title'), message.client.user.displayAvatarURL);
             embed.setColor(config.colors.error);
             embed.setDescription(successMsg);
             embed.setFooter(`kuvuBot ${version}`);
             embed.setTimestamp();
             await message.channel.send(embed);
         } else {
-            await message.reply(`${await db.getTrans(lang, 'usage')} \`${prefix}${await db.getTrans(lang, 'warn_command')}\`!`);
+            await message.reply(`${await db.get('trans', lang, 'usage')} \`${prefix}${await db.get('trans', lang, 'warn_command')}\`!`);
         }
     }
 };

@@ -18,6 +18,14 @@ for(const commandFilename of commandsFilenames) {
     commands.push(command);
 }
 
+const ownerCommandsFilenames = fs.readdirSync(path.join(__dirname, 'ownerCommands'));
+const ownerCommands = [];
+
+for(const ownerCommandFilename of ownerCommandsFilenames) {
+    const ownerCommand = require(path.join(__dirname, 'ownerCommands', ownerCommandFilename));
+    ownerCommands.push(ownerCommand);
+}
+
 const client = new Discord.Client();
 
 client.on('ready', () => {
@@ -42,17 +50,22 @@ client.on('message', async message => {
     }
     await db.check(guildID);
 
-    const prefix = await db.getPrefix(guildID);
+    const prefix = await db.get('prefix', guildID);
 
-    const args = message.content.toLowerCase().trim().split(/\s+/);
+    let args = message.content.toLowerCase().trim().split(/\s+/);
+
     const command = commands.find(command => prefix + command.info.command === args[0] || (command.info.aliases ? command.info.aliases.find(alias => prefix + alias === args[0]) : false));
     const commandSpace = commands.find(command => prefix + ' ' + command.info.command === args[0] + ' ' + args[1] || (command.info.aliases ? command.info.aliases.find(alias => prefix + ' ' + alias === args[0] + ' ' + args[1]) : false));
+    const ownerCommand = ownerCommands.find(command => '$' + prefix + command.info.command === args[0] || (command.info.aliases ? command.info.aliases.find(alias => '$' + prefix + alias === args[0]) : false));
 
-    if(command || commandSpace) {
+    if(command || commandSpace || ownerCommand) {
         await message.channel.startTyping();
-        const lang = await db.getLang(guildID);
+        const lang = await db.get('lang', guildID);
 
-        let commandFinal = (command ? command : commandSpace);
+        if (ownerCommand) if (message.author.id != config.owner) return await message.reply('Only BOT owner can do this, sorry.');
+        if (ownerCommand) args = message.content.trim().split(/\s+/);
+
+        let commandFinal = ((command ? command : commandSpace) ? (command ? command : commandSpace) : ownerCommand);
 
         const parameters = {
             args,
@@ -86,17 +99,5 @@ client.on('message', async message => {
         }
     }
 });
-
-client.on('guildMemberAdd', async member => {
-    const channel = await member.guild.channels.find(async ch => {ch.name === await db.get('greetingChannel', member.guild.id)});
-    
-    if (!channel) return;
-    
-    if (await db.get('greeting', member.guild.id)) {
-        let msg = await db.get('greeting', member.guild.id);
-        msg = msg.replace('{user}', member);
-        channel.send(msg);
-    }
-  });
 
 client.login(config.token);

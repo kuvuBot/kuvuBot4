@@ -133,5 +133,15 @@
     "dog_command": "dog",
     "dog_title": "Random dog",
     "inv_command": "invite",
-    "inv_desc": "generates channel invite"
+    "inv_desc": "generates channel invite",
+    "set_command": "set <setting> <value>",
+    "set_desc": "set specified guild setting",
+    "set_usage": "set <setting> <value>",
+    "set_options": "Available settings: `lang, prefix, role`",
+    "set_options_desc": "```\nlang - bot language\nprefix - bot prefix\nrole - default role assigned on join\n```",
+    "role_default_notfound": "The specified role wasn't found.",
+    "set_lang_usage": "set lang <pl/en>",
+    "set_prefix_usage": "set prefix <prefix>",
+    "set_lvl_usage": "set showlvl",
+    "set_role_usage": "set role <default role>"
 }

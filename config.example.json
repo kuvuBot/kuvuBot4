@@ -18,5 +18,5 @@
         "user": "USER",
         "password": "PASSWORD"
     },
-    "owner": ""
+    "owner": "OWNER's ID"
 }

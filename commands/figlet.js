@@ -25,10 +25,10 @@ exports.function = async (parameters) => {
     const text = args.slice(1).join(' ');
 
     if(!text) {
-        await message.reply(`${await db.getTrans(lang, 'usage')}\`${prefix}${await db.getTrans(lang, 'figlet_command')}\`!`);
+        await message.reply(`${await db.get('trans', lang, 'usage')}\`${prefix}${await db.get('trans', lang, 'figlet_command')}\`!`);
     } else {
         if(text.length > 16) {
-            await message.reply(await db.getTrans(lang, 'figlet_limit'));
+            await message.reply(await db.get('trans', lang, 'figlet_limit'));
         } else {
             const figletText = await makeFiglet(text);
             await message.reply('\n\n```\n' + figletText + '\n```');

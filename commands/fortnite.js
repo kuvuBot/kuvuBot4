@@ -28,17 +28,16 @@ exports.function = async (parameters) => {
 
     const platform = args[1];
     let player = args.slice(2).join(' ');
-    // player = encodeURIComponent(player);
 
     if(!platform) {
-        await message.reply(`${await db.getTrans(lang, 'usage')}\`${prefix}${await db.getTrans(lang, 'fn_command')}\`!`);
+        await message.reply(`${await db.get('trans', lang, 'usage')}\`${prefix}${await db.get('trans', lang, 'fn_command')}\`!`);
     } else if (!player) {
-        await message.reply(`${await db.getTrans(lang, 'usage')}\`${prefix}${await db.getTrans(lang, 'fn_command')}\`!`);
+        await message.reply(`${await db.get('trans', lang, 'usage')}\`${prefix}${await db.get('trans', lang, 'fn_command')}\`!`);
     } else {
-        const title = await db.getTrans(lang, 'fn_title');
-        const wins = await db.getTrans(lang, 'fn_wins');
-        const kills = await db.getTrans(lang, 'fn_kills');
-        const played = await db.getTrans(lang, 'fn_played');
+        const title = await db.get('trans', lang, 'fn_title');
+        const wins = await db.get('trans', lang, 'fn_wins');
+        const kills = await db.get('trans', lang, 'fn_kills');
+        const played = await db.get('trans', lang, 'fn_played');
 
         await fortnite.user(player, platform).then(data => {
             let lifetime = data.stats.lifetime;

@@ -39,7 +39,7 @@
     "dice_result": "Wyrzuciłeś",
     "etxt_desc": "generuje tekst z emoji",
     "etxt_command": "emtekst <tekst>",
-    "figlet_desc": "generuje figlet",
+    "figlet_desc": "generuje tekst ascii",
     "figlet_command": "figlet <tekst>",
     "react_desc": "dodaje reakcje do wiadomości",
     "react_command": "reaguj <tekst>",
@@ -133,5 +133,15 @@
     "dog_command": "pies",
     "dog_title": "Losowy pies",
     "inv_command": "zaproszenie",
-    "inv_desc": "generuje zaproszenie na kanał"
+    "inv_desc": "generuje zaproszenie na kanał",
+    "set_command": "ustaw <ustawienie> <wartość>",
+    "set_desc": "ustawia dane ustawienie serwera",
+    "set_usage": "ustaw <ustawienie> <wartość>",
+    "set_options": "Dostępne ustawienia: `język, prefix, rola`",
+    "set_options_desc": "\n```\njęzyk - język bota\nprefix - prefix bota\nrola - rola przydzielana przy wejściu\n```\n",
+    "role_default_notfound": "Podana rola nie została znaleziona.",
+    "set_lang_usage": "ustaw język <pl/en>",
+    "set_prefix_usage": "ustaw prefix <prefix>",
+    "set_lvl_usage": "ustaw pokazujpoziom",
+    "set_role_usage": "ustaw rola <domyślna rola>"
 }

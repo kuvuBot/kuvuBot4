@@ -25,22 +25,22 @@ exports.function = async (parameters) => {
 
     let thing = args[1];
     const emojis = {
-        rock: `⚪ ${await db.getTrans(lang, 'rps_rock')}`,
-        paper: `📰 ${await db.getTrans(lang, 'rps_paper')}`,
-        scissors: `✂ ${await db.getTrans(lang, 'rps_scissors')}`,
+        rock: `⚪ ${await db.get('trans', lang, 'rps_rock')}`,
+        paper: `📰 ${await db.get('trans', lang, 'rps_paper')}`,
+        scissors: `✂ ${await db.get('trans', lang, 'rps_scissors')}`,
     };
     const words = [
-        `⚪ ${await db.getTrans(lang, 'rps_rock')}`,
-        `📰 ${await db.getTrans(lang, 'rps_paper')}`,
-        `✂ ${await db.getTrans(lang, 'rps_scissors')}`
+        `⚪ ${await db.get('trans', lang, 'rps_rock')}`,
+        `📰 ${await db.get('trans', lang, 'rps_paper')}`,
+        `✂ ${await db.get('trans', lang, 'rps_scissors')}`
     ];
 
     if (!thing) {
-        await message.reply(`${await db.getTrans(lang, 'usage')}\`${prefix}${await db.getTrans(lang, 'rps_command')}\`!`);
+        await message.reply(`${await db.get('trans', lang, 'usage')}\`${prefix}${await db.get('trans', lang, 'rps_command')}\`!`);
     } else {
         thing = thing.toLowerCase();
-        if (!thing == "kamien" || !thing == "kamień" || !thing == "nożyce" || !thing == "nozyce" || !thing == "papier" || !thing == await db.getTrans(lang, 'rps_rock') || !thing == await db.getTrans(lang, 'rps_paper') || !thing == await db.getTrans(lang, 'rps_scissors')) {
-            await message.reply(`${await db.getTrans(lang, 'usage')}\`${prefix}${await db.getTrans(lang, 'rps_command')}\`!`);
+        if (!thing == "kamien" || !thing == "kamień" || !thing == "nożyce" || !thing == "nozyce" || !thing == "papier" || !thing == await db.get('trans', lang, 'rps_rock') || !thing == await db.get('trans', lang, 'rps_paper') || !thing == await db.get('trans', lang, 'rps_scissors')) {
+            await message.reply(`${await db.get('trans', lang, 'usage')}\`${prefix}${await db.get('trans', lang, 'rps_command')}\`!`);
         } else {
 
             thing = thing
@@ -61,30 +61,30 @@ exports.function = async (parameters) => {
                     return '🏳 Remis!';
                 } else if (thing === emojis['rock']) {
                     if (botThing === emojis['scissors']) {
-                        return `🎉 ${await db.getTrans(lang, 'rps_won')}`;
+                        return `🎉 ${await db.get('trans', lang, 'rps_won')}`;
                     }
                 } else if (thing === emojis['paper']) {
                     if (botThing === emojis['rock']) {
-                        return `🎉 ${await db.getTrans(lang, 'rps_won')}`;
+                        return `🎉 ${await db.get('trans', lang, 'rps_won')}`;
                     }
                 } else if (thing === emojis['scissors']) {
                     if (botThing === emojis['rock']) {
-                        return `🥊 ${await db.getTrans(lang, 'rps_lost')}`;
+                        return `🥊 ${await db.get('trans', lang, 'rps_lost')}`;
 
                     }
                 } else if (thing === emojis['scissors']) {
                     if (botThing === emojis['paper']) {
-                        return `🎉 ${await db.getTrans(lang, 'rps_won')}`;
+                        return `🎉 ${await db.get('trans', lang, 'rps_won')}`;
 
                     }
                 } else if (thing === emojis['paper']) {
                     if (botThing === emojis['scissors']) {
-                        return `🥊 ${await db.getTrans(lang, 'rps_lost')}`;
+                        return `🥊 ${await db.get('trans', lang, 'rps_lost')}`;
 
                     }
                 } else if (thing === emojis['rock']) {
                     if (botThing === emojis['paper']) {
-                        return `🥊 ${await db.getTrans(lang, 'rps_lost')}`;
+                        return `🥊 ${await db.get('trans', lang, 'rps_lost')}`;
 
                     }
                 }
@@ -92,18 +92,18 @@ exports.function = async (parameters) => {
             let result = await compare(thing, botThing);
             if (thing == emojis['scissors']) {
                 if (botThing == emojis['paper']) {
-                    result = `🎉 ${await db.getTrans(lang, 'rps_won')}`;
+                    result = `🎉 ${await db.get('trans', lang, 'rps_won')}`;
                 }
             }
             if (result == undefined) {
-                result = `🥊 ${await db.getTrans(lang, 'rps_lost')}`;
+                result = `🥊 ${await db.get('trans', lang, 'rps_lost')}`;
             }
             const embed = new Discord.RichEmbed();
-            embed.setAuthor(await db.getTrans(lang, 'rps_title'), message.client.user.displayAvatarURL);
+            embed.setAuthor(await db.get('trans', lang, 'rps_title'), message.client.user.displayAvatarURL);
             embed.setColor(config.colors.default);
-            embed.addField(await db.getTrans(lang, 'rps_you'), thing, true);
+            embed.addField(await db.get('trans', lang, 'rps_you'), thing, true);
             embed.addField('Bot', botThing, true);
-            embed.addField(await db.getTrans(lang, 'rps_result'), result, true);
+            embed.addField(await db.get('trans', lang, 'rps_result'), result, true);
             embed.setFooter(`kuvuBot ${version}`);
             embed.setTimestamp();
 

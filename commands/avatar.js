@@ -24,7 +24,7 @@ exports.function = async (parameters) => {
     const user = (message.mentions.users.first() ? message.mentions.users.first() : message.author);
 
     const embed = new Discord.RichEmbed();
-    embed.setAuthor(await db.getTrans(lang, 'avatar'), message.client.user.displayAvatarURL);
+    embed.setAuthor(await db.get('trans', lang, 'avatar'), message.client.user.displayAvatarURL);
     embed.setColor(config.colors.default);
     embed.setImage(user.displayAvatarURL);
     embed.setFooter(`kuvuBot ${version}`);

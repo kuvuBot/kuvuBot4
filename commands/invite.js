@@ -21,7 +21,7 @@ exports.function = async (parameters) => {
     const db = parameters.db;
 
     if(!message.guild) {
-        await message.reply(await db.getTrans(lang, 'onlyText'));
+        await message.reply(await db.get('trans', lang, 'onlyText'));
     } else {
         let invite = await message.channel.createInvite();
         await message.channel.send(invite.url);

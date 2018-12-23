@@ -39,7 +39,7 @@ exports.function = async (parameters) => {
     }
 
     const embed = new Discord.RichEmbed();
-    embed.setAuthor(await db.getTrans(lang, 'mo_title'), message.client.user.displayAvatarURL);
+    embed.setAuthor(await db.get('trans', lang, 'mo_title'), message.client.user.displayAvatarURL);
 
     embed.setColor(config.colors.default);
     mojang.forEach(check);

@@ -28,12 +28,12 @@ exports.function = async (parameters) => {
 
     if(!message.guild) {
         const embed = new Discord.RichEmbed();
-        embed.setAuthor(await db.getTrans(lang, 'user_title'), message.client.user.displayAvatarURL);
+        embed.setAuthor(await db.get('trans', lang, 'user_title'), message.client.user.displayAvatarURL);
         embed.setColor(config.colors.default);
         embed.setThumbnail(user.displayAvatarURL);
         embed.addField('Discord tag:', user.tag, true);
         embed.addField('ID:', user.id, true);
-        embed.addField(await db.getTrans(lang, 'user_reg'), moment(user.createdAt).format('DD.MM.YYYY, HH:mm'));
+        embed.addField(await db.get('trans', lang, 'user_reg'), moment(user.createdAt).format('DD.MM.YYYY, HH:mm'));
         embed.setFooter(`kuvuBot ${version}`);
         embed.setTimestamp();
         await message.channel.send(embed);
@@ -42,12 +42,12 @@ exports.function = async (parameters) => {
 
         if (userInfo) {
             const embed = new Discord.RichEmbed();
-            embed.setAuthor(await db.getTrans(lang, 'user_title'), message.client.user.displayAvatarURL);
+            embed.setAuthor(await db.get('trans', lang, 'user_title'), message.client.user.displayAvatarURL);
             embed.setColor(config.colors.default);
             embed.setThumbnail(user.displayAvatarURL);
             embed.addField('Discord tag:', user.tag, true);
             embed.addField('ID:', user.id, true);
-            embed.addField(await db.getTrans(lang, 'user_reg'), moment(user.createdAt).format('DD.MM.YYYY, HH:mm'));
+            embed.addField(await db.get('trans', lang, 'user_reg'), moment(user.createdAt).format('DD.MM.YYYY, HH:mm'));
             embed.addField('LVL:', userInfo['lvl'], true);
             embed.addField('XP:', userInfo['xp'] + '/' + userInfo['lvlProm'], true);
             embed.setFooter(`kuvuBot ${version}`);
@@ -55,12 +55,12 @@ exports.function = async (parameters) => {
             await message.channel.send(embed);
         } else {
             const embed = new Discord.RichEmbed();
-            embed.setAuthor(await db.getTrans(lang, 'user_title'), message.client.user.displayAvatarURL);
+            embed.setAuthor(await db.get('trans', lang, 'user_title'), message.client.user.displayAvatarURL);
             embed.setColor(config.colors.default);
             embed.setThumbnail(user.displayAvatarURL);
             embed.addField('Discord tag:', user.tag, true);
             embed.addField('ID:', user.id, true);
-            embed.addField(await db.getTrans(lang, 'user_reg'), moment(user.createdAt).format('DD.MM.YYYY, HH:mm'));
+            embed.addField(await db.get('trans', lang, 'user_reg'), moment(user.createdAt).format('DD.MM.YYYY, HH:mm'));
             embed.setFooter(`kuvuBot ${version}`);
             embed.setTimestamp();
             await message.channel.send(embed);

@@ -24,7 +24,7 @@ exports.function = async (parameters) => {
     const chars = args.slice(1).join(' ').toLowerCase().split('');
 
     if(!chars[0]) {
-        await message.reply(`${await db.getTrans(lang, 'usage')} \`${prefix}${await db.getTrans(lang, 'etxt_command')}\`!`);
+        await message.reply(`${await db.get('trans', lang, 'usage')} \`${prefix}${await db.get('trans', lang, 'etxt_command')}\`!`);
     } else {
         for(const char in chars) {
             if(chars[char].charCodeAt() > 96 && chars[char].charCodeAt() < 123) {

@@ -1,7 +1,6 @@
 'use strict';
 
 const r = require('rethinkdb');
-
 const { database } = require('../config.json');
 
 let connection;
@@ -34,6 +33,7 @@ const check = async function check(gid) {
                 "lang": "en",
                 "logchannel": "none",
                 "greeting": false,
+                "role": false,
                 "prefix": "kb!",
                 "users": []
             }).run(connection);
@@ -58,68 +58,94 @@ const update = async function update(obj, id, k, v) {
         return false;
     }
 };
-const getLang = async function getLang(id) {
-    if(id) {
-        try {
-            const guild = await r.table('guilds').get(id).toJSON().run(connection);
-            const lang = await JSON.parse(guild).lang;
 
-            return lang;
-        } catch(e) {
-            console.error(e);
-            return false;
-        }
-    }
-    
-};
-const getTrans = async function getTrans(lang, w) {
-    if(lang && w){
-        try {
-            let langFile = require(`../langs/${lang}.json`);
-            return langFile[w];
-        } catch (e) {
-            console.error(e);
-            return false;
-        }
-    } else {
-        return ' [Translation not found] ';
-    }
-};
+const get = async function get(str, one, two) {
+    if (!str) return false;
+    if (!one) return false;
+    let id = one;
+    switch(str) {
+        case 'lang':
+            try {
+                const guild = await r.table('guilds').get(id).toJSON().run(connection);
+                const lang = await JSON.parse(guild).lang;
 
-const getPrefix = async function getPrefix(id) {
-    if(id){
-        try {
-            const guild = await r.table('guilds').get(id).toJSON().run(connection);
-            const prefix = await JSON.parse(guild).prefix;
-
-            return prefix;
-        } catch (e) {
-            console.error(e);
-            return false;
-        }
-    } else {
-        return false;
-    }
-};
-
-const getlvlToggle = async function getlvlToggle(id) {
-    if(id){
-        try {
-            const guild = await r.table('guilds').get(id).toJSON().run(connection);
-            const status = await JSON.parse(guild).showlvl;
-            if(status) {
-                return status;
-            } else {
-                await r.table('guilds').get(id).update({showlvl: 'false'}).run(connection);
-                return 'true';
+                return lang;
+            } catch(e) {
+                console.error(e);
+                return false;
             }
+            break;
+        case 'trans':
+            let lang = one, w = two;
+            if(lang && w){
+                try {
+                    let langFile = require(`../langs/${lang}.json`);
+                    return langFile[w];
+                } catch (e) {
+                    console.error(e);
+                    return false;
+                }
+            } else {
+                return ' [Translation not found] ';
+            }
+            break;
+        case 'logChannel':
+            try {
+                const guild = await r.table('guilds').get(id).toJSON().run(connection);
+                const logChannel = await JSON.parse(guild).logchannel;
 
-        } catch (e) {
-            console.error(e);
-            return false;
-        }
-    } else {
-        return false;
+                if (logChannel == 'none') return false;
+
+                return logChannel;
+            } catch(e) {
+                console.error(e);
+                return false;
+            }
+            break;
+        case 'prefix':
+            try {
+                const guild = await r.table('guilds').get(id).toJSON().run(connection);
+                const prefix = await JSON.parse(guild).prefix;
+
+                return prefix;
+            } catch (e) {
+                console.error(e);
+                return false;
+            }
+            break;
+        case 'lvlToggle':
+            try {
+                const guild = await r.table('guilds').get(id).toJSON().run(connection);
+                const status = await JSON.parse(guild).showlvl;
+                if(status) {
+                    return status;
+                } else {
+                    await r.table('guilds').get(id).update({showlvl: 'false'}).run(connection);
+                    return 'true';
+                }
+
+            } catch (e) {
+                console.error(e);
+                return false;
+            }
+            break;
+        case 'role':
+            try {
+                const guild = await r.table('guilds').get(id).toJSON().run(connection);
+                const role = await JSON.parse(guild).role;
+                if(role) {
+                    if (role != 'false') return role;
+                    else return false;
+                } else {
+                    await r.table('guilds').get(id).update({role: 'false'}).run(connection);
+                    return false;
+                }
+
+            } catch (e) {
+                console.error(e);
+                return false;
+            }
+            break;
     }
 };
 
@@ -161,8 +187,8 @@ const addXP = async function addXP(user, guild, message) {
                             totalXP = 0;
                             lvl++;
                             lvlProm = Math.floor(((lvlProm+newXP)*2)-(lvlProm-newXP)*0.70);
-                            if (await getlvlToggle(guild) == true) { 
-                                let anc = await getTrans(await getLang(message.guild.id), 'lvl_up');
+                            if (await get('lvlToggle', guild) == true) { 
+                                let anc = await get('trans', await get('lang', message.guild.id), 'lvl_up');
                                 anc = anc.replace('{author}', message.author.id)
                                         .replace('{lvl}', lvl);
                                 await message.channel.send(anc);
@@ -270,10 +296,7 @@ exports.updateStats = updateStats;
 exports.check = check;
 exports.load = load;
 exports.update = update;
-exports.getTrans = getTrans;
-exports.getLang = getLang;
-exports.getPrefix = getPrefix;
-exports.getlvlToggle = getlvlToggle;
+exports.get = get;
 exports.addXP = addXP;
 exports.getUser = getUser;
 exports.warn = warn;

@@ -66,6 +66,8 @@ package-lock.json
 # local files
 config.json
 tests.js
+commands/test.js
 
 # vs code files
 .vscode/
+.vsls.json

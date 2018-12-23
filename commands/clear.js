@@ -39,13 +39,13 @@ exports.function = async (parameters) => {
     }
 
     if(!message.guild) {
-        await message.reply(await db.getTrans(lang, 'onlyText'));
+        await message.reply(await db.get('trans', lang, 'onlyText'));
     } else {
         if (!message.member.hasPermission('MANAGE_MESSAGES')) {
-            await message.reply(await db.getTrans(lang, 'perms'));
+            await message.reply(await db.get('trans', lang, 'perms'));
         } else {
             if (isNaN(limit)) {
-                await message.reply(`${await db.getTrans(lang, 'usage')} \`${prefix}${await db.getTrans(lang, 'clear_command')}\`!`);
+                await message.reply(`${await db.get('trans', lang, 'usage')} \`${prefix}${await db.get('trans', lang, 'clear_command')}\`!`);
             } else {
                 let messages = await message.channel.fetchMessages({ limit: 100 });
                 if (filter) {
@@ -56,10 +56,10 @@ exports.function = async (parameters) => {
                 messages = messages.array().slice(0, limit);
                 await message.channel.bulkDelete(messages);
                 if (filter != null) {
-                    await message.channel.send(`${await db.getTrans(lang, 'clear_success')} ${messages.length} ${await db.getTrans(lang, 'clear_from')} ${limit} ${await db.getTrans(lang, 'clear_msgf')} ${filter}!`);
+                    await message.channel.send(`${await db.get('trans', lang, 'clear_success')} ${messages.length} ${await db.get('trans', lang, 'clear_from')} ${limit} ${await db.get('trans', lang, 'clear_msgf')} ${filter}!`);
                 }
                 else {
-                    await message.channel.send(`${await db.getTrans(lang, 'clear_success')} ${messages.length}/${limit} ${await db.getTrans(lang, 'clear_msg')}`);
+                    await message.channel.send(`${await db.get('trans', lang, 'clear_success')} ${messages.length}/${limit} ${await db.get('trans', lang, 'clear_msg')}`);
                 }
             }
         }

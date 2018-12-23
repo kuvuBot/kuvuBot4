@@ -30,13 +30,13 @@ exports.function = async (parameters) => {
     let word = args[1];
 
     if (!word) {
-        await message.reply(`${await db.getTrans(lang, 'usage')}\`${prefix}${await db.getTrans(lang, 'ii_command')}\`!`);
+        await message.reply(`${await db.get('trans', lang, 'usage')}\`${prefix}${await db.get('trans', lang, 'ii_command')}\`!`);
     } else {
         word = word.toUpperCase();
         if (word.length > 10) {
-            await message.reply(await db.getTrans(lang, 'ii_limit'));
+            await message.reply(await db.get('trans', lang, 'ii_limit'));
         } else if (!/^[a-z0-9]+$/i.test(word)) {
-            await message.reply(await db.getTrans(lang, 'ii_chars'));
+            await message.reply(await db.get('trans', lang, 'ii_chars'));
         } else {
             await httpAsPromised.post('https://is-now-illegal.firebaseio.com/queue/tasks.json', {
                 json: true,
@@ -46,7 +46,7 @@ exports.function = async (parameters) => {
             const gif = JSON.parse(await httpAsPromised.get(`https://is-now-illegal.firebaseio.com/gifs/${word}.json`, {resolve: 'body'}));
 
             const embed = new Discord.RichEmbed();
-            embed.setAuthor(`${word} ${await db.getTrans(lang, 'ii_now')}`, message.client.user.displayAvatarURL);
+            embed.setAuthor(`${word} ${await db.get('trans', lang, 'ii_now')}`, message.client.user.displayAvatarURL);
             embed.setColor(config.colors.default);
             embed.setImage(gif.url);
             embed.setFooter(`kuvuBot ${version}`);

@@ -26,10 +26,10 @@ exports.function = async (parameters) => {
     let question = args.slice(1).join(' ');
 
     if (!message.guild) {
-        await message.reply(await db.getTrans(lang, 'onlyText'));
+        await message.reply(await db.get('trans', lang, 'onlyText'));
     } else {
         if(!question) {
-            await message.reply(`${await db.getTrans(lang, 'usage')}\`${prefix}${await db.getTrans(lang, 'vote_command')}\`!`);
+            await message.reply(`${await db.get('trans', lang, 'usage')}\`${prefix}${await db.get('trans', lang, 'vote_command')}\`!`);
         } else {
             await message.delete();
 

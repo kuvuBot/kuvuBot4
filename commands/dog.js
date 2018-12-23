@@ -8,7 +8,7 @@ exports.info = {
     help: {
         command: 'dog',
         description: 'wysyła losowego pieska.',
-        category: 'fun'
+        category: 'img'
     },
     aliases: [
         'pies',
@@ -28,7 +28,7 @@ exports.function = async (parameters) => {
     const dog = JSON.parse(await httpAsPromised.get(url, { resolve : 'body' }));
 
     const embed = new Discord.RichEmbed();
-    embed.setAuthor(await db.getTrans(lang, 'dog_title'), message.client.user.displayAvatarURL);
+    embed.setAuthor(await db.get('trans', lang, 'dog_title'), message.client.user.displayAvatarURL);
     embed.setColor(config.colors.default);
     embed.setImage(dog[0].url);
     embed.setFooter(`kuvuBot ${version}`);

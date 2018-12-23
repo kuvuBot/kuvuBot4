@@ -22,7 +22,7 @@ exports.function = async (parameters) => {
     const categories = [];
 
     for(const command of commands.filter(command => command.info.help)) {
-        let cat = await db.getTrans(lang, `categ_${command.info.help.category}`);
+        let cat = await db.get('trans', lang, `categ_${command.info.help.category}`);
         if(!categories.find(category => category.name === cat)) {
             categories.push({
                 name: cat,
@@ -43,8 +43,8 @@ exports.function = async (parameters) => {
         let commandsInCat = 0;
         for(const command of category.commands.sort((a, b) => a.info.command.localeCompare(b.info.command))) {
             if (command.info.show == false) {} else {
-                let cmd = await db.getTrans(lang, `${command.info.command}_command`);
-                let desc = await db.getTrans(lang, `${command.info.command}_desc`);
+                let cmd = await db.get('trans', lang, `${command.info.command}_command`);
+                let desc = await db.get('trans', lang, `${command.info.command}_desc`);
 
                 if (!cmd) {
                     cmd = command.info.help.command;
@@ -60,10 +60,11 @@ exports.function = async (parameters) => {
         embed.addField(`${category.name} (${commandsInCat})`, `${commandsText.join('\n')}`, true);
     }
     embed.addBlankField();
-    embed.addField('Lang/Język', `:flag_pl: Jeśli chcesz zmienić język bota na swoim serwerze, wykonaj komendę \`${prefix}lang pl\` lub \`${prefix}lang en\`.\n` +
-        `:flag_gb: If you want to change the bot language on your guild, use \`${prefix}lang pl\` or \`${prefix}lang en\` command.\n\n`);
-    embed.addField('Translation/tłumaczenie', '[Help translating kuvuBot\nPomóż tłumaczyć kuvuBota](https://poeditor.com/join/project/No3FgBo5Tx)');
-    embed.setAuthor(await db.getTrans(lang, 'help_title'), message.client.user.displayAvatarURL);
+    embed.addField(':flag_gb: Language', `To change the bot language on \nyour guild, use: \`${prefix}lang en\``, true);
+    embed.addField(':flag_pl: Język', `Aby zmienić język bota na swoim \nserwerze, użyj \`${prefix}lang pl\``, true);
+    embed.addField('Translation/tłumaczenie', '[Help translating kuvuBot\nPomóż tłumaczyć kuvuBota](https://poeditor.com/join/project/No3FgBo5Tx)', true);
+    embed.addField('Support', `[${await db.get('trans', lang, 'check')}](https://discord.gg/7jwyFdn)`, true);
+    embed.setAuthor(await db.get('trans', lang, 'help_title'), message.client.user.displayAvatarURL);
     embed.setColor(config.colors.default);
     embed.setFooter(`kuvuBot ${version}`);
     embed.setTimestamp();

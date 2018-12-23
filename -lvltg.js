@@ -21,12 +21,12 @@ exports.function = async (parameters) => {
     const version = parameters.packageInfo.version;
 
     if(!message.guild) {
-        await message.reply(await db.getTrans(lang, 'onlyText'));
+        await message.reply(await db.get('trans', lang, 'onlyText'));
     } else {
         if (!message.member.hasPermission('MANAGE_GUILD')) {
-            await message.reply(await db.getTrans(lang, 'perms'));
+            await message.reply(await db.get('trans', lang, 'perms'));
         } else {
-            if (await db.getlvlToggle(guildID) == 'true') {
+            if (await db.get('lvlToggle', guildID) == 'true') {
                 await db.update('guilds', guildID, 'showlvl', 'false');
                 await message.reply('👌 - off');
             } else {

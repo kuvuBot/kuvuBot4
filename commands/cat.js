@@ -26,7 +26,7 @@ exports.function = async (parameters) => {
     const randomCat = xml.xml2js(await httpAsPromised.get('https://thecatapi.com/api/images/get?format=xml&results_per_page=1', {resolve: 'body'}), {compact: true});
 
     const embed = new Discord.RichEmbed();
-    embed.setAuthor(await db.getTrans(lang, 'cat_title'), message.client.user.displayAvatarURL);
+    embed.setAuthor(await db.get('trans', lang, 'cat_title'), message.client.user.displayAvatarURL);
     embed.setColor(config.colors.default);
     embed.setImage(randomCat.response.data.images.image.url._text);
     embed.setFooter(`kuvuBot ${version}`);

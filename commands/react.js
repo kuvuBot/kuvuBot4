@@ -25,10 +25,10 @@ exports.function = async (parameters) => {
     const regA = 127462;
 
     if(!chars[0]) {
-        await message.reply(`${await db.getTrans(lang, 'usage')}\`${prefix}${await db.getTrans(lang, 'react_command')}\`!`);
+        await message.reply(`${await db.get('trans', lang, 'usage')}\`${prefix}${await db.get('trans', lang, 'react_command')}\`!`);
     } else {
         if (text.length > 20) {
-            await message.reply(await db.getTrans(lang, 'react_limit'));
+            await message.reply(await db.get('trans', lang, 'react_limit'));
         } else {
             for(const char in chars) {
                 if(chars[char].charCodeAt() > 96 && chars[char].charCodeAt() < 123) {

@@ -3,12 +3,13 @@
 const Discord = require('discord.js');
 
 exports.info = {
-    command: 'prefix',
+    command: 'lang',
     help: {
-        command: 'prefix <prefix>',
-        description: 'changes the bot prefix',
+        command: 'lang <pl/en>',
+        description: 'changes the bot language',
         category: 'mod'
-    }
+    },
+    show: false
 };
 
 exports.function = async (parameters) => {
@@ -20,19 +21,19 @@ exports.function = async (parameters) => {
     const db = parameters.db;
     const version = parameters.packageInfo.version;
 
-    const prefixText = args[1];
+    const langC = args[1];
 
     if(!message.guild) {
-        await message.reply(await db.getTrans(lang, 'onlyText'));
+        await message.reply(await db.get('trans', lang, 'onlyText'));
     } else {
         if (!message.member.hasPermission('MANAGE_GUILD')) {
-            await message.reply(await db.getTrans(lang, 'perms'));
+            await message.reply(await db.get('trans', lang, 'perms'));
         } else {
-            if (prefixText) {
-                await db.update('guilds', guildID, 'prefix', prefixText);
+            if (langC == 'pl' || langC == 'en') {
+                await db.update('guilds', guildID, 'lang', langC);
                 await message.reply('👌');
             } else {
-                await message.reply(`${await db.getTrans(lang, 'usage')} \`${prefix}prefix <prefix>\`!`);
+                await message.reply(`${await db.get('trans', lang, 'usage')} \`${prefix}lang <pl/en>\`!`);
             }
         }
     }

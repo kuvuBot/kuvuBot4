@@ -18,5 +18,5 @@ exports.function = async (parameters) => {
     message = await message.channel.send('...');
     let secondTs = Date.now();
     let ping = secondTs - firstTs;
-    await message.edit(`🏓 Ping: ${ping}ms | Gateway: ${Math.round(client.ping)}ms)`);
+    await message.edit(`🏓 Ping: ${ping}ms | Gateway: ${Math.round(client.ping)}ms`);
 };

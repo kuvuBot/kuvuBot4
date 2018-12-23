@@ -27,7 +27,7 @@ exports.function = async (parameters) => {
     const question = args.slice(1).join(' ');
 
     if(!question) {
-        await message.reply(`${await db.getTrans(lang, 'usage')} \`${prefix}${await db.getTrans(lang, 'cb_command')}\`!`);
+        await message.reply(`${await db.get('trans', lang, 'usage')} \`${prefix}${await db.get('trans', lang, 'cb_command')}\`!`);
     } else {
         const bot = new cleverbot(config.cleverbot.user, config.cleverbot.key);
         await bot.setNick(message.author.id);
