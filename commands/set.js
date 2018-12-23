@@ -46,12 +46,14 @@ exports.function = async (parameters) => {
                                 await db.update('guilds', guildID, 'lang', args[2]);
                                 await message.reply('👌');
                             } else await message.reply(`${await db.get('trans', lang, 'usage')} \`${prefix}${await db.get('trans', lang, 'set_lang_usage')}\`!`);
-                        } else await message.reply(`${await db.get('trans', lang, 'usage')} \`${prefix}${await db.get('trans', lang, 'set_lang_usage')}\`!`);ge
+                        } else await message.reply(`${await db.get('trans', lang, 'usage')} \`${prefix}${await db.get('trans', lang, 'set_lang_usage')}\`!`);
+                        break;
                     case 'prefix':
                         if (args[2]) {
                             await db.update('guilds', guildID, 'prefix', args[2]);
                             await message.reply('👌');
                         } else await message.reply(`${await db.get('trans', lang, 'usage')} \`${prefix}${await db.get('trans', lang, 'set_prefix_usage')}\`!`);
+                        break;
                     case 'showlvl':
                     case 'showlevel':
                     case 'pokazujpoziom':
@@ -62,6 +64,7 @@ exports.function = async (parameters) => {
                             await db.update('guilds', guildID, 'showlvl', 'true');
                             await message.reply('👌 - on');
                         }
+                        break;
                     case 'role':
                     case 'rola':
                         if (args[2]) {
@@ -77,6 +80,7 @@ exports.function = async (parameters) => {
                             await db.update('guilds', guildID, 'role', role);
                             await message.reply('👌');
                         } else await message.reply(`${await db.get('trans', lang, 'usage')} \`${prefix}${await db.get('trans', lang, 'set_role_usage')}\`!`);
+                        break;
                 }
             } else if (args[1] == 'options' || args[1] == 'opcje') await message.channel.send(`${await db.get('trans', lang, 'set_options')} \n ${await db.get('trans', lang, 'set_options_desc')}`);
             else {
