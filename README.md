@@ -1,5 +1,8 @@
 # kuvuBot4
 
+## This bot is no longer supported. Please use newer version:
+[click here](https://github.com/kuvuBot/kuvuBot)
+
 [![Build Status](https://travis-ci.org/kuvuBot/kuvuBot4.svg?branch=master)](https://travis-ci.org/kuvuBot/kuvuBot4)
 [![GitHub issues](https://img.shields.io/github/issues/kuvuBot/kuvuBot4.svg)](https://github.com/kuvuBot/kuvuBot4/issues)
 [![GitHub forks](https://img.shields.io/github/forks/kuvuBot/kuvuBot4.svg)](https://github.com/kuvuBot/kuvuBot4/network)
